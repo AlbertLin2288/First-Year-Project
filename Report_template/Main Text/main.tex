@@ -1,0 +1,171 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%
+% Adjusted template based on a template provided by Manvi Agarwal on overleaf
+%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,12pt,twoside]{article}
+\usepackage[
+	top    = 1.5cm,
+	bottom = 1.80cm,
+	left   = 2.00cm,
+	right  = 2.00cm,
+	includeheadfoot]{geometry} % Use similar margins to the Word Template
+\setlength{\parindent}{0pt}
+
+\include{standardmacros}
+
+\usepackage{subcaption} %for subfigures
+\usepackage{subfiles}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{circuitikz}
+\usepackage[utf8]{inputenc}
+
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{tikz}
+  \colorlet{myred}{red}
+  \colorlet{mygreen}{green!60!black}
+  \colorlet{myyellow}{yellow!60!black}
+  \colorlet{myblue}{blue}
+  \newcommand{\mygreen}[1]{{\color{mygreen}#1}}
+  \newcommand{\myred}[1]{{\color{myred}#1}}
+  \newcommand{\myyellow}[1]{{\color{myyellow}#1}}
+  \newcommand{\myblue}[1]{{\color{myblue}#1}}
+  
+  %\usetikzlibrary{fit}
+  \usetikzlibrary{positioning}
+  
+%  \usetikzlibrary{external}
+%     \tikzexternalize
+\newcommand{\tikzexternaldisable}{}
+ \usetikzlibrary{arrows}
+ \usetikzlibrary{fit}
+ \usetikzlibrary{calc}
+  \pgfdeclarelayer{background}
+  \pgfsetlayers{background,main}
+  \tikzset{errorstyle/.style={thick,red,solid}}
+  \tikzset{safetystyle/.style={thick,blue,dotted}}
+  \tikzset{funnelfillstyle/.style={blue!20!white,opacity=0.8}}
+
+\newcommand{\myref}{\text{\normalfont ref}}
+
+\usepackage{preamble}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  THEOREM
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsthm}
+\usepackage{thmtools}
+\declaretheoremstyle[headfont=\normalfont\bfseries,bodyfont=\itshape]{bfthmstyle}
+\declaretheorem[numberwithin=section,style=bfthmstyle]{Theorem}
+\declaretheorem[sharenumber=Theorem,style=bfthmstyle]{Lemma}
+\declaretheorem[sharenumber=Theorem,style=bfthmstyle]{Proposition}
+\declaretheorem[sharenumber=Theorem,style=bfthmstyle]{Corollary}
+
+\declaretheoremstyle[headfont=\normalfont\bfseries,qed={$\diamond$}]{bfdefstyle}
+\declaretheorem[sharenumber=Theorem,style=bfdefstyle]{Definition}
+\declaretheorem[sharenumber=Theorem,style=bfdefstyle]{Example}
+
+\declaretheoremstyle[headfont=\normalfont\bfseries,qed={$\diamond$}]{bfremstyle}
+\declaretheorem[sharenumber=Theorem,style=bfdefstyle]{Remark}
+\declaretheorem[sharenumber=Theorem,style=bfdefstyle]{Remarks}
+
+\newenvironment{Proof}[1][\proofname]{\par
+  \pushQED{\hfill$\square$}%
+     {\itshape
+    #1.}
+}{%
+  \popQED
+}
+
+\usepackage{fancyhdr} % Use headers
+
+% Define the page styles
+\fancypagestyle{titlepage}{
+	\fancyhf{}
+	\fancyhead[C]{\includegraphics[width=\textwidth]{banner.png}}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+\fancypagestyle{body}{
+    \fancyhf{}
+    \fancyhead[LE,RO]{\thepage}
+    \fancyhead[RE,LO]{Section \leftmark}
+}
+
+
+\fancypagestyle{contents}{
+    \fancyhf{}
+    \fancyhead[LE,RO]{\thepage}
+    \fancyhead[RE,LO]{\leftmark}
+}
+
+\renewcommand{\refname}{Bibliography}
+
+% Begin the actual document
+
+
+%\setlength{\headheight}{50pt}
+
+\title{
+    \begin{flushleft}
+    \vspace{5cm}
+        {\bf
+        {\Huge Project Title}}\\[4ex]
+        First Year Project 2026\\[20ex]
+        {\LARGE Student 1, S1234567 \\ [1ex]
+        Student 2, S1234567\\ [1ex]
+        Student 3, S1234567 \\ [1ex]
+        Student 4, S1234567}
+    \end{flushleft}
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{titlepage}
+\newpage
+\section*{Abstract}
+\newpage
+\tableofcontents
+
+\newpage
+
+\setlength{\headheight}{32pt}
+
+\pagestyle{body}
+\newpage
+\section{Abstract}\label{sec:abstract}
+\input{Main Text/Sections/abstract}
+\newpage
+
+\section{Introduction}
+% Citation example. 
+In the paper by \cite{citation_key} ...
+\label{sec: intro}
+\input{Main Text/Sections/introduction}
+
+% SECTION 1
+\section{Section 1}\label{sec:sec1}
+\subsection{Subsection 1}\label{ssec:inf}
+\input{Main Text/Sections/Section1/subsection1}
+
+% CONCLUSION
+\section{Conclusion}\label{sec:conclusion}
+\input{Main Text/Sections/conclusion}
+
+\section{References}
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\newpage
+\section{Appendix}\label{appdx:1}
+\input{Main Text/Sections/appendix}
+
+\end{document}

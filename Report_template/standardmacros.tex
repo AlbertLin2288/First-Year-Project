@@ -1,0 +1,129 @@
+\usepackage[utf8]{inputenc}  % erlaubt Umlaute direkt im Latex-File anzugeben
+\usepackage[T1]{fontenc} % Umlaute sind korrekt im pdf (insbesondere beim Kopieren)
+\usepackage{lmodern} % nutze wieder die Standard-Latex-Schriftart (die durch fontenc geändert wurde)
+
+
+\usepackage{mathtools} %  amsmath + some extra stuff
+\usepackage{amssymb,amsfonts}%, amsmath,amsthm}
+
+\usepackage{bm}  % for \bm{...}, boldface math symbols (including greek letters)
+   \renewcommand{\mathbf}[1]{\bm{#1}}
+\usepackage{dsfont} % for \mathds{...}, including \mathds{1}
+
+% use package enumitem only when not using beamer
+\makeatletter
+\@ifclassloaded{beamer}{}{\usepackage[shortlabels]{enumitem}}
+\makeatother
+
+\newcommand{\mycite}[1]{{\normalfont\textsc{#1}}}
+
+\newcommand{\Rp}{\mathbb{R}_{\geq 0}}
+\newcommand{\Rsp}{\mathbb{R}_{> 0}}
+
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\fC}{\mathfrak{C}}
+\newcommand{\fL}{\mathfrak{L}}
+\newcommand{\fN}{\mathfrak{N}}
+\newcommand{\fO}{\mathfrak{O}}
+\newcommand{\fR}{\mathfrak{R}}
+\newcommand{\fV}{\mathfrak{V}}
+
+
+\newcommand{\ttm}{\mathtt{m}}
+\newcommand{\ttn}{\mathtt{n}}
+\newcommand{\ttp}{\mathtt{p}}
+\newcommand{\ttq}{\mathtt{q}}
+
+
+\newcommand{\me}{\mathtt{e}}
+
+\newcommand{\n}{\color{lightgray}{0}}
+
+\DeclareMathOperator{\argmax}{argmax}
+\newcommand{\argmin}{\operatornamewithlimits{arg\,min}}
+\newcommand{\esssup}{\operatornamewithlimits{ess\,sup}}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\am}{am}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\gm}{gm}
+\DeclareMathOperator{\linspan}{span}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\diag}{diag}
+
+\newcommand{\del}{\partial}
+\newcommand{\setdef}[2]{\left\{#1\,\left|\,\vphantom{#1} #2\,\right.\!\!\right\}}
+\newcommand{\ddt}{\tfrac{\text{\normalfont d}}{\text{\normalfont d}t}}
+%\newcommand{\diag}{\text{\rm diag\,}}
+\newcommand{\bdiag}{\text{\rm block diag\,}}
+\newcommand{\jf}{\text{\normalfont jf}}
+\newcommand{\pw}{\text{\normalfont pw}}
+\newcommand{\reg}{\text{\normalfont reg}}
+\newcommand{\ds}[1][s]{\text{\normalfont \, d} #1 \,}
+\newcommand{\Lloc}{\cL_{1,\text{\normalfont loc}}}
+\newcommand{\cons}{\text{\normalfont cons}}
+\newcommand{\imp}{\text{\normalfont imp}}
+\newcommand{\obs}{\text{\normalfont obs}}
+\newcommand{\diff}{\text{\normalfont diff}}
+\newcommand{\myleft}{\text{\normalfont left}}
+\newcommand{\old}{\text{\normalfont old}}
+\newcommand{\new}{\text{\normalfont new}}
+\newcommand{\ideal}{\text{\normalfont ideal}}
+\newcommand{\ITP}{\text{\normalfont ITP}}
+
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\hvphi}{\widehat\varphi}
+\newcommand{\heta}{\widehat\eta}
+\newcommand{\Dpwsm}{\D_{\pw\cC^\infty}}
+
+\newcommand{\du}{\mathtt{u}}
+\newcommand{\dy}{\mathtt{y}}
+
+\newenvironment{smallpmatrix}
+{\left(\begin{smallmatrix}}
+{\end{smallmatrix}\right)}
+
+\newenvironment{smallbmatrix}
+{\left[\begin{smallmatrix}}
+{\end{smallmatrix}\right]}
+
+%similar size as smallmatrix, but allows for vertical lines and/or non-centered entries, taken from https://tex.stackexchange.com/questions/98663/how-to-model-smallmatrix-with-array
+\newenvironment{smallarray}[1]
+ {\null\,\vcenter\bgroup\scriptsize
+  \renewcommand{\arraystretch}{0.7}%
+  \arraycolsep=.13885em
+  \hbox\bgroup$\array{@{}#1@{}}}
+ {\endarray$\egroup\egroup\,\null}

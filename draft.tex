@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{lettrine}
+
+% shortcuts!
+\newcommand{\im}{\text{im}}
+
+\title{Generalized eigenvalues and Weierstrass Form}
+\author{Gloria, Bodhi, Branko}
+\date{April 2026}
+
+\begin{document}
+
+\maketitle
+
+\section*{Agenda (as of now)}
+\title{Proof of Jordan Form} $\newline$$\newline$
+1. Invariant subspaces $\newline$
+1.1 Prove: Invariance of eigenspaces \\
+2. Eigen-spaces and null-chains \\
+2.1 Prove: Non-zero disjointness of eigenspaces \\
+2.2 Prove: Invariance of expanded eigenspaces \\
+2.3 Prove: Linear independence of  a null-chain \\
+2.4 Prove: Linear independence of all null-chains \emph{TODO}\\ 
+2.5 Prove: Null-chains span the parent vector space \emph{TODO}\\ 
+
+\section{Invariant subspaces}
+\lettrine{W}{e}
+usually consider a linear map $T:V\rightarrow V$, where $V$ is finite dimensional. For a random subspace $S\subset V$, its image under $T$ is usually also random.
+However we consider those $S$ which do not change under $T$, called invariant subspaces:$$v\in S\implies T(v)\in S$$
+For example, the well-known subspace $$E_\lambda = \{v: T(v)=\lambda v\}$$ is invariant - each element is scaled under $T$, which is still in $E_\lambda$.
+$\\$$\\$ The image $$\im T=\{T(v): v\in V\}$$is invariant almost by definition.$\\$$\\$ 
+Another example, important for later work, is the generalized kernel $$K=\{v: \exists k\in \mathbb{N}^* \text{ s.t } T^k(v)=0\}$$
+This is indeed a subspace, and the invariance here follows from picking $v\in K$ nonzero and it's corresponding $k$ such that we have 
+$$T^k(v)=0\implies T^{k-1}(T(v))=0\implies T(v)\in K$$.
+\hfill $(\heartsuit)$ \\ \\ 
+\subsection{}
+Invariant subspaces (except $\{\mathbf{0}\}$) $S$ under $T$ have an important corollary - they all contain an eigenvector of $T$. This is for the simple reason that the linear map
+
+ $$T^*:S\rightarrow S\ \text{,} \ T^*(v)=T(v)$$   
+is well defined due to the invariance. Then we just pick the eigenvector of $T^*$ (always exists).
+
+\section{Eigenspaces and null-chains}
+In search of a canonical (unique $+$ nice) matrix representation of any $T$. 
+Lets pick our beautiful eigenvalues $\lambda_1, \lambda_2,...,\lambda_k$ for an linear operator $T$ over $V$.
+We have the eigenspaces $$E_{\lambda_{i}}=\{v: T(v)=\lambda_i v\}$$
+It is important to know that $$E_{\lambda_i}\cap E_{\lambda_j}=\{0\}  \ \text {, for all }i<j\leq k,$$and that for an arbitrary basis $\beta_i$ for $E_{\lambda_i}$, the set $$\bigcup_{i=1}^{k} \beta_i$$is linearly independent.$\newline$$\newline$
+One may wonder: how nice would it be if $\bigoplus_{i=1}^{k} E_{\lambda_i}$ spans the whole space - then $\bigcup \beta_i$ may be our basis. 
+Sadly, this is often not the case. An example is the matrix \[
+A = \begin{pmatrix}
+1 & 1 & 0 \\
+0 & 1 & 1 \\
+0 & 0 & 1
+\end{pmatrix}
+\]
+with its corresponding linear map. If $\bigoplus E_{\lambda_i}$ is not enough to cover $V$, we want to somehow expand each $E_{\lambda_i}$ into a bigger subspace, with the importance to keep their nice structure and disjointness. $\newline \newline$
+
+The way to this is for each $E_{\lambda_i}$ to consider $$G_{\lambda_i}=\lim_{k\rightarrow  \infty } \ker(T-\lambda_i \mathrm{id})^k$$Denote $X_k=\ker(T-\lambda_i \mathrm{id})^k$ and notice that $E_{\lambda_i}=X_1$. It can be seen that $$X_k\subseteq X_{k+1}$$ which means that for each iteration of $k$, the subspace $X_k$ grows. Each $X_k$ has 2 nice properties: it is nilpotent under $T-\lambda_i\mathrm{id}$ (definition), and invariant under $T$ and $T-\lambda_i\mathrm{id}$ which actually follows from the former. $\newline$$\newline$
+\textbf{Claim 1:} $X_k$ is invariant under $T-\lambda_i\mathrm{id}$ $\newline$
+\textit{Proof}: Follows from $(\heartsuit)$. \hfill  $\blacksquare$ $\\$ $\\$
+\textbf{Claim 2:} $X_k$ is invariant under $T$ $\newline$
+\textit{Proof:} We use the invariance under $T-\lambda_i\mathrm{id}$: $$v\in X_k\implies T(v)-\lambda_i v\in X_k \implies T(v)\in X_k$$because of closeness. \hfill $\blacksquare$ $\\$ $\\$
+Notice that because $X_k\subseteq X_{k+1}\subseteq V \ \forall k$, after some iteration $N$ we must have $$X_k=X_{k+1}\  \forall k\geq N$$since we are bounded by the dimension of $V$.
+$\\$ $\\$ Our final extendable subset is $G_{\lambda_i}=X_N$. There is an obvious way to try to pick a basis for $G_{\lambda_i}$.
+Let $$T_1(v) := T(v)-\lambda_i v$$ and recall each $v\in G_{\lambda_i}$ eventually gets mapped to $0$ under $T_1$ $\\$ $\\$
+\textbf{Claim:} The vectors in the chain $v,T_1(v),..., T_1^k(v)$ are linearly independent where $T_1^{k+1}(v)=0$ and $k+1$ being the smallest integer with such property. $\\$
+\textit{Proof:} Let $v=v_1$ and $v_{i+1}=T_1(v_i)$. We have$$c_1v_1+c_2v_2+...+c_kv_k=0.$$
+Applying $T_1^{k}$ on both sides gives $$c_1v_k=0\implies c_1=0$$($v_k$ is not $0$ because of minimality of $k+1$).
+Substituting back above and applying $T_1^{k-1}$ on both sides gives $$c_2v_k=0\implies c_2=0.$$
+Thus, inductively we obtain $$c_1=c_2=...=c_k=0$$
+\hfill $\blacksquare$ \\
+So we can pick a chain of linearly independent vectors in $G_{\lambda_i}$ like above, however we do not know whether they span it. They usually don't. For example the matrix \[
+A=\begin{pmatrix}
+2&1&0\\
+0&2&0\\
+0&0&2
+\end{pmatrix}
+\]has $G_2$ with dimension $3$ for the eigenvalue $2$, however the longest null-chain is of length $2$ so one is not enough.\\ \\
+The trick is to pick multiple such chains. In fact: \\ \\
+\textbf{Claim:} A vector space $V$ under a nil-potent map $T$ always has a basis composed of null-chains. \\
+\textit{Proof:}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+\end{document}
