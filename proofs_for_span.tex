@@ -1,0 +1,65 @@
+j
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{lettrine}
+\usepackage{setspace}
+\setlength{\parskip}{1.6em}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+We have shown disjointedness of $G_{\lambda_i}$ and lin. independence of $\bigcup \beta_i$. We have two styles of proof for Span: non-inductive vs inductive.
+
+\section{Non-Inductive}
+\textbf{Proof:} Let $$W=\bigoplus_i G_{\lambda_i}$$and assume $W\neq V$.\\ \\
+\textbf{Claim 1:} $W$ is invariant under $T-xI$ for any $x\in\mathbf{C}$\\
+\textit{Proof:} invariance in each $G_{\lambda_i}$ implies invariance in $W.\ \blacksquare$  \\ \\
+Let $$S:=V\setminus W$$\\
+\textbf{Claim 2:} $v\in S \implies (T-xI)(v)\in S \ \forall x\in \mathbf{C}$ (credit to Albert for the idea).\\
+\textit{Proof:} Assume for contradiction $\exists v\in S$ s.t $(T-xI)
+(v):=u\in W$.\\ \\
+Case 1: $T-xI$ is invertible.\\
+Then it is also invertible in $W$ due to the invariance (Claim 1). $$\implies \exists u_1 \in W \ s.t\ (T-xI)(u_1)=u.$$But this means $(T-xI)(v)=(T-xI)(u_1)\implies v=u_1,$ a contradiction with $v \notin W$.\\ \\
+Case 2: $ker (T-xI)\neq \emptyset$\\
+This in particular means $x$ is an eigenvalue for $T$, and the generalized kernel of $T-xI$ is $G_x\subseteq W$.
+Denote $T_x=T-xI$ and $d=dim\ G_x$.\\
+Thus $ker(T_x^d)=G_x$.
+
+Dimension theorem for the map $T_x^d$ restricted on $W$ implies \begin{equation}
+    \label{eq:dimW}
+    dim(W)=dim\ T_x^d(W) +d
+\end{equation}
+Recall that by definition of $G_x$, 
+\begin{equation}
+    \label{eq:exclusion}
+    v\notin G_x \implies T_x(v)\notin G_x
+\end{equation}
+
+This means that $$T_x^d(W)\cap G_x=\{0\}$$
+Together with (\ref{eq:dimW}), we have
+$$W=T_x^d(W) \oplus G_x$$
+Now, $T_x(v)\in W \implies \exists s\in T_x^d(W)$ and $g\in G_x$ s.t
+$$T_x(v)=s+g\,\textrm{(direct sum property)}$$
+But, there clearly exists $u_1\in W$ s.t $T_x(u_1)=s$ ($s$ is in image of $T_x)$.
+Thus, 
+\begin{equation}
+    \label{eq:dif}
+    T_x(v)=T_x(u_1)+g\implies T_x(v-u_1)=g\in G_x
+\end{equation}
+But, $v\notin W$ and $u_1\in W$ implies $v-u_1\notin W$, and in particular not in $G_x$.
+But together with (\ref{eq:dif}) this contradicts (\ref{eq:exclusion}).
+Thus, we are done. $\blacksquare$
+
+\textbf{Finish:} Claim 2 implies $$v\in S=V\setminus W\implies T^k(v)\in S\ \forall k\in \mathbb{N}$$Consider $v,T(v),T^2(v),...,T^n(v)$ where $n=dim\ V$. These are $n+1$ vectors, thus linearly dependent. $$a_0v+a_1T(v)+...+a_nT^n(v)=0\implies (a_0+a_1T+a_2T^2+...+a_nT^n)(v)=0$$(linearity). Since we are working over complex field, the above can be factorized: $$(T-x_1I)^{k_1} (T-x_2I)^{k_2}...(T-x_mI)^{k_m}(v)=0\ ...(*)$$But $v\notin W$ and claim $2$ implies $(T-xI)(v)\notin W\ \forall x\in \mathbb{C}$, so LHS of $(*)$ can never reach $0$, contradiction. $\blacksquare$ \\ \\
+Thus, we cannot have $V\neq W$ in the beginning.
+
+
+
+
+
+
+\section{Inductive}
+\textbf{Proof:}
+
+\end{document}
