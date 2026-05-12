@@ -6,9 +6,9 @@
 % \usepackage{setspace}
 \setlength{\parskip}{1.6em}
 \setlength{\parindent}{0pt}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollary}[theorem]
 
 \newcommand{\0}{\mathbf{0}}
 \renewcommand{\vec}{\mathbf}
@@ -139,10 +139,10 @@ Note that any polynomials of $T$ commute.
 %     $\forall \vec{u} \in \vecspace{S}_i$, $\exists m \in \N$, s.t. $(T-\lambda_i\id)^m\vec{u}=\0$. Hence, $(T-\lambda_i\id)^m(T-\lambda_i\id)\vec{u}=(T-\lambda_i\id)(T-\lambda_i\id)^m\vec{u}=\0$
 % \end{proof}
 
-\begin{lemma}
-    \label{lemma:closed_under_T}
+\begin{theorem}
+    \label{theorem:closed_under_T}
     $\forall i\in[k]$, $\vecspace{S}_i$ is closed under $T$.
-\end{lemma}
+\end{theorem}
 \begin{proof}
     $T\vec{u}=(T-\lambda_i\id)\vec{u} + \lambda_i\id\vec{u}=\lambda_i\vec{u}\in\vecspace{S}_i$
 \end{proof}
@@ -151,7 +151,7 @@ Note that any polynomials of $T$ commute.
     \label{corollary:closed_under_p_T}
     $\vecspace{S}_i$ is closed under any polynomials of $T$
 \end{corollary}
-% Note that due to being a subspace, Lemma \ref{lemma:closed_under_T} imply $\vecspace{S}_i$ is closed under any polynomials of $T$.
+% Note that due to being a subspace, Lemma \ref{theorem:closed_under_T} imply $\vecspace{S}_i$ is closed under any polynomials of $T$.
 
 However, we can go one step further.
 $T-\lambda_i\id$ is a well-defined function on $\vecspace{S}_i$ thanks to \ref{corollary:closed_under_p_T}.
