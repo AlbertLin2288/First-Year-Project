@@ -1,4 +1,4 @@
-j
+
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath, amssymb, amsthm}
@@ -22,9 +22,8 @@ Let $$S:=V\setminus W$$\\
 Case 1: $T-xI$ is invertible.\\
 Then it is also invertible in $W$ due to the invariance (Claim 1). $$\implies \exists u_1 \in W \ s.t\ (T-xI)(u_1)=u.$$But this means $(T-xI)(v)=(T-xI)(u_1)\implies v=u_1,$ a contradiction with $v \notin W$.\\ \\
 Case 2: $ker (T-xI)\neq \emptyset$\\
-This in particular means $x$ is an eigenvalue for $T$, and the generalized kernel of $T-xI$ is $G_x\subseteq W$.
-Denote $T_x=T-xI$ and $d=dim\ G_x$.\\
-Thus $ker(T_x^d)=G_x$.
+This in particular means $x$ is an eigenvalue for $T$, and $$\bigcup_{k\in \mathbb{N}} ker(T-xI)^k=G_x\subseteq W.$$
+Let $$T_x:=T-xI \text{ and } d=dim\ G_x.$$Thus $ker(T_x^d)=G_x$.
 
 Dimension theorem for the map $T_x^d$ restricted on $W$ implies \begin{equation}
     \label{eq:dimW}
@@ -52,6 +51,7 @@ But together with (\ref{eq:dif}) this contradicts (\ref{eq:exclusion}).
 Thus, we are done. $\blacksquare$
 
 \textbf{Finish:} Claim 2 implies $$v\in S=V\setminus W\implies T^k(v)\in S\ \forall k\in \mathbb{N}$$Consider $v,T(v),T^2(v),...,T^n(v)$ where $n=dim\ V$. These are $n+1$ vectors, thus linearly dependent. $$a_0v+a_1T(v)+...+a_nT^n(v)=0\implies (a_0+a_1T+a_2T^2+...+a_nT^n)(v)=0$$(linearity). Since we are working over complex field, the above can be factorized: $$(T-x_1I)^{k_1} (T-x_2I)^{k_2}...(T-x_mI)^{k_m}(v)=0\ ...(*)$$But $v\notin W$ and claim $2$ implies $(T-xI)(v)\notin W\ \forall x\in \mathbb{C}$, so LHS of $(*)$ can never reach $0$, contradiction. $\blacksquare$ \\ \\
+
 Thus, we cannot have $V\neq W$ in the beginning.
 
 
