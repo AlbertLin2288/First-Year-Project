@@ -6,9 +6,14 @@
 % \usepackage{setspace}
 \setlength{\parskip}{1.6em}
 \setlength{\parindent}{0pt}
+\theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}{Corollary}[theorem]
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
 
 \newcommand{\0}{\mathbf{0}}
 \renewcommand{\vec}{\mathbf}
@@ -27,7 +32,7 @@
 
 \begin{document}
 
-\section{Notation}
+\section*{Notation}
 List of notations:
 
 Kernel of $T$ in $V$: $\ker_\vecspace{V}\,T$
@@ -50,21 +55,28 @@ For subspaces $\vecspace{S}, \vecspace{S}'$ of $\vecspace{V}$, if $\vecspace{S}$
     \vecspace{S} \oplus \vecspace{S}' = \{\vec{v}+\vec{u}|\vec{v}\in\vecspace{S},\vec{u}\in\vecspace{S}\}
 \end{equation*}
 , which is also a subspace of $\vecspace{V}$. \\
-Also, the notation $\vecspace{S}\oplus\vecspace{S}'$ imply the two subspaces are disjoint.
+Also, the notation $\vecspace{S}\oplus\vecspace{S}'$ implies the two subspaces are disjoint.
 
 A set of finite dimensional subspace $\{\vecspace{S_0}, \vecspace{S_1}, \dots, \vecspace{S_{n-1}}\}$ are independent if the union of their basis are linear independent for any choices of basis.
 
 \section{relevent proof}
+We start with the following familiar setting:
+Let $\vecspace{V} \subseteq \C^{\geq n} $ be a $n$-dimensional vector space with $n < \infty$ and $T:\vecspace{V} \to \vecspace{V}$ a linear map.
 
+\begin{definition}
+    We call $S \subseteq V$ the extended kernel of $T$, denoted $\extker_\vecspace{V}{T}$, if and only if:
+\begin{equation*}
+    \extker_\vecspace{V}{T} = \bigcup_{i=0}^{\infty}\ker (T^i)
+\end{equation*}
+\end{definition}
 
-Let $\vecspace{V}$ be a $n$ dimensional vector space in $\C^n$, $T:\vecspace{V} \to \vecspace{V}$ be a linear map.
 \begin{lemma}
     \label{lemma:extker_is_subspace}
     $\vecspace{S} = \extker_\vecspace{V} T$ is a subspace of $\vecspace{V}$.
 \end{lemma}
 \begin{proof}
     Note that $\vecspace{S} \subseteq \vecspace{V}$.
-    Let $\vec{v}, \vec{u} \in \vecspace{S}$, $k \in \C$. Then, $\exists n,m \in \N$ s.t. $T^{n}\vec{v}=\0$, $T^{m}\vec{u}=\0$.
+    Let $\vec{v}, \vec{u} \in \vecspace{S}$ and $k \in \C$. Then $\exists n,m \in \N$ such that $T^{n}\vec{v}=\0$, $T^{m}\vec{u}=\0$.
     % max will suffices, but sum is easier
     Then
     \begin{align*}
@@ -79,7 +91,7 @@ Let $\vecspace{V}$ be a $n$ dimensional vector space in $\C^n$, $T:\vecspace{V} 
 
 \begin{lemma}
     \label{lemma:ext_finite_power}
-    For all $n$ dimensional vector space $\vecspace{V}$ and linear map $T: \vecspace{V} \to \vecspace{V}$ where $n\in\N$, there exists $m\in\N$ s.t. $\extker T = \ker T^m$
+    For all $n$-dimensional vector space $\vecspace{V}$ and linear map $T: \vecspace{V} \to \vecspace{V}$ where $n\in\N$, there exists $m\in\N$ s.t. $\extker T = \ker T^m$
 \end{lemma}
 \begin{proof}
     Note that $\ker T^i\in\ker T^{i+1}$ for all $i\in\N$, so $\dim\ker T^i\le\dim\ker T^{i+1}$.
