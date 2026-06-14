@@ -1,59 +1,11 @@
-\documentclass{article}
-
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amsthm}
-\usepackage{leftindex}
-\usepackage{mathtools}
-\usepackage{nicematrix}
-% \usepackage{setspace}
-\setlength{\parskip}{1.6em}
-\setlength{\parindent}{0pt}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}{Corollary}[theorem]
-
-\newcommand{\0}{\mathbf{0}}
-\renewcommand{\vec}{\mathbf}
-\newcommand{\vv}{\vec{v}}
-\newcommand{\vu}{\vec{u}}
-\newcommand{\inv}{^{-1}}
-% \newcommand{\Bdiag}{\text{Bdiag}}
-\newcommand{\pen}[2]{#1+#2x}
-\newcommand{\penAB}{\pen{A}{B}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\vecspace}[1]{\mathcal{#1}}
-\newcommand{\vsV}{\vecspace{V}}
-\newcommand{\vsS}{\vecspace{S}}
-\newcommand{\vsT}{\vecspace{T}}
-\newcommand{\vsSp}{\vecspace{S}^\perp}
-\newcommand{\vsTp}{\vecspace{T}^\perp}
-\newcommand{\lmap}{\mathcal{L}}
-\DeclareMathOperator{\extker}{extker}
-% \DeclareMathOperator{\id}{id}
-\newcommand{\id}{I}
-\DeclareMathOperator{\img}{Im}
-\DeclareMathOperator{\spec}{spec}
-\DeclareMathOperator{\vspan}{span}
-
-\begin{document}
-
-\section{Notation}
-List of notations:
-
-Everything in draft\_proof.tex
-
-A matrix pencil is a function $\C \to \lmap(\vsV)$ where $\vsV$ is some vector space.
-In this article we will only consider 2-pencil for finite dimensional $\vsV$.
-Such pencil could be express as $P(x)=\penAB$ where $A,B\in\lmap(\vsV)$.
+\section{The Weierstrass form}
+\subsection{Introduction}
+The Weierstrass form is a canonical form of two matrices $A,B$ acting on the same space. It is often referred to as generalized Jordan form. The motivation for Weierstrass form goes further than just generalizing Jordan and finding an appropriate basis - it plays crucial role in understanding linear systems of the form $$B\dot{x}=Ax$$
 
 
-A matrix pencil $\pen{A}{B}$ is singular if $|\pen{A}{B}|=0$, it is regular if it is not singular.
+\subsection{Properties of regular linear matrix pencils}
 
-\section{relevent proof}
-
-Alternative critia for singularity/regularity
+Alternative criteria for singularity/regularity
 
 \begin{lemma}
     \label{lemma:singular_from_vector}
@@ -117,7 +69,7 @@ Alternative critia for singularity/regularity
     By contradiction, $\ker_{\vsS}A=\{\0\}$
 \end{proof}
 
-\section{Main}
+\subsection{Proof}
 
 Let $\vsV$ be a $n$-dimensional vector spaces.
 
@@ -707,8 +659,3 @@ Hence, using $\vv$ and $\vu$ as basis, we can write
 % %     We can construct such a list of subspaces recursively.
 % %     Let $\vecspace{V_0} = \vecspace{V}$. Let $S_i$
 % % \end{proof}
-
-
-
-\end{document}
-

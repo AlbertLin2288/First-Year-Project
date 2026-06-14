@@ -1,14 +1,106 @@
 \documentclass{article}
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx} % Required for inserting images
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{lettrine}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{leftindex}
+\usepackage{nicematrix}
+% \usepackage{setspace}
+\usepackage[most]{tcolorbox}
 
-\title{Matrix Canonical Forms}
-\author{Dobra, J }
+
+\tcolorboxenvironment{lemma}{
+  enhanced,
+  colback=blue!5,
+  colframe=blue!75!black,
+  boxrule=0.8pt,
+  sharp corners
+}
+
+
+\tcolorboxenvironment{example}{
+  enhanced,
+  colback=brown!5,
+  colframe=brown!75!black,
+  boxrule=0.8pt,
+  sharp corners
+}
+
+
+\tcolorboxenvironment{theorem}{
+  enhanced,
+  colback=red!5,
+  colframe=red!75!black,
+  boxrule=0.8pt,
+  sharp corners
+}
+
+
+\tcolorboxenvironment{property}{
+  enhanced,
+  colback=green!5,
+  colframe=green!75!black,
+  boxrule=0.8pt,
+  sharp corners
+}
+
+
+\setlength{\parskip}{1.6em}
+\setlength{\parindent}{0pt}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{property}[theorem]{Property}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\0}{\mathbf{0}}
+\renewcommand{\vec}{\mathbf}
+\newcommand{\vv}{\vec{v}}
+\newcommand{\vu}{\vec{u}}
+\newcommand{\inv}{^{-1}}
+% \newcommand{\Bdiag}{\text{Bdiag}}
+\newcommand{\pen}[2]{#1+#2x}
+\newcommand{\penAB}{\pen{A}{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\vecspace}[1]{\mathcal{#1}}
+\newcommand{\vsV}{\vecspace{V}}
+\newcommand{\vsS}{\vecspace{S}}
+\newcommand{\vsT}{\vecspace{T}}
+\newcommand{\vsSp}{\vecspace{S}^\perp}
+\newcommand{\vsTp}{\vecspace{T}^\perp}
+\newcommand{\lmap}{\mathcal{L}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\im}{\operatorname{im}}
+% \newcommand{\id}{\mathrm{id}}
+\newcommand{\id}{I}
+\newcommand{\Gi}{G_{\lambda_i}}
+
+\DeclareMathOperator{\extker}{extker}
+% \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\vspan}{span}
+
+\title{Generalized eigenvalues and Weierstrass Form}
+\author{Gloria, Bodhi, Branko, Albert}
 \date{April 2026}
 
 \begin{document}
-
 \maketitle
-
-\section{Introduction}
-
+\tableofcontents
+\include{prelims}
+\include{jordan}
+\include{weierstrass}
 \end{document}

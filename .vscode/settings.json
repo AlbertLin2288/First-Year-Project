@@ -9,5 +9,6 @@
         "build/*.synctex.gz": true
     },
     "latex-workshop.latex.auxDir": "%WORKSPACE_FOLDER%/build",
-    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build"
+    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build",
+    "latex-workshop.latex.rootFile.search.path": "main.tex"
 }
