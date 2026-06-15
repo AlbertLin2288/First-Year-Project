@@ -1,6 +1,33 @@
 \section{The Weierstrass form}
 \subsection{Introduction}
 The Weierstrass form is a canonical form of two matrices $A,B$ acting on the same space. It is often referred to as generalized Jordan form. The motivation for Weierstrass form goes further than just generalizing Jordan and finding an appropriate basis - it plays crucial role in understanding linear systems of the form $$B\dot{x}=Ax$$
+The relevance of such systems will be discussed in Chapter 5.\\ \\
+Denote $T:V\rightarrow V$ as $$T(v):=Av$$and $L:V\rightarrow V$ as $$L(v):=Bv.$$
+Recalling the introduction of this paper, canonical forms are obtained by decomposing the space into invariant subspaces on which the operators haveparticularly simple matrix representations.\\
+Assume that we are able to find $k$ subspaces $S_1,S_2,...,S_k$ such that each $S_i$ is $T$ and $L$-invariant, and $$\bigoplus_{i=1}^k S_k=V.$$Picking a basis $\beta_i$ for $S_i$ and composing $\bigcup\beta_i$ gives us a block-diagonal matrix representation of $T$ \textit{and} $L$, respectively, \textit{under the same basis}.\\ \\
+The problem is: such subspaces rarely exist. The maps $T$ and $L$ might be too independent of each other and therefore a subspace might act nice under one map, but arbitrarily under the other. For example, take 
+\[
+	T=
+	\begin{pmatrix}
+		1  & 0         \\
+		0  & 2  \\
+		
+		
+	\end{pmatrix}
+    ,
+    L=
+	\begin{pmatrix}
+		0  & 1        \\
+		1  & 0  \\
+		
+		
+	\end{pmatrix}
+\]
+The line $W=\text{span}(e_1)$ is $T-$invariant: $w\in W \implies T(w)=w.$\\
+But, $w\in W\implies L(w)\in \text{span}(e_2)$, so $W$ is not $L-$invariant.\\ \\
+In fact, for a pair $T,L$ there might be no non-trivial commonly invariant subspace.
+
+
 
 
 \subsection{Properties of regular linear matrix pencils}
