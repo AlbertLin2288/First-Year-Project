@@ -10,31 +10,24 @@ For some linear operator \(T: \vecspace{V} \to \vecspace{V}\), denote:
         Kernel of \(T\) & \( \ker_\vecspace{V}\,T = \ker T \) \\
         Extended kernel of \(T\)& \(\extker T = \bigcup_{i=0}^\infty \ker T ^i\)\\
         The identity function or matrix on \(\vecspace{V}\) & \(I\) \\
-        The image of a function \(f\) \textbf{or} matrix \(A\) & \(\im f\) or \( \im A\) \\ 
-        The spectrum & \( \spec T\) \\ 
-        The cardinality of the spectrum & \(\sigma = |\spec T| \) 
+        The image of a function \(f\) \textbf{or} matrix \(A\) & \(\im f\) or \( \im A\) \\
+        The spectrum & \( \spec T\) \\
+        The cardinality of the spectrum & \(\sigma = |\spec T| \)
     \end{tabular}
-    
-    % Kernel of $T$ in $V$: $\ker_\vecspace{V}\,T$
-
-    % Extended kernel of $T$ in $\vecspace{V}$: $\extker T$ is defined as
-
-    % Identity function for some domain $D$: $\id_D$ or sometimes just $\id$ when $D$ can be implied
-
-    %Image of function $f$: $\img f$
-
-    %Spectrum of matrix/linear transformation $T$: $\spec T$ or $\spec_\vecspace{V} T$ for the spectrum in a certain vector space $\vecspace{V}$
-
-    %For some map \ \(\spec T = \sigma\)
 
     \subsection{Fundamental definitions}
+
+    % Note:
+    % Maybe terminology need to be modified,
+    % Mutually disjoint (Which isn't defined here) seems to be the same as independent, and pairwise disjoint is never used.
     For subspaces $\vecspace{S}, \vecspace{S}'$ of $\vecspace{V}$, $\vecspace{S}$ and $\vecspace{S}'$ are disjoint iff $\vecspace{S} \cap \vecspace{S}' = \{\0\}$
 
     For subspaces $\vecspace{S}, \vecspace{S}'$ of $\vecspace{V}$, if $\vecspace{S}$ and $\vecspace{S}'$ are disjoint, we define
     \begin{equation*}
         \vecspace{S} \oplus \vecspace{S}' = \{\vec{v}+\vec{u}|\vec{v}\in\vecspace{S},\vec{u}\in\vecspace{S}\}
     \end{equation*}
-    , which is also a subspace of $\vecspace{V}$. \\
+    , which is also a subspace of $\vecspace{V}$.
+
     Also, the notation $\vecspace{S}\oplus\vecspace{S}'$ implies the two subspaces are disjoint.
 
     A set of finite dimensional subspace $\{\vecspace{S_0}, \vecspace{S_1}, \dots, \vecspace{S_{n-1}}\}$ are independent if the union of their basis are linear independent for any choices of basis.

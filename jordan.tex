@@ -1,702 +1,740 @@
 \section{Invariant subspaces}
 \lettrine{C}{onsider}
-a linear operator \(T:V\rightarrow V\), where \(V\) is a finite dimensional vector space. For any subspace \(S \subset V\) the image of \(T\) over \(S\) is, in general, some other arbitrary subspace.
-It is natural then to want to consider subspaces which preserve their structure under \(T\). The following definition captures this idea.
+a linear operator \( T \in \lmap(\vsV) \), where \(\vsV\) is a finite dimensional vector space.
+For any subspace \(\vsS \subset \vsV\) the image of \(T\) over \(\vsS\) is, in general, some other arbitrary subspace.
+It is natural then to want to consider subspaces which preserve their structure under \( T \). The following definition captures this idea.
 \begin{definition}
-	A subspace \(S\) is called \textit{invariant} under the linear map \(T\) if
+    A subspace \( \vsS \) is called \textit{invariant} under the linear map \( T \) if
 
-	\[
-		v\in S\implies T(v)\in S
-	\]
+    \begin{equation*}
+        \vv \in \vsS \implies T\vv\in \vsS
+    \end{equation*}
 \end{definition}
 
 
-It is best to give some examples of such subspaces before investigating them further:\\
+It is best to give some examples of such subspaces before investigating them further:
+
 \subsection{Examples and properties}
 
 \begin{example}
-	The subspace called the eigenspace of \(T\) at eigenvalue \(\lambda\) \[
-		E_\lambda = \{v: T(v)=\lambda v\}
-	\]
+    The subspace called the eigenspace of \(T\) at eigenvalue \(\lambda\)
+    \begin{equation*}
+        E_\lambda = \{\vv: T\vv=\lambda \vv\}
+    \end{equation*}
 
-	is invariant - each element is scaled under \(T\), which is still in \(E_\lambda\).\\ \\
+    is invariant - each element is scaled under \(T\), which is still in \(E_\lambda\).
 \end{example}
 
 
 \begin{example}\label{ex:invariance0}
-	The image
+    The image
 
-	\[
-		\im T=\{T(v): v\in V\}
-	\]
+    \begin{equation*}
+        \im T=\{T\vv: \vv\in\vsV\}
+    \end{equation*}
 
-	is invariant by definition: \[
-		v\in T(V)\implies T(v)\in T(V)
-	\].
+    is invariant by definition:
+    \begin{equation*}
+        \vv\in T(\vsV)\implies T\vv\in T(\vsV)
+    \end{equation*}
 \end{example}
 
 \begin{example}\label{ex:invariance1}
-	The generalized kernel
+    The generalized kernel
 
-	\[
-		K=\{v: \exists k\in \mathbb{N}^* \text{ s.t } T^k(v)=0\}
-	\]
+    \begin{equation*}
+        K=\{\vv: \exists k\in \N \text{ s.t } T^k\vv=\0\}
+    \end{equation*}
 
-	is invariant under \(T\). This is indeed a subspace, and the invariance here follows from its definition.
-	\[
-		v\in K \implies \exists k\ s.t\ T^k(v)=0\implies T^{k-1}(T(v))=0\implies T(v)\in K
-	\]
+    is invariant under \( T \).
+    This is indeed a subspace, and the invariance here follows from its definition.
+    \begin{equation*}
+        \vv\in K \implies \exists k,\; T^k\vv=\0 \implies T^{k-1}T\vv=\0 \implies T\vv\in K
+    \end{equation*}
 
-	This set has a stronger structure than being just invariant. It can be seen that
-	\begin{equation}
-		v\notin K\implies T(v)\notin K \label{eq:initial}
-	\end{equation}
-	which is not in general true for invariant subspaces.
+    This set has a stronger structure than being just invariant. It can be seen that
+    \begin{equation}
+        \vv\notin K\implies T\vv\notin K \label{eq:initial}
+    \end{equation}
+    which is not in general true for invariant subspaces.
 \end{example}
 
 
 \begin{figure}
-	\centering
-	\begin{tikzpicture}[scale=2]
-		\draw[
-			fill=blue!20,
-			draw=blue!80!black,
-			line width=1pt
-		] (0,0) ellipse [x radius=1cm, y radius=1.2cm];
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[
+            fill=blue!20,
+            draw=blue!80!black,
+            line width=1pt
+        ] (0,0) ellipse [x radius=1cm, y radius=1.2cm];
 
-		\node [right] (A) at (-0.45,0.5) {\(\mathbf{v}\)};
-		\node [right] (B) at (0.15,-0.5) {\(\mathbf{T(v)}\)};
-		\node at (0, 1.4) {\(\mathcal{S}\)};
+        \node [right] (A) at (-0.45,0.5) {\( \vv \)};
+        \node [right] (B) at (0.15,-0.5) {\( T\vv \)};
+        \node at (0, 1.4) {\( \vsS \)};
 
-		\draw[->, line width=1.25pt] (A) to[bend left=30] (B);
+        \draw[->, line width=1.25pt] (A) to[bend left=30] (B);
 
-	\end{tikzpicture}
-	\caption{A subspace \(\mathcal{S}\) invariant  under \(T\)}
+    \end{tikzpicture}
+    \caption{A subspace \( \vsS \) invariant  under \(T\)}
 \end{figure}
 
-Because of their behavior, we want to search for building blocks of \(V\) of invariant subspaces - similarly to how primes are building blocks of the integers.
+Because of their behavior, we want to search for building blocks of \( \vsV \) of invariant subspaces - similarly to how primes are building blocks of the integers.
 By building blocks, we mean invariant subspaces
 
-\[
-	S_1,S_2,...,S_k
-\]
+\begin{equation*}
+    \vsS_1,\vsS_2,...,\vsS_k
+\end{equation*}
 
-such that for a basis \(\beta_i\) for \(S_i\), \[
-	\bigcup_{i=1}^k \beta_i
-\]
+such that for a basis \(\beta_i\) for \(\vsS_i\),
+\begin{equation*}
+    \bigcup_{i=1}^k \beta_i
+\end{equation*}
 
-is a basis for \(V\).
-Equivalently, \[
-	\bigoplus_{i=1}^kS_k=V
-\]
+is a basis for \( \vsV \).
+Equivalently,
+\begin{equation*}
+    \bigoplus_{i=1}^k\vsS_k=\vsV
+\end{equation*}
 
 If we one succeeds in this, then there would be a matrix representation of \(T\) in the form
 
 \[
-	\begin{pmatrix}
-		A_1    & 0      & \cdots & 0      \\
-		0      & A_2    & \cdots & 0      \\
-		\vdots & \vdots & \ddots & \vdots \\
-		0      & 0      & \cdots & A_k
-	\end{pmatrix}
+    \begin{pmatrix}
+        A_1    & 0      & \cdots & 0      \\
+        0      & A_2    & \cdots & 0      \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0      & 0      & \cdots & A_k
+    \end{pmatrix}
 \]
 
-This structure is strictly due to the invariance of the subspaces - if \(\beta_i\) is a basis for \(S_i\) consisting of \(\beta_{i1},\beta_{i2},...,\beta_{ik}\), then
+This structure is strictly due to the invariance of the subspaces - if \(\beta_i\) is a basis for \( \vsS_i \) consisting of \(\beta_{i1},\beta_{i2},...,\beta_{ik}\), then
 
-\[
-	T(\beta_{ij})\in S_i\ \forall j\leq k,
-\]
+\begin{equation*}
+    T(\beta_{ij})\in \vsS_i\ \forall j\leq k,
+\end{equation*}
 
-and therefore may be expressed only in terms of \(\beta_{i1},\beta_{i2},...,\beta_{ik}\) - hence the above pattern.\\
+and therefore may be expressed only in terms of \(\beta_{i1},\beta_{i2},...,\beta_{ik}\) - hence the above pattern.
 
-Our goal is to achieve this decomposition with choosing the best possible invariant subspaces - so that the above \(A_i\) blocks are of the simplest scheme.\\
+\vspace{\baselineskip}
+
+Our goal is to achieve this decomposition with choosing the best possible invariant subspaces - so that the above \(A_i\) blocks are of the simplest scheme.
+
 It should already be obvious which invariant subspaces to start from. Before continuing, some properties:
 
 
 \begin{property}
-	Invariant subspaces (except \(\{\mathbf{0}\}\)) \(S\) under \(T\) all contain an eigenvector of \(T\). This is for the reason that the linear map
+    Invariant subspaces (except \(\{\0\}\)) \(\vsS\) under \(T\) all contain an eigenvector of \(T\). This is for the reason that the linear map
 
-	\[
-		T^*:S\rightarrow S\ \text{,} \ T^*(v)=T(v)
-	\]
+    \begin{equation*}
+        T^*:\vsS\rightarrow \vsS\ \text{,} \ T^*\vv=T\vv
+    \end{equation*}
 
-	is well defined due to the invariance. Then we just pick the eigenvector of \(T^*\) (always exists).
+    is well defined due to the invariance. Then we just pick the eigenvector of \( T^* \) (always exists).
 
 \end{property}
 
 \begin{lemma}\label{lem:invariance2}
-	\[
-		S\ \text{invariant under } T\iff S\ \text{invariant under } T-x\id\ \forall x\in \C,
-	\]
+    \begin{equation*}
+        \vsS\ \text{invariant under } T\iff \vsS\ \text{invariant under } T-x\id\ \forall x\in \C,
+    \end{equation*}
 
-	and consequently invariant under any polynomial \(P(T)\).
+    and consequently invariant under any polynomial \(P(T)\).
 \end{lemma}
 
 \section{The Jordan form}
 \subsubsection{Statement}
-For a linear operator \(T:V\rightarrow V\), \(V\) is finite dimensional, there is a matrix representation of \(T\) of the form 
-\[
-	\begin{pmatrix}
-		J_1    & 0      & \cdots & 0      \\
-		0      & J_2    & \cdots & 0      \\
-		\vdots & \vdots & \ddots & \vdots \\
-		0      & 0      & \cdots & J_k
-	\end{pmatrix}
-\]
+For a linear operator \(T \in \lmap(\vsV)\) where \(\vsV\) is finite dimensional, there is a matrix representation of \(T\) of the form
+\begin{equation*}
+    \begin{pmatrix}
+        J_1    & 0      & \cdots & 0      \\
+        0      & J_2    & \cdots & 0      \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0      & 0      & \cdots & J_k
+    \end{pmatrix}
+\end{equation*}
+
 where \(J_i\) is a square matrix of the form
 
-\[
-	\begin{pmatrix}
-		\lambda    & 1      & \cdots & 0      \\
-		0      & \lambda    & \cdots & 0      \\
-		\vdots & \vdots & \ddots & 1 \\
-		0      & 0      & \cdots & \lambda
-	\end{pmatrix}
-\]
+% Note:
+% Question: are the k blocks meant to be jordan block or jordan matrix of each eigenvalue?
+
+\begin{equation*}
+    \begin{pmatrix}
+        \lambda    & 1      & \cdots & 0      \\
+        0      & \lambda    & \cdots & 0      \\
+        \vdots & \vdots & \ddots & 1 \\
+        0      & 0      & \cdots & \lambda
+    \end{pmatrix}
+\end{equation*}
 \subsection{Method}
 
-We begin with considering the eigenspaces. Let the eigenvalues be \(\lambda_1, \lambda_2,...,\lambda_\sigma\) for a linear operator \(T\) over \(V\), and the corresponding eigenspaces
+We begin with considering the eigenspaces. Let the eigenvalues be \(\lambda_1, \lambda_2,...,\lambda_\sigma\) for a linear operator \(T\) over \(\vsV\), and the corresponding eigenspaces
 
-\[
-	E_{\lambda_{i}}=\{v: T(v)=\lambda_i v\}
-\]
+\begin{equation*}
+    E_{\lambda_{i}}=\{v: T\vv=\lambda_i \vv\}
+\end{equation*}
 
 It is important to know that
 
-\[
-	E_{\lambda_i}\cap E_{\lambda_j}=\{0\}  \ \text{, for all }i<j\leq k,
-\]
+\begin{equation*}
+    E_{\lambda_i}\cap E_{\lambda_j}=\{\0\}  \ \text{, for all }i<j\leq k,
+\end{equation*}
 
 and that for an arbitrary basis \(\beta_i\) for \(E_{\lambda_i}\), the set
 
-\[
-	\bigcup_{i=1}^{\sigma} \beta_i
-\]
+\begin{equation*}
+    \bigcup_{i=1}^{\sigma} \beta_i
+\end{equation*}
 
 is linearly independent.
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}[scale=2]
-		\foreach \angle/\color/\labeltext in {0/blue/\(E_{\lambda_1}\), 120/teal/\(E_{\lambda_2}\), 240/purple/\(E_{\lambda_3}\)} {
-				\begin{scope}[rotate=\angle]
-					\draw[fill=\color!20, draw=\color!80!black, line width=1pt]
-					(0,1.5) .. controls (-0.7,1.4) and (-0.8,0.6) .. (0,0)
-					.. controls (0.8,0.6) and (0.7,1.4) .. (0,1.5) -- cycle;
-					\node[ font=\bfseries\sffamily] at (0,0.8) {\labeltext};
-				\end{scope}
-				\node[
-					below right,          % Position relative to (0,0)
-					font=\small\sffamily  % Clean font style
-				] at (0,0) {\(\mathbf{0}\)};
-			}
-	\end{tikzpicture}
-	\caption{Three eigenspaces of some map \(T\)}
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \foreach \angle/\color/\labeltext in {0/blue/\(E_{\lambda_1}\), 120/teal/\(E_{\lambda_2}\), 240/purple/\(E_{\lambda_3}\)} {
+                \begin{scope}[rotate=\angle]
+                    \draw[fill=\color!20, draw=\color!80!black, line width=1pt]
+                    (0,1.5) .. controls (-0.7,1.4) and (-0.8,0.6) .. (0,0)
+                    .. controls (0.8,0.6) and (0.7,1.4) .. (0,1.5) -- cycle;
+                    \node[ font=\bfseries\sffamily] at (0,0.8) {\labeltext};
+                \end{scope}
+                \node[
+                    below right,          % Position relative to (0,0)
+                    font=\small\sffamily  % Clean font style
+                ] at (0,0) {\(\0\)};
+            }
+    \end{tikzpicture}
+    \caption{Three eigenspaces of some map \(T\)}
 \end{figure}
 
 
-Is \(\bigoplus_{i=1}^{\sigma} E_{\lambda_i} = V\) true? - if yes, \(\bigcup \beta_i\) may be our basis.
+Is \(\bigoplus_{i=1}^{\sigma} E_{\lambda_i} = \vsV\) true? - if yes, \(\bigcup \beta_i\) may be our basis.
 Sadly, this is often not the case. An example is the matrix
 
-\[
-	A = \begin{pmatrix}
-		1 & 1 & 0 \\
-		0 & 1 & 1 \\
-		0 & 0 & 1
-	\end{pmatrix}
-\]
+\begin{equation*}
+    A = \begin{pmatrix}
+        1 & 1 & 0 \\
+        0 & 1 & 1 \\
+        0 & 0 & 1
+    \end{pmatrix}
+\end{equation*}
 
-with its corresponding linear map. If \(\bigoplus E_{\lambda_i}\) is not enough to cover \(V\), we want to somehow expand each \(E_{\lambda_i}\) into a bigger subspace, with the importance to keep their invariance and disjointedness.
+with its corresponding linear map. If \(\bigoplus E_{\lambda_i}\) is not enough to cover \(\vsV\), we want to somehow expand each \(E_{\lambda_i}\) into a bigger subspace, with the importance to keep their invariance and disjointedness.
 
 
 \subsection{Generalising the eigenspaces}
 
 For each \(E_{\lambda_i}\), consider
 
-\[
-	\boxed{G_{\lambda_i}=\bigcup_{i=1}^{\infty} \ker(T-\lambda_i \id)^k}
-\] \\
+\begin{equation*}
+    \boxed{
+        \vsG_{\lambda_i}=\bigcup_{i=1}^{\infty} \ker(T-\lambda_i \id)^k
+    }
+\end{equation*}
 
-Intuitively this can be thought of as extending the subspace to include vectors that are 'close' to becoming eigenvectors. In the sense that they are a finite number of iterations of \(T- \lambda_i I\) away from \(0\).   \\
 
+Intuitively this can be thought of as extending the subspace to include vectors that are 'close' to becoming eigenvectors.
+In the sense that they are a finite number of iterations of \(T- \lambda_i\id\) away from \(\0\).
 
-\newpage
 Denote
 
-\[ X^k_i:=\ker(T-\lambda_i \id)^k\]
+\begin{equation*}
+    X^k_i:=\ker(T-\lambda_i \id)^k
+\end{equation*}
 
-and notice that \(E_{\lambda_i}=X^1_i\).
+and notice that \( E_{\lambda_i}=X^1_i\).
 It can be seen that \(X^k_i\subseteq X^{k+1}_{i}\).
-This means that for each iteration of \(k\), the subspace \(X^k_i\) grows, seen in Figure \ref{fig:geneigen}. Each \(X^k_i\) has two nice properties: it is nilpotent under \(T-\lambda_i\id\), and invariant under \(T-x\id\ \forall x\in \C \) which actually follows from the former.\\
-
-
-
+This means that for each iteration of \(k\), the subspace \(X^k_i\) grows, seen in Figure \ref{fig:geneigen}.
+Each \(X^k_i\) has two nice properties: it is nilpotent under \(T-\lambda_i\id\), and invariant under \(T-x\id\ \forall x\in \C \) which actually follows from the former.
 
 \begin{lemma}
-	For each \(k\in \mathbb{N}\), \(X^k_i\) is invariant under \(T-x\id\ \forall x\in \C\)
+    For each \(k\in \N\), \(X^k_i\) is invariant under \(T-x\id\ \forall x\in \C\)
 \end{lemma}
 
 \begin{proof}
-	Follows from \ref{ex:invariance1} together with \ref{lem:invariance2}
+    Follows from \ref{ex:invariance1} together with \ref{lem:invariance2}
 \end{proof}
 
-Notice that because \(X^k_i\subseteq X^{k+1}_{i}\subseteq V \ \forall k\), after some iteration \(N\) we must have
+Notice that because \(X^k_i\subseteq X^{k+1}_{i}\subseteq \vsV \ \forall k\), after some iteration \(N\in\N\), we must have
 
-\[
-	X^k_i=X^{k+1}_{i}\  \forall k\geq N
-\]
+\begin{equation*}
+    X^k_i=X^{k+1}_{i}\  \forall k\geq N
+\end{equation*}
 
-since we are bounded by the dimension of \(V\).
+since we are bounded by the dimension of \(\vsV\).
 
-
-The final extendable subset is \(G_{\lambda_i}=X^N_i\).
+The final extendable subset is \(\vsG_{\lambda_i}=X^N_i\).
 
 \begin{corollary}\label{col:invariance3}
-	\(G_{\lambda_i}\) is invariant under \(T-x\id\ \forall x\in \C.\)
+    \(\vsG_{\lambda_i}\) is invariant under \(T-x\id\ \forall x\in \C.\)
 \end{corollary}
 \begin{figure}[H] \label{fig:geneigen}
 \centering
-	\begin{tikzpicture}
-		% (horizontal radius, vertical radius)
-		\foreach \a/\clr/\b in {
-			2.0/blue/4,
-			1.5/teal/3,
-			1.0/purple/2
-		}{
-			\draw[thick, fill=\clr!20, draw=\clr!80!black, line width=1pt] (0,\b) ellipse [x radius=1.5 * \a, y radius=\b];
-		}
+    \begin{tikzpicture}
+        % (horizontal radius, vertical radius)
+        \foreach \a/\clr/\b in {
+            2.0/blue/4,
+            1.5/teal/3,
+            1.0/purple/2
+        }{
+            \draw[thick, fill=\clr!20, draw=\clr!80!black, line width=1pt] (0,\b) ellipse [x radius=1.5 * \a, y radius=\b];
+        }
         \node[above] at (0, 2) {\(E_{\lambda_i}\)};
-        \node[above] at (0, 5) {\(\ker (T - \lambda _i I)^{2}\)};
-        \node[above] at (0, 7) {\(\ker (T - \lambda _i I)^{3}\)};
-        
+        \node[above] at (0, 5) {\(\ker (T - \lambda _i\id)^{2}\)};
+        \node[above] at (0, 7) {\(\ker (T - \lambda _i\id)^{3}\)};
+
         \node[below] at (0,0) {\( \0 \)};
-		% optional coordinate marker
-		\fill (0,0) circle (1.5pt);
-	\end{tikzpicture}
-    \caption{The generalised eigenspace \( G_{\lambda_i} \) of the eigenvalue \(\lambda _i\). In this case \( G_{\lambda_i} \) stops growing at \(\ker (T - \lambda _i I)^{3} \).}
+        % optional coordinate marker
+        \fill (0,0) circle (1.5pt);
+    \end{tikzpicture}
+    \caption{The generalised eigenspace \( \vsG_{\lambda_i} \) of the eigenvalue \(\lambda _i\). In this case \( \vsG_{\lambda_i} \) stops growing at \(\ker (T - \lambda _i\id)^{3} \).}
 \end{figure}
 \subsection{Introducing the null-chains}
 
-There is an appropiate way to pick a basis for \(G_{\lambda_i}\). Recall that each \(v\in G_{\lambda_i}\) eventually gets mapped to \(0\) under \(T-\lambda_i\id\) (in other words, \(T-\lambda_i I\) is nilpotent on \(G_{\lambda_i}\)), so it is natural to define the following set:
+There is an appropiate way to pick a basis for \(\vsG_{\lambda_i}\). Recall that each \(\vv\in \vsG_{\lambda_i}\) eventually gets mapped to \(\0\) under \(T-\lambda_i\id\) (in other words, \(T-\lambda_i I\) is nilpotent on \(\vsG_{\lambda_i}\)), so it is natural to define the following set:
 
 \begin{definition}
-	A \textit{null-chain} under a map \(L\) is a set of (one or more) \textbf{non-zero} vectors \(\{v_1,v_2,..v_n\}\)
-	
+    A \textit{null-chain} under a map \(L\) is a set of (one or more) \textbf{non-zero} vectors \(\{\vv_1,\vv_2,..\vv_n\}\)
+    % Note:
+    % Here, it's not specified that L is a linear map
+    % I can't tell if it is intensional.
+    % If it is, a few lemma below need to be changed to explictly require linear map (since having a null-chain won't implictly imply linear).
 
-	such that
 
-	\[
-		L(v_{i+1})=v_{i}\text{ for }i\leq n-1
-	\]
+    such that
 
-	and
+    \begin{equation*}
+        L(\vv_{i+1})=\vv_{i}\text{ for }i\leq n-1
+    \end{equation*}
 
-	\[
-		L(v_1)=0
-	\]
+    and
+
+    \begin{equation*}
+        L(\vv_1)=0
+    \end{equation*}
 \end{definition}
 
 \begin{figure}[H]
-	\centering
- 	\begin{tikzpicture}[font=\small]
-		% (horizontal radius, vertical radius)
-		\foreach \a/\clr/\b in {
-			2.0/blue/4,
-			1.5/teal/3,
-			1.0/purple/2
-		}{
-			\draw[thick, fill=\clr!20, draw=\clr!80!black, line width=1pt] (0,\b) ellipse [x radius=1.5 * \a, y radius=\b];
-		}
+    \centering
+     \begin{tikzpicture}[font=\small]
+        % (horizontal radius, vertical radius)
+        \foreach \a/\clr/\b in {
+            2.0/blue/4,
+            1.5/teal/3,
+            1.0/purple/2
+        }{
+            \draw[thick, fill=\clr!20, draw=\clr!80!black, line width=1pt] (0,\b) ellipse [x radius=1.5 * \a, y radius=\b];
+        }
         \node[above left] at (0, 2) {\(E_{\lambda_i}\)};
-        \node[above left] at (0.5, 4.5) {\(\ker (T - \lambda _i I)^{2}\)}; 
-        \node[above left] at (0.5, 6.5) {\(\ker (T - \lambda _i I)^{3}\)}; 
-        ;
+        \node[above left] at (0.5, 4.5) {\(\ker (T - \lambda _i\id)^{2}\)};
+        \node[above left] at (0.5, 6.5) {\(\ker (T - \lambda _i\id)^{3}\)};
+
         \node[below] at (0,0) {\( \0 \)};
 
         % null chain
-		\node [right] (A) at (1.3,6) {\(\mathbf{v}_3\)};
+        \node [right] (A) at (1.3,6) {\(\vv_3\)};
 
-		\node [right] (B) at (1.25,3.5) {\(\mathbf{v}_2\)};
+        \node [right] (B) at (1.25,3.5) {\(\vv_2\)};
 
-		\node [right] (C) at (0.25,1.5) {\(\mathbf{v_1}\)};
-        
-		% lines
-		\draw[->, line width=1.20pt] (A) to[bend left=30] node[right, font=\small\bfseries] {\(T- \lambda_i I\)} (B);
+        \node [right] (C) at (0.25,1.5) {\(\vv_1\)};
 
-
-		\draw[->, line width=1.25pt] (B) to[bend left=30] node[right, font=\small\bfseries] {\(T- \lambda_i I\)} (C);
-
-		\draw[->, line width=1.25pt] (C) to[bend left=30] node[right, font=\small\bfseries] {\(T- \lambda_i I\)} (0,0);
+        % lines
+        \draw[->, line width=1.20pt] (A) to[bend left=30] node[right, font=\small\bfseries] {\(T- \lambda_i\id\)} (B);
 
 
-		\fill (0,0) circle (1.5pt);
-	\end{tikzpicture}
-	\caption{A null-chain \(\{v_1,v_2,v_3\}\) under \(T-\lambda_iI\) in a generalised eigenspace}  
+        \draw[->, line width=1.25pt] (B) to[bend left=30] node[right, font=\small\bfseries] {\(T- \lambda_i\id\)} (C);
+
+        \draw[->, line width=1.25pt] (C) to[bend left=30] node[right, font=\small\bfseries] {\(T- \lambda_i\id\)} (0,0);
+
+
+        \fill (0,0) circle (1.5pt);
+    \end{tikzpicture}
+    \caption{A null-chain \(\{v_1,v_2,v_3\}\) under \(T-\lambda_iI\) in a generalised eigenspace}
 \end{figure}
 
 
 As one may guess:
 \begin{lemma}\label{lem:nullchain-indp}
-	A null-chain under a map \(L\)  forms a linearly independent set.
+    A null-chain under a linear map \( L \) forms a linearly independent set.
 \end{lemma}
 
 \begin{proof}
-	Consider a null-chain
+    Consider a null-chain
 
-	\[
-		\{v_1,v_2,...,v_n\}
-	\]
+    \begin{equation*}
+        \{\vv_1,\vv_2,...,\vv_n\}
+    \end{equation*}
 
-	and let
-	\begin{equation}\label{eq:null}
-		c_1v_1+c_2v_2+...+c_nv_n=0.
-	\end{equation}
+    and let
+    \begin{equation}\label{eq:null}
+        c_1\vv_1+c_2\vv_2+...+c_n\vv_n=\0.
+    \end{equation}
 
 
-	Applying \(L^{n-1}\) on both sides and considering null-chain properties gives
+    Applying \(L^{n-1}\) on both sides and considering null-chain properties gives
 
-	\[
-		c_1L^{n-1}(v_1)+...+c_nL^{n-1}(v_n)=0\implies c_nv_1=0\implies c_n=0.
-	\]
+    \begin{equation*}
+        c_1L^{n-1}(\vv_1)+...+c_nL^{n-1}(\vv_n)=\0\implies c_n\vv_1=\0\implies c_n=0.
+    \end{equation*}
 
-	Substituting back in \eqref{eq:null} and applying \(L^{n-2}\) on both sides gives
+    Substituting back in \eqref{eq:null} and applying \(L^{n-2}\) on both sides gives
 
-	\[
-		c_{n-1}v_1=0\implies c_{n-1}=0.
-	\]
+    \begin{equation*}
+        c_{n-1}\vv_1=\0\implies c_{n-1}=0.
+    \end{equation*}
 
-	Continuing this inductive process we obtain
+    Continuing this inductive process we obtain
 
-	\[
-		c_1=c_2=...=c_n=0
-	\]
+    \begin{equation*}
+        c_1=c_2=...=c_n=0
+    \end{equation*}
 \end{proof}
 
 \begin{corollary}\label{col:nullchainS}
-	\text{A collection of null-chains forms a linearly independent set}.\\ \\
-	The argument for this is similar to Lemma \ref{lem:nullchain-indp}
+    A collection of null-chains forms a linearly independent set.
 \end{corollary}
 
+% Note:
+% I don't see why this is the case in general.
+% Maybe you mean something else?
 
-We can pick null-chain in \(G_{\lambda_i}\) under \(T-\lambda_i\id\) and check whether it is a basis for \(G_{\lambda_i}\). In general this is not the case. For example the matrix
+The argument for this is similar to Lemma \ref{lem:nullchain-indp}
 
-\[
-	A=\begin{pmatrix}
-		2 & 1 & 0 \\
-		0 & 2 & 0 \\
-		0 & 0 & 2
-	\end{pmatrix}
-\]
+We can pick null-chain in \(\vsG_{\lambda_i}\) under \(T-\lambda_i\id\) and check whether it is a basis for \(\vsG_{\lambda_i}\).
+In general this is not the case.
+For example consider the matrix
 
-has \(G_2\) with dimension \(3\) for the eigenvalue \(2\), but the longest null-chain is of size \(2\) so one is not enough.\\ \\
+\begin{equation*}
+    A=\begin{pmatrix}
+        2 & 1 & 0 \\
+        0 & 2 & 0 \\
+        0 & 0 & 2
+    \end{pmatrix}
+\end{equation*}
+
+Note that \(2\in\spec A\), with \(\dim\vsG_2=3\).
+However, the longest null-chain for \(A-2I\) is of length \(2\), so one null-chain is not enough.
 
 \subsection{Collecting the null-chains}
 The idea is to pick multiple such chains. Then it can be shown:
 \begin{theorem}\label{theorem:multnull}
-	A non-zero vector space \(V\) under a nil-potent map \(L\) always has a basis composed of disjoint null-chains.
+    A non-zero finite-dimensional vector space \(\vsV\) under a nil-potent linear map \(L\) always has a basis composed of disjoint null-chains.
 \end{theorem}
 \begin{proof}
-	\textit{The proof of this is surprisingly lengthy and the reader may skip it - its ideas are important but are not all crucial for following work.}\\ \\
-	We show this via strong induction on the dimension of \(V\).
-	Consider a vector space \(V\) under under a nilpotent map \(L\) with
+    % Note:
+    % Maybe we could put it in an appendix instead?
+    \textit{The proof of this is surprisingly lengthy and the reader may skip it - its ideas are important but are not all crucial for following work.}
 
-	\[
-		\dim V=1.
-	\]
+    We show this via strong induction on the dimension of \(\vsV\).
+    Consider a vector space \(\vsV\) under under a nilpotent map \(L\) with \( \dim\vsV=1 \).
 
-	Any \(v\in V\) is a basis of \(V\), and since \(L(v)=0\), the null-chain
+    Any \(\vv\neq\0\in\vsV\) is a basis of \(\vsV\), and since \(L\vv=\0\), the null-chain
 
-	\[
-		\{v\}
-	\]
+    \begin{equation*}
+        \{\vv\}
+    \end{equation*}
 
-	is a basis.\\
-	Now that we have our base case, let
+    is a basis.
 
-	\[
-		\dim V=k,
-	\]
+    Now that we have our base case, let \( \dim\vsV=k \).
 
-	hypothesizing that: \\ \\
-	\textit{Every vector space with dimension} \(\leq k-1\) \textit{which is nilpotent under \(L\) has a basis of disjoint null-chains.}\\ \\
-	The map \(L\) is obviously non-invertible on \(V\), therefore
-	\begin{equation}\label{eq:dim-image-bound}
-		\dim   L(V)< \dim(V)
-	\end{equation}
-	where \(L(V)\) is the image \(L\) over \(V\). \\
-	Dimension theorem for \(L\) on \(V\) states
-	\begin{equation}
-		\dim V=\dim(L(V))+ \dim(\ker(L))
-	\end{equation}
-	Note that \(L(V)\) is a subspace of \(V\), therefore it is nilpotent under \(L\). Considering \eqref{eq:dim-image-bound}, by the induction hypothesis there is a basis of \(L(V)\) of the form
+    We hypothesizing that:
 
-	\[
-		\begin{aligned}
-			C_1 & = \{\beta_{11}, \beta_{12}, \ldots, \beta_{1k_1}\}, \\
-			C_2 & = \{\beta_{21}, \beta_{22}, \ldots, \beta_{2k_2}\}, \\
-			    & \vdots                                              \\
-			C_l & = \{\beta_{l1}, \beta_{l2}, \ldots, \beta_{lk_l}\}.
-		\end{aligned}
-	\]
+    \textit{Every vector space with dimension \(\leq k-1\) which is nilpotent under \(L\) has a basis of disjoint null-chains.}
 
-	where \(C_i\)'s are \(l\)-many disjoint nullchains such that
+    The map \(L\) is obviously non-invertible on \(\vsV\), therefore
+    \begin{equation}\label{eq:dim-image-bound}
+        \dim L(\vsV)< \dim\vsV
+    \end{equation}
+    where \(L(\vsV)\) is the image \(L\) over \(\vsV\).
 
-	\[
-		\begin{aligned}
-			L(\beta_{i1})     & = 0          \\
-			L(\beta_{i(k+1)}) & = \beta_{ik}
-		\end{aligned}
-	\]
+    Dimension theorem for \(L\) on \(V\) states
+    \begin{equation}
+        \dim\vsV=\dim L(\vsV) + \dim\ker L
+    \end{equation}
+    Note that \(L(\vsV)\) is a subspace of \(\vsV\), therefore it is also nilpotent under \(L\).
+    Considering \eqref{eq:dim-image-bound}, by the induction hypothesis there is a basis of \(L(\vsV)\) of the form
 
-	We have that
+    % TODO: read and understand the proof and evaluate its correctness
+    % Also fix any styling error
 
-	\[
-		|\bigcup_{i=1}^l C_i|= \dim L(V).
-	\]
+    \begin{align*}
+        C_1 & = \{\beta_{11}, \beta_{12}, \ldots, \beta_{1k_1}\}, \\
+        C_2 & = \{\beta_{21}, \beta_{22}, \ldots, \beta_{2k_2}\}, \\
+            & \vdots                                              \\
+        C_l & = \{\beta_{l1}, \beta_{l2}, \ldots, \beta_{lk_l}\}. \\
+    \end{align*}
 
-	Note that the first vector in each chain is in \( \ker(L)\) and therefore
-	\begin{equation}
-		l\leq \dim \ \ker(L)
-	\end{equation}
-	because of the linear independence of the \(\beta_{i1}\)'s.\\
-	Consider the last vector \(\beta_{ik_i}\) in each chain - it is in \(L(V)\), therefore
-	\begin{equation}
-		\forall i\leq l, \exists u_i\ s.t \ L(u_i)=\beta_{ik_i}
-	\end{equation}
-	Thus we have upgraded our initial chains by adding one more vector
-	\begin{equation}
-		C_i\cup\{u_i\} \label{eq:newc}
-	\end{equation}
-	and due to their independence at \ref{col:nullchainS}, we have a linearly independent set of size
+    where \(C_i\)'s are \(l\) many disjoint nullchains such that
 
-	\[
-		\dim(L(V))+l.
-	\]
+    \[
+        \begin{aligned}
+            L(\beta_{i1})     & = 0          \\
+            L(\beta_{i(k+1)}) & = \beta_{ik}
+        \end{aligned}
+    \]
 
-	If \(l=\dim (\ker(L))\), we are done because of dimension theorem - the collection of the newly constructed nullchains at \eqref{eq:newc}  is the desired basis .\\ \\
-	Otherwise, extend the linearly independent set \(\{\beta_{11}, \beta_{21},...,\beta_{l1}\}\)into a basis of \(\ker(L)\): \[
-		{\beta_{11}, ...,\beta_{l1}, w_{l+1},w_{l+2}...,w_{\dim \ker(L)}}
-	\]
+    We have that
 
-	Then we have constructed new \(\dim \ker(L)-l\) chains - all of size 1. \\ \\
-	Collecting everything, we have:
-	\[
-		\begin{aligned}
-			 & \{w_{\dim \ker(L)}\},   \\
-			 & \{w_{\dim \ker(L)-1}\}, \\
-			 & \vdots                  \\
-			 & \{w_{l+1}\}             \\
-			 & C_1\cup \{u_1\}         \\
-			 & C_2\cup \{u_2\}         \\
-			 & \vdots                  \\
-			 & C_l \cup \{u_l\}.
-		\end{aligned}
-	\]
+    \[
+        |\bigcup_{i=1}^l C_i|= \dim L(\vsV).
+    \]
 
-	The union of everything above is a linearly independent set due to \ref{col:nullchainS}, and it is of size
+    Note that the first vector in each chain is in \( \ker(L)\) and therefore
+    \begin{equation}
+        l\leq \dim \ \ker(L)
+    \end{equation}
+    because of the linear independence of the \(\beta_{i1}\)'s.\\
+    Consider the last vector \(\beta_{ik_i}\) in each chain - it is in \(L(V)\), therefore
+    \begin{equation}
+        \forall i\leq l, \exists u_i\ s.t \ L(u_i)=\beta_{ik_i}
+    \end{equation}
+    Thus we have upgraded our initial chains by adding one more vector
+    \begin{equation}
+        C_i\cup\{u_i\} \label{eq:newc}
+    \end{equation}
+    and due to their independence at \ref{col:nullchainS}, we have a linearly independent set of size
 
-	\[
-		\dim\ (\ker(L))-l+\dim\ (T(V)) + l=
-	\] \[
-		=\dim\ (\ker(L))+\dim\ (T(V)) = \dim V,
-	\]
+    \[
+        \dim(L(V))+l.
+    \]
 
-	which means that it is a basis due to dimension theorem.
+    If \(l=\dim (\ker(L))\), we are done because of dimension theorem - the collection of the newly constructed nullchains at \eqref{eq:newc}  is the desired basis .\\ \\
+    Otherwise, extend the linearly independent set \(\{\beta_{11}, \beta_{21},...,\beta_{l1}\}\)into a basis of \(\ker(L)\): \[
+        {\beta_{11}, ...,\beta_{l1}, w_{l+1},w_{l+2}...,w_{\dim \ker(L)}}
+    \]
+
+    Then we have constructed new \(\dim \ker(L)-l\) chains - all of size 1. \\ \\
+    Collecting everything, we have:
+    \[
+        \begin{aligned}
+             & \{w_{\dim \ker(L)}\},   \\
+             & \{w_{\dim \ker(L)-1}\}, \\
+             & \vdots                  \\
+             & \{w_{l+1}\}             \\
+             & C_1\cup \{u_1\}         \\
+             & C_2\cup \{u_2\}         \\
+             & \vdots                  \\
+             & C_l \cup \{u_l\}.
+        \end{aligned}
+    \]
+
+    The union of everything above is a linearly independent set due to \ref{col:nullchainS}, and it is of size
+
+    \[
+        \dim\ (\ker(L))-l+\dim\ (T(V)) + l=
+    \] \[
+        =\dim\ (\ker(L))+\dim\ (T(V)) = \dim V,
+    \]
+
+    which means that it is a basis due to dimension theorem.
 
 
 \end{proof}
 
-Therefore since \(T-\lambda_iI\) is nilpotent on \(G_{\lambda_i}\), by the above theorem we may construct an appropriate basis \(\beta_i\) - composed of nullchains - for \(G_{\lambda_i}\).
-Let us consider the matrix representation of \(\beta_i\) under \(T\). \\ \\
+Therefore, since \(T-\lambda_i\id\) is nilpotent on \(\vsG_{\lambda_i}\), by the above theorem we may construct an appropriate basis \(\beta_i\) - composed of nullchains - for \(\vsG_{\lambda_i}\).
+
+Let us consider the matrix representation of \(\beta_i\) under \(T\).
+
 A single null-chain in its decomposition has the following structure:
-\[
-	\begin{aligned}
-		(T-\lambda_i I)(v_1) & = 0      \\
-		(T-\lambda_i I)(v_2) & = v_1    \\
-		\vdots                          \\
-		(T-\lambda_i I)v_n   & =v_{n-1}
-	\end{aligned}
-\]
+
+\begin{align*}
+    (T-\lambda_i\id)\vv_1   & = \0          \\
+    (T-\lambda_i\id)\vv_2   & = \vv_1       \\
+    \vdots                                  \\
+    (T-\lambda_i\id)\vv_n   & = \vv_{n-1}   \\
+\end{align*}
+
 
 which in terms of \(T\) gives
 
-\[
-	\begin{aligned}
-		T(v_1) & = \lambda_i v_1         \\
-		T(v_2) & = \lambda_i v_2+v_1     \\
-		\vdots                           \\
-		T(v_n) & =\lambda_i v_n+ v_{n-1}
-	\end{aligned}
-\]
+\begin{align*}
+    T\vv_1 & = \lambda_i \vv_1              \\
+    T\vv_2 & = \lambda_i \vv_2 + \vv_1      \\
+    \vdots                                  \\
+    T\vv_n & = \lambda_i \vv_n + \vv_{n-1}  \\
+\end{align*}
 
 Putting this in a matrix pattern gives
 \begin{equation}
-	J_1=
-	\begin{pmatrix}
-		\lambda_i & 1         & 0      & \cdots & 0         \\
-		0         & \lambda_i & 1      & \cdots & 0         \\
-		0         & 0         & \cdots & \ddots & \vdots    \\
-		\vdots    & \vdots    & \ddots & \ddots & 1         \\
+    J_1=
+    \begin{pmatrix}
+        \lambda_i & 1         & 0      & \cdots & 0         \\
+        0         & \lambda_i & 1      & \cdots & 0         \\
+        0         & 0         & \cdots & \ddots & \vdots    \\
+        \vdots    & \vdots    & \ddots & \ddots & 1         \\
 
-		0         & 0         & \cdots & 0      & \lambda_i
-	\end{pmatrix}
-	\label{eq:jordanblock}
+        0         & 0         & \cdots & 0      & \lambda_i \\
+    \end{pmatrix}
+    \label{eq:jordanblock}
 \end{equation}
 
 
 This structure is called a Jordan block. Since the basis \(\beta_i\) is composed of multiple null-chains, its matrix pattern gives
 \begin{equation}
-	J=
-	\begin{pmatrix}
-		J_1    & 0      & \cdots & 0      \\
-		0      & J_2    & \cdots & 0      \\
-		\vdots & \vdots & \ddots & \vdots \\
-		0      & 0      & \cdots & J_k
-	\end{pmatrix}
-	\label{eq:jordan-form}
+    J=
+    \begin{pmatrix}
+        J_1    & 0      & \cdots & 0      \\
+        0      & J_2    & \cdots & 0      \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0      & 0      & \cdots & J_k
+    \end{pmatrix}
+    \label{eq:jordan-form}
 \end{equation}
 where each \(J_i\) is of form \eqref{eq:jordanblock}
 
 
 
 \subsection{Spanning the vector space}
-We proceed to show that all \(\Gi\)  - as extensions of each \(E_{\lambda_i}\) - are enough to span the whole space. Namely:\[
-	\bigoplus_{i=1}^\sigma G_{\lambda_i}=V
-\]
-- then \(\bigcup_{i=1}^m\beta_i\) may be our basis for the whole space, where $\beta_i$ is a basis for $G_{\lambda_i}$. For this to first make sense, we need to make sure that that the \(\Gi\) are mutually disjoint, and in some sort independent - meaning the union of their bases are linearly independent. \\ \\
+We proceed to show that all \( \vsG_i \)  - as extensions of each \(E_{\lambda_i}\) - are enough to span the whole space.
+Namely:
+\begin{equation*}
+    \bigoplus_{i=1}^\sigma G_{\lambda_i}=V
+\end{equation*}
+
+If this is true, then \(\bigcup_{i=1}^m\beta_i\) may be our basis for the whole space, where $\beta_i$ is a basis for $G_{\lambda_i}$.
+For this to first make sense, we need to make sure that that the \( \vsG_i \) are mutually disjoint, and in some sort independent - meaning the union of their bases are linearly independent.
+
 \begin{theorem}\label{thm:disj}
-	\(i\neq j\implies G_{\lambda_i}\cap G_{\lambda_j}=\{0\}  \)\\ \\
+    For any \(i\neq j\), we have
+    \begin{equation*}
+        \vsG_{\lambda_i}\cap \vsG_{\lambda_j}=\{\0\}
+    \end{equation*}
     where \(\{\lambda_1,...,\lambda_\sigma\}\) is the spectrum of T and \(G_{\lambda}\) is the generalized eigenspace for \(\lambda\)
 \end{theorem}
+
+% TODO: Continue reading
+
 \begin{proof} The claim is equivalent to:
-	\begin{align}
-		v\in G_{\lambda_i}\cap G_{\lambda_j}
-		\implies v=0
-	\end{align}
+    \begin{equation}
+        \vv\in G_{\lambda_i}\cap G_{\lambda_j}
+        \implies \vv=0
+    \end{equation}
 
-	We first show the following weaker version.
+    We first show the following weaker version.
 
-	\begin{claim}\label{cl:disj}
-		\(i\neq j \implies E_{\lambda_i}\cap G_{\lambda_j}=\{0\}\)
-	\end{claim}
+    \begin{claim}\label{cl:disj}
+        \(i\neq j \implies E_{\lambda_i}\cap G_{\lambda_j}=\{0\}\)
+    \end{claim}
 
-	\textit{Proof.}
-	Let \(u\in E_{\lambda_i}\cap G_{\lambda_j}\). Then, \begin{equation}
-		\label{eq:eigen}
-		T(u)=\lambda_i u
-	\end{equation} and \(\exists k\in \mathbb{N}\) s.t
-	\begin{equation}
-		\label{eq:chain}
-		(T-\lambda_j\id)^k(u)=0.
-	\end{equation}
+    \textit{Proof.}
+    Let \(u\in E_{\lambda_i}\cap G_{\lambda_j}\). Then, \begin{equation}
+        \label{eq:eigen}
+        T(u)=\lambda_i u
+    \end{equation} and \(\exists k\in \N\) s.t
+    \begin{equation}
+        \label{eq:chain}
+        (T-\lambda_j\id)^k(u)=0.
+    \end{equation}
 
-	However,
-	\[
-		\eqref{eq:eigen}\implies (T-\lambda_j\id)(u)=(\lambda_i - \lambda_j)(u)\implies(T-\lambda_j\id)^k(u)=(\lambda_i-\lambda_j)^k(u)
-	\]
+    However,
+    \[
+        \eqref{eq:eigen}\implies (T-\lambda_j\id)(u)=(\lambda_i - \lambda_j)(u)\implies(T-\lambda_j\id)^k(u)=(\lambda_i-\lambda_j)^k(u)
+    \]
 
-	and therefore
+    and therefore
 
-	\[
-		\eqref{eq:chain}\implies (\lambda_i-\lambda_j)^k(u)=0\implies u=0
-	\]
+    \[
+        \eqref{eq:chain}\implies (\lambda_i-\lambda_j)^k(u)=0\implies u=0
+    \]
 
-	because \(i\neq j\).\hfill \(\blacksquare\) \\ \\
+    because \(i\neq j\).\hfill \(\blacksquare\) \\ \\
 
-	Let \(v\in \Gi \cap G_{\lambda_j}\). This means \(\exists k_1,k_2\in \mathbb{N}\) such that
-	\begin{equation}
-		(T-\lambda_iI)^{k_1}(v)=(T-\lambda_jI)^{k_2}(v)=0
-	\end{equation}
-	(definiton of \(\Gi,G_{\lambda_j}\)). Having this, consider \(u=(T-\lambda_i\id)^{k_1-1}(v)\). Then,
-	\begin{equation}\label{eq:u-in-eigenspace}
-		(T-\lambda_i\id)^{k_1}(v)=(T-\lambda_i\id)(u)=0\implies u\in E_{\lambda_i}.
-	\end{equation}
-	However note that
+    Let \(v\in \vsG_i \cap G_{\lambda_j}\). This means \(\exists k_1,k_2\in \N\) such that
+    \begin{equation}
+        (T-\lambda_iI)^{k_1}(v)=(T-\lambda_jI)^{k_2}(v)=0
+    \end{equation}
+    (definiton of \(\vsG_i,G_{\lambda_j}\)). Having this, consider \(u=(T-\lambda_i\id)^{k_1-1}(v)\). Then,
+    \begin{equation}\label{eq:u-in-eigenspace}
+        (T-\lambda_i\id)^{k_1}(v)=(T-\lambda_i\id)(u)=0\implies u\in E_{\lambda_i}.
+    \end{equation}
+    However note that
 
-	\[
-		v\in G_{\lambda_j}\implies (T-\lambda_i\id)(v)\in G_{\lambda_j}
-	\]
+    \[
+        v\in G_{\lambda_j}\implies (T-\lambda_i\id)(v)\in G_{\lambda_j}
+    \]
 
-	due to the invariance of \(G_{\lambda_j}\) under \(T-xI\) at \ref{col:invariance3}.
-	\begin{equation}\label{eq:u-in-generalized-eigenspace}
-		\implies u=(T-\lambda_i\id)^{k_1-1}(v)\in G_{\lambda_j}\implies u\in G_{\lambda_j}
-	\end{equation}
-	Therefore \eqref{eq:u-in-eigenspace} and \eqref{eq:u-in-generalized-eigenspace} together with Claim \ref{cl:disj} imply
+    due to the invariance of \(G_{\lambda_j}\) under \(T-xI\) at \ref{col:invariance3}.
+    \begin{equation}\label{eq:u-in-generalized-eigenspace}
+        \implies u=(T-\lambda_i\id)^{k_1-1}(v)\in G_{\lambda_j}\implies u\in G_{\lambda_j}
+    \end{equation}
+    Therefore \eqref{eq:u-in-eigenspace} and \eqref{eq:u-in-generalized-eigenspace} together with Claim \ref{cl:disj} imply
 
-	\[
-		u=0\implies (T-\lambda_j\id)^{k_1-1}(v)=0.
-	\]
+    \[
+        u=0\implies (T-\lambda_j\id)^{k_1-1}(v)=0.
+    \]
 
-	Similarly, letting \(u_1=(T-\lambda_j\id)^{k_1-2}(v)\), the same approach implies \(u_1=0\). Continuing this process inductively we arrive at \(v=0.\)
+    Similarly, letting \(u_1=(T-\lambda_j\id)^{k_1-2}(v)\), the same approach implies \(u_1=0\). Continuing this process inductively we arrive at \(v=0.\)
 
 
 \end{proof}
 
 This sets us up one step further for considering
 
-\[
-	\bigoplus_{i=1}^\sigma G_{\lambda_i}.
-\]
+\begin{equation*}
+    \bigoplus_{i=1}^\sigma \vsG_{\lambda_i}.
+\end{equation*}
 
 Another property we need is independence.
 \begin{theorem}
-	If \(\beta_i\) is a basis of the generalised eigenspace \(G_{\lambda_i}\), then the set
+    If \(\beta_i\) is a basis of the generalised eigenspace \(\vsG_{\lambda_i}\), then the set
 
-	\[
-		\bigcup^{\sigma}_{i=1}\beta_i 
-	\]
+    \begin{equation*}
+        \bigcup^{\sigma}_{i=1}\beta_i
+    \end{equation*}
 
-	is linearly independent.
+    is linearly independent.
 \end{theorem}
 \begin{proof}
-	From Theorem \ref{thm:disj}, all the \(G_{\lambda_i}\) are mutually disjoint (except at \(0\)). Therefore, it is sufficient to show that for \(u_i\in G_{\lambda_i}\),
-	\begin{equation}\label{eq:sum-ui-zero}
-		u_1+u_2+...+u_\sigma=0
-	\end{equation}
-	implies \(u_i=0\ \forall i\leq k.\)\\ \\
-	For each \(u_i,\ \exists a_i\in \mathbb{N}\) s.t
-	\begin{equation}
-		(T-\lambda_i\id)^{a_i}(u_i)=0
-	\end{equation}
-	The invariance at Corollary \ref{col:invariance3} gives
-	\begin{equation}\label{eq:generalized-eigenspace-invariance}
-		u_i\in G_{\lambda_i}\implies (T-x\id)(u_i)\in G_{\lambda_i}\ \forall x\in \C
-	\end{equation}
-	Now apply \((T-\lambda_1\id)^{a_1}\) to both sides in \eqref{eq:sum-ui-zero} to vanish the first term and obtain
-	\begin{equation}\label{eq:first-term-vanishes}
-		0+(T-\lambda_1\id)^{a_1}(u_2)+...+(T-\lambda_1\id)^{a_\sigma}(u_\sigma)=0.
-	\end{equation}
-	Note that \eqref{eq:generalized-eigenspace-invariance} implies \((T-\lambda_1\id)^{a_1}(u_i)\) is still in \(G_{\lambda_i}\) for \(2\leq i\leq \sigma\), so now we apply \((T-\lambda_2\id)^{a_2}\) to both sides in \eqref{eq:first-term-vanishes} to vanish the second term, then \((T-\lambda_3\id)^{a_3}\) to vanish the third term, etc. At the end, we obtain
-	\begin{equation}
-		(T-\lambda_{\sigma -1}\id)^{a_{\sigma-1}}...(T-\lambda_2\id)^{a_2}(T-\lambda_1\id)^{a_1}(u_\sigma)=0
-	\end{equation}
-	But then disjointness (Theorem \ref{thm:disj}) implies \(u_\sigma=0\). Substituting back in \(\eqref{eq:sum-ui-zero}\) and repeating the same process gives
+    From Theorem \ref{thm:disj}, all the \(G_{\lambda_i}\) are mutually disjoint. Therefore, it is sufficient to show that for \(u_i\in G_{\lambda_i}\),
+    \begin{equation}\label{eq:sum-ui-zero}
+        u_1+u_2+...+u_\sigma=0
+    \end{equation}
+    implies \(u_i=0\ \forall i\leq k.\)\\ \\
+    For each \(u_i,\ \exists a_i\in \N\) s.t
+    \begin{equation}
+        (T-\lambda_i\id)^{a_i}(u_i)=0
+    \end{equation}
+    The invariance at Corollary \ref{col:invariance3} gives
+    \begin{equation}\label{eq:generalized-eigenspace-invariance}
+        u_i\in G_{\lambda_i}\implies (T-x\id)(u_i)\in G_{\lambda_i}\ \forall x\in \C
+    \end{equation}
+    Now apply \((T-\lambda_1\id)^{a_1}\) to both sides in \eqref{eq:sum-ui-zero} to vanish the first term and obtain
+    \begin{equation}\label{eq:first-term-vanishes}
+        0+(T-\lambda_1\id)^{a_1}(u_2)+...+(T-\lambda_1\id)^{a_\sigma}(u_\sigma)=0.
+    \end{equation}
+    Note that \eqref{eq:generalized-eigenspace-invariance} implies \((T-\lambda_1\id)^{a_1}(u_i)\) is still in \(G_{\lambda_i}\) for \(2\leq i\leq \sigma\), so now we apply \((T-\lambda_2\id)^{a_2}\) to both sides in \eqref{eq:first-term-vanishes} to vanish the second term, then \((T-\lambda_3\id)^{a_3}\) to vanish the third term, etc. At the end, we obtain
+    \begin{equation}
+        (T-\lambda_{\sigma -1}\id)^{a_{\sigma-1}}...(T-\lambda_2\id)^{a_2}(T-\lambda_1\id)^{a_1}(u_\sigma)=0
+    \end{equation}
+    But then disjointness (Theorem \ref{thm:disj}) implies \(u_\sigma=0\). Substituting back in \(\eqref{eq:sum-ui-zero}\) and repeating the same process gives
 
-	\[
-		u_1=u_2=...=u_\sigma=0
-	\]
+    \[
+        u_1=u_2=...=u_\sigma=0
+    \]
 \end{proof}
 
 Now that \(G_{\lambda_i}\) are mutually disjoint and in a sense independent, the subspace
 \begin{equation}\label{eq:generalized-eigenspace-direct-sum}
-	\bigoplus_{i=1}^{\sigma}G_{\lambda_i}
+    \bigoplus_{i=1}^{\sigma}G_{\lambda_i}
 \end{equation}
 makes perfect sense. Before we jump to our final step - showing that \eqref{eq:generalized-eigenspace-direct-sum} gives \(V\), let us see how the matrix representation of \(T\) on the set
 
 \[
-	\bigcup_{i=1}^\sigma \beta_i
+    \bigcup_{i=1}^\sigma \beta_i
 \]
 
 looks like, where \(\beta_i\) is the usual basis of \(G_{\lambda_i}\). We have:
 
 \[
-	[T]_{\cup \beta_i}=
-	\begin{pmatrix}
-		A_1    & 0      & \cdots & 0      \\
-		0      & A_2    & \cdots & 0      \\
-		\vdots & \vdots & \ddots & \vdots \\
-		0      & 0      & \cdots & A_\sigma
-	\end{pmatrix}
+    [T]_{\cup \beta_i}=
+    \begin{pmatrix}
+        A_1    & 0      & \cdots & 0      \\
+        0      & A_2    & \cdots & 0      \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0      & 0      & \cdots & A_\sigma
+    \end{pmatrix}
 \]
 
 where each \(A_i\) corresponds to \(\beta_i\) and is of form \eqref{eq:jordan-form}.\\ \\
@@ -704,140 +742,140 @@ This is the Jordan form.
 
 Note that this is a matrix representation for \(T\) only if \(\bigcup \beta_i\) is a basis for \(V\). Therefore, we prove:
 \begin{theorem}
-	\[
-		\bigoplus_{i=1}^\sigma \Gi = V
-	\]
+    \[
+        \bigoplus_{i=1}^\sigma \vsG_i = V
+    \]
 \end{theorem}
 
 \begin{proof}
     Denote
 
-	\[
-		W:=\bigoplus_{i=1}^\sigma G_{\lambda_i}
-	\]
+    \[
+        W:=\bigoplus_{i=1}^\sigma G_{\lambda_i}
+    \]
 
-	and assume \(W\neq V\).\\ \\
-	\begin{lemma}\label{lem:Winv}
-		\(W\) is invariant under \(T-xI\) for any \(x\in\mathbb{C}\)
-	\end{lemma}
+    and assume \(W\neq V\).\\ \\
+    \begin{lemma}\label{lem:Winv}
+        \(W\) is invariant under \(T-xI\) for any \(x\in\C\)
+    \end{lemma}
 
-	\begin{proof}
-		Invariance in each \(G_{\lambda_i}\) due to \ref{col:invariance3} implies invariance in \(W\).
-	\end{proof}
+    \begin{proof}
+        Invariance in each \(G_{\lambda_i}\) due to \ref{col:invariance3} implies invariance in \(W\).
+    \end{proof}
 
-	The following result is most crucial in proving the theorem.
-	\begin{lemma}\label{lem:important}
-		\(v\notin W \implies (T-xI)(v)\notin W \ \forall x\in \mathbb{C}\)
-	\end{lemma}
-	\begin{proof}
-		Assume for contradiction \(\exists v\notin W\) s.t \((T-xI)
-		(v):=u\in W\).\\ \\
-		Case 1: \(T-xI\) is invertible.\\
-		Then it is also invertible in \(W\) due to the invariance at \ref{lem:Winv}. \[
-			\implies \exists u_1 \in W \ s.t\ (T-xI)(u_1)=u.
-		\]
+    The following result is most crucial in proving the theorem.
+    \begin{lemma}\label{lem:important}
+        \(v\notin W \implies (T-xI)(v)\notin W \ \forall x\in \C\)
+    \end{lemma}
+    \begin{proof}
+        Assume for contradiction \(\exists v\notin W\) s.t \((T-xI)
+        (v):=u\in W\).\\ \\
+        Case 1: \(T-xI\) is invertible.\\
+        Then it is also invertible in \(W\) due to the invariance at \ref{lem:Winv}. \[
+            \implies \exists u_1 \in W \ s.t\ (T-xI)(u_1)=u.
+        \]
 
-		But this means \((T-xI)(v)=(T-xI)(u_1)\implies v=u_1,\) a contradiction with \(v \notin W\).\\ \\
-		Case 2: \(\ker (T-xI)\neq \emptyset\)\\
-		This in particular means \(x\) is an eigenvalue for \(T\), and
+        But this means \((T-xI)(v)=(T-xI)(u_1)\implies v=u_1,\) a contradiction with \(v \notin W\).\\ \\
+        Case 2: \(\ker (T-xI)\neq \emptyset\)\\
+        This in particular means \(x\) is an eigenvalue for \(T\), and
 
-		\[
-			\bigcup_{i=1}^{\infty} \ker(T-xI)^i=G_x
-		\]
-        
+        \[
+            \bigcup_{i=1}^{\infty} \ker(T-xI)^i=G_x
+        \]
+
          \[
          G_x\in W
          \]
 
-		due to definition of \(W\).
-		Let
+        due to definition of \(W\).
+        Let
 
-		\[
-			T_x:=T-xI \text{ and } d=\dim\ G_x
-		\]
+        \[
+            T_x:=T-xI \text{ and } d=\dim\ G_x
+        \]
 
-		and consider the linear map \(T_x^d\).\\\\
-		By definition of \(G_x,\) \[
-			\ker(T_x^d)=G_x
-		\]
+        and consider the linear map \(T_x^d\).\\\\
+        By definition of \(G_x,\) \[
+            \ker(T_x^d)=G_x
+        \]
 
-		Because \(W\) is invariant under \(T_x\), we may apply
-		dimension theorem for the map \(T_x^d\) restricted on \(W\):
-		\begin{equation}
-			\label{eq:dimW}
-			\dim(W)= \dim\ T_x^d(W) +\dim G_x
-		\end{equation}
-		Because \(G_x\) is the generalized kernel of \(T_x\), due to \eqref{eq:initial} at the initial examples we have
-		\begin{equation}
-			\label{eq:exclusion}
-			v\notin G_x \implies T_x(v)\notin G_x
-		\end{equation}
+        Because \(W\) is invariant under \(T_x\), we may apply
+        dimension theorem for the map \(T_x^d\) restricted on \(W\):
+        \begin{equation}
+            \label{eq:dimW}
+            \dim(W)= \dim\ T_x^d(W) +\dim G_x
+        \end{equation}
+        Because \(G_x\) is the generalized kernel of \(T_x\), due to \eqref{eq:initial} at the initial examples we have
+        \begin{equation}
+            \label{eq:exclusion}
+            v\notin G_x \implies T_x(v)\notin G_x
+        \end{equation}
 
-		This means that for each vector \(w\):
-		\[
-		\begin{aligned}
-			 & w\in G_x\implies T^d_x(w)=0 \\
+        This means that for each vector \(w\):
+        \[
+        \begin{aligned}
+             & w\in G_x\implies T^d_x(w)=0 \\
           & w\notin G_x\implies T^d_x(w)\notin G_x
-		\end{aligned}
-	\]
-		and therefore
+        \end{aligned}
+    \]
+        and therefore
 
-		\[
-			T_x^d(W)\cap G_x=\{0\}
-		\]
+        \[
+            T_x^d(W)\cap G_x=\{0\}
+        \]
 
-		Together with \eqref{eq:dimW}, this implies
+        Together with \eqref{eq:dimW}, this implies
 
-		\[
-			W=T_x^d(W) \oplus G_x
-		\]
+        \[
+            W=T_x^d(W) \oplus G_x
+        \]
 
-		However we assume
+        However we assume
 
-		\[
-			T_x(v)\in W
-		\]
+        \[
+            T_x(v)\in W
+        \]
 
-		for \(v\notin W.\) By the direct-sum property, \(T_x(v)\in W \implies \exists s\in T_x^d(W)\) and \(g\in G_x\) s.t
+        for \(v\notin W.\) By the direct-sum property, \(T_x(v)\in W \implies \exists s\in T_x^d(W)\) and \(g\in G_x\) s.t
 
-		\[
-			T_x(v)=s+g
-		\]
+        \[
+            T_x(v)=s+g
+        \]
 
-		But, there clearly exists \(u_1\in W\) s.t \(T_x(u_1)=s\) (\(s\) is in image of \(T_x)\).
-		Thus,
-		\begin{equation}
-			\label{eq:dif}
-			T_x(v)=T_x(u_1)+g\implies T_x(v-u_1)=g\in G_x
-		\end{equation}
-		But, \(v\notin W\) and \(u_1\in W\) implies \(v-u_1\notin W\), and in particular not in \(G_x\).
-		But together with \eqref{eq:dif} this contradicts \eqref{eq:exclusion}.
+        But, there clearly exists \(u_1\in W\) s.t \(T_x(u_1)=s\) (\(s\) is in image of \(T_x)\).
+        Thus,
+        \begin{equation}
+            \label{eq:dif}
+            T_x(v)=T_x(u_1)+g\implies T_x(v-u_1)=g\in G_x
+        \end{equation}
+        But, \(v\notin W\) and \(u_1\in W\) implies \(v-u_1\notin W\), and in particular not in \(G_x\).
+        But together with \eqref{eq:dif} this contradicts \eqref{eq:exclusion}.
 
-		Therefore, \[
-			v\notin W\implies T_x(v)\notin W\implies (T-xI)(v)\notin W
-		\]
-	\end{proof}
+        Therefore, \[
+            v\notin W\implies T_x(v)\notin W\implies (T-xI)(v)\notin W
+        \]
+    \end{proof}
 
 
-	We are now ready to conclude the theorem. Lemma \ref{lem:important} implies
+    We are now ready to conclude the theorem. Lemma \ref{lem:important} implies
 
-	\[
-		v\notin  W\implies T^k(v)\notin W\ \forall k\in \mathbb{N}
-	\]
+    \[
+        v\notin  W\implies T^k(v)\notin W\ \forall k\in \N
+    \]
 
-	Consider \(v,T(v),T^2(v),...,T^n(v)\) where \(n= \dim\ V\). These are \(n+1\) vectors, thus linearly dependent. Therefore there exists \(a_0,...,a_{n}\), \(a_j\neq 0\) for some \(j\leq n\) s.t
+    Consider \(v,T(v),T^2(v),...,T^n(v)\) where \(n= \dim\ V\). These are \(n+1\) vectors, thus linearly dependent. Therefore there exists \(a_0,...,a_{n}\), \(a_j\neq 0\) for some \(j\leq n\) s.t
 
-	\[
-		a_0v+a_1T(v)+...+a_nT^n(v)=0
-	\] \[
-		\implies(a_0+a_1T+a_2T^2+...+a_nT^n)(v)=0
-	\](linearity). Since we are working over the complex field, the above can be factorized:
-	\begin{equation}
-		(T-x_1I)^{k_1} (T-x_2I)^{k_2}...(T-x_mI)^{k_m}(v)=0 \quad m \leq n \tag{\(\star\)} \label{eq:star}
-	\end{equation}
+    \[
+        a_0v+a_1T(v)+...+a_nT^n(v)=0
+    \] \[
+        \implies(a_0+a_1T+a_2T^2+...+a_nT^n)(v)=0
+    \](linearity). Since we are working over the complex field, the above can be factorized:
+    \begin{equation}
+        (T-x_1I)^{k_1} (T-x_2I)^{k_2}...(T-x_mI)^{k_m}(v)=0 \quad m \leq n \tag{\(\star\)} \label{eq:star}
+    \end{equation}
 
-	But \(v\notin W\) and therefore \((T-xI)(v)\notin W\ \forall x\in \mathbb{C}\), so the left hand side of \eqref{eq:star} can never reach \(0\) as \(0 \in W\). Contradiction!
+    But \(v\notin W\) and therefore \((T-xI)(v)\notin W\ \forall x\in \C\), so the left hand side of \eqref{eq:star} can never reach \(0\) as \(0 \in W\). Contradiction!
 
-	Thus, we cannot have \(V\neq W\) in the beginning.
+    Thus, we cannot have \(V\neq W\) in the beginning.
 
 \end{proof}

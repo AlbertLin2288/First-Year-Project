@@ -51,16 +51,16 @@ Alternative criteria for singularity/regularity
 
     Since $B\inv(A(\vsS))=\vsS$,
     \begin{equation*}
-        \img_{\vsS}B = B(\vsS) = B(B\inv(A(\vsS))) \subseteq A(\vsS)
+        \im_{\vsS}B = B(\vsS) = B(B\inv(A(\vsS))) \subseteq A(\vsS)
     \end{equation*}
 
     Hence, for any $x\in\C$, we have
     \begin{equation*}
-        \img_{\vsS}(A+Bx)\subseteq\img_{\vsS}A+\img_{\vsS}Bx=\img_{\vsS}A
+        \im_{\vsS}(A+Bx)\subseteq\im_{\vsS}A+\im_{\vsS}Bx=\im_{\vsS}A
     \end{equation*}
     And
     \begin{equation*}
-        \dim\ker_{\vsS}(A+Bx)=\dim\vsS-\dim\img_{\vsS}(A+Bx)\ge\dim\vsS-\dim\img_{\vsS}A=\dim\ker_{\vsS}A>0
+        \dim\ker_{\vsS}(A+Bx)=\dim\vsS-\dim\im_{\vsS}(A+Bx)\ge\dim\vsS-\dim\im_{\vsS}A=\dim\ker_{\vsS}A>0
     \end{equation*}
 
     Therefore $A+Bx$ is singular for all $x\in\C$.
@@ -295,7 +295,7 @@ Now, we can prove $\vsV=\vsS\oplus\vsSp$.
     %     &= \{\vv_0:\exists \vv_1, \dots, \vv_m,\,\forall i\in[m],\,B\vv_{i+1}=(A+\lambda B)\vv_i\}\\
     %     &= \{\vv_0:\exists \vv_1, \dots, \vv_m,\,\forall i\in[m],\,(A+\lambda )\inv B\vv_{i+1}=\vv_i\}\\
     %     &= \{\vv_0:\exists \vv_m, \vv_0 = \left((A+\lambda )\inv B\right)^m\vv_{m}\}\\
-    %     &= \img((A+\lambda B)\inv B)^m\\
+    %     &= \im((A+\lambda B)\inv B)^m\\
     % \end{align*}
     \begin{align*}
         \vsS_{m+1} &= B\inv((A+\lambda B)(\vsS_m)) = ((A+\lambda B)\inv B)\inv(\vsS_m)\\
@@ -303,7 +303,7 @@ Now, we can prove $\vsV=\vsS\oplus\vsSp$.
     \end{align*}
     with $\vsS_0=\{\0\}$ and $\vsSp_0=\vsV$.
 
-    Hence, $\vsS_m=\ker((A+\lambda B)\inv B)^m$ and $\vsSp_m=\img((A+\lambda B)\inv B)^m$.
+    Hence, $\vsS_m=\ker((A+\lambda B)\inv B)^m$ and $\vsSp_m=\im((A+\lambda B)\inv B)^m$.
 
     So the two subspaces can be written as extended kernel and image of some matrix. Hence, they span the vector space.
 
@@ -565,12 +565,12 @@ Hence, using $\vv$ and $\vu$ as basis, we can write
 
 % \begin{lemma}
 %     \label{lemma:img_sum_ker}
-%     $\ker(T-\lambda_i\id)^{p_i}\oplus\img(T-\lambda_i\id)^{p_i}=\vecspace{V}$
+%     $\ker(T-\lambda_i\id)^{p_i}\oplus\im(T-\lambda_i\id)^{p_i}=\vecspace{V}$
 % \end{lemma}
 % \begin{proof}
 %     First, we will show that the two vector spaces are disjoint.
 
-%     Suppose $\vec{v} \in \img(T-\lambda_i\id)^{p_i}$, then there exist $\vec{u}\in\vecspace{V}$ s.t. $\vec{v}=(T-\lambda_i\id)^{p_i}\vec{u}$.
+%     Suppose $\vec{v} \in \im(T-\lambda_i\id)^{p_i}$, then there exist $\vec{u}\in\vecspace{V}$ s.t. $\vec{v}=(T-\lambda_i\id)^{p_i}\vec{u}$.
 %     Since $\vec{v}\in\ker(T-\lambda_i\id)^{p_i}$,
 %     \begin{align*}
 %         (T-\lambda_i\id)^{2p_i}\vec{u}
@@ -582,17 +582,17 @@ Hence, using $\vv$ and $\vu$ as basis, we can write
 %     \begin{equation*}
 %         \vec{v} = (T-\lambda_i\id)^{p_i}\vec{u} = \0
 %     \end{equation*}
-%     Therefore, $\ker(T-\lambda_i\id)^{p_i}\cap\img(T-\lambda_i\id)^{p_i}=\{\0\}$.
+%     Therefore, $\ker(T-\lambda_i\id)^{p_i}\cap\im(T-\lambda_i\id)^{p_i}=\{\0\}$.
 
 %     Since the two vector spaces are disjoint, they are also independent.
 %     Therefore,
 %     \begin{align*}
-%         &\dim\left(\ker(T-\lambda_i\id)^{p_i}\oplus\img(T-\lambda_i\id)^{p_i}\right)\\
-%         =&\dim\ker(T-\lambda_i\id)^{p_i} + \dim\img(T-\lambda_i\id)^{p_i}\\
+%         &\dim\left(\ker(T-\lambda_i\id)^{p_i}\oplus\im(T-\lambda_i\id)^{p_i}\right)\\
+%         =&\dim\ker(T-\lambda_i\id)^{p_i} + \dim\im(T-\lambda_i\id)^{p_i}\\
 %         =&\dim\vecspace{V}\\
 %     \end{align*}
 %     by the dimension theorem.
-%     Hence, $\ker(T-\lambda_i\id)^{p_i}\oplus\img(T-\lambda_i\id)^{p_i}=\vecspace{V}$.
+%     Hence, $\ker(T-\lambda_i\id)^{p_i}\oplus\im(T-\lambda_i\id)^{p_i}=\vecspace{V}$.
 % \end{proof}
 
 % \begin{theorem}
@@ -605,7 +605,7 @@ Hence, using $\vv$ and $\vu$ as basis, we can write
 %     Thus, $\vecspace{V}=\{\0\}$ and the theorem holds.
 
 %     Suppose the theorem is true for some $k-1\in\N$. \\
-%     Consider the subspace $\vecspace{V}'=\img(T-\lambda_{k-1}\id)^{p_{k-1}}$.
+%     Consider the subspace $\vecspace{V}'=\im(T-\lambda_{k-1}\id)^{p_{k-1}}$.
 %     Note that from Lemma \ref{lemma:img_sum_ker}, we have $\vecspace{V} = \vecspace{S}_{k-1} \oplus \vecspace{V}'$.\\
 %     It is closed under $T$, as $\forall\vec{v}\in\vecspace{V}'$, there exist $\vec{u}\in\vecspace{V}$ s.t.
 %     \begin{equation*}
@@ -620,7 +620,7 @@ Hence, using $\vv$ and $\vu$ as basis, we can write
 %     % $\forall i\in[k-1]$, let $\0\neq\vec{x}\in\ker(T-\lambda_i\id)\subseteq\vecspace{S}_i$.
 %     $\forall i\in[k-1]$, since $T-\lambda_{k-1}\id$ is a bijection on $\vecspace{S}_i$ (Lemma \ref{lemma:bijection}),
 %     \begin{equation*}
-%         \vecspace{S}_i=(T-\lambda_{k-1}\id)^{p_{k-1}}(\vecspace{S}_i)\subseteq\img(T-\lambda_{k-1}\id)^{p_{k-1}}=\vecspace{V}'
+%         \vecspace{S}_i=(T-\lambda_{k-1}\id)^{p_{k-1}}(\vecspace{S}_i)\subseteq\im(T-\lambda_{k-1}\id)^{p_{k-1}}=\vecspace{V}'
 %     \end{equation*}
 
 %     Hence, there are exactly $k-1$ eigen values of $T$ in $\vecspace{V}'$.
@@ -637,7 +637,7 @@ Hence, using $\vv$ and $\vu$ as basis, we can write
 %     %  let $\0\neq\vec{x}\in\ker(T-\lambda_i\id)\subseteq\vecspace{S}_i$.
 
 %     % need lemma to show kernel is closed under T
-%     % Note that $\0\neq(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{x}\in\img(T-\lambda_{k-1}\id)^{p_{k-1}}$ and $(T-\lambda_i\id)(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{x}=\0$.
+%     % Note that $\0\neq(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{x}\in\im(T-\lambda_{k-1}\id)^{p_{k-1}}$ and $(T-\lambda_i\id)(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{x}=\0$.
 %     % Thus, $\lambda_i\in\spec_{\vecspace{V}'}T$.\\
 %     % Therefore, we can apply the induction hypothesis on $\vecspace{V}'$. We get
 %     % \begin{equation*}
