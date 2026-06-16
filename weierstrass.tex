@@ -1,13 +1,13 @@
 \section{The Weierstrass form}
-\subsection{Introduction}
+\subsection{Introduction and motivaition}
 The Weierstrass form is a canonical form of two matrices $A,B$ acting on the same space. It is often referred to as generalized Jordan form. The motivation for Weierstrass form goes further than just generalizing Jordan and finding an appropriate basis - it plays crucial role in understanding linear systems of the form $$B\dot{x}=Ax$$
 The relevance of such systems will be discussed in Chapter 5.\\ \\
-Denote $T:V\rightarrow V$ as $$T(v):=Av$$and $L:V\rightarrow V$ as $$L(v):=Bv.$$
+Let $A,B\in \text{End}(V).$\\ \\
 Recalling the introduction of this paper, canonical forms are obtained by decomposing the space into invariant subspaces on which the operators have particularly simple matrix representations.\\
 Assume that we are able to find $k$ subspaces $S_1,S_2,...,S_k$ such that each $S_i$ is $T$ and $L$-invariant, and $$\bigoplus_{i=1}^k S_k=V.$$Picking a basis $\beta_i$ for $S_i$ and composing $\bigcup\beta_i$ gives us a block-diagonal matrix representation of $T$ \textit{and} $L$, respectively, \textit{under the same basis}.\\ \\
-The problem is: such subspaces rarely exist. The maps $T$ and $L$ might be too independent of each other and therefore a subspace might act nice under one map, but arbitrarily under the other. For example, take
+The problem is: such subspaces rarely exist. The maps $A$ and $B$ might be too independent of each other and therefore a subspace might act nice under one map, but arbitrarily under the other. For example, take
 \[
-	T=
+	A=
 	\begin{pmatrix}
 		1  & 0         \\
 		0  & 2  \\
@@ -15,7 +15,7 @@ The problem is: such subspaces rarely exist. The maps $T$ and $L$ might be too i
 
 	\end{pmatrix}
     ,
-    L=
+    B=
 	\begin{pmatrix}
 		0  & 1        \\
 		1  & 0  \\
@@ -23,36 +23,56 @@ The problem is: such subspaces rarely exist. The maps $T$ and $L$ might be too i
 
 	\end{pmatrix}
 \]
-The line $W=\text{span}(e_1)$ is $T-$invariant: $w\in W \implies T(w)=w.$\\
-But, $w\in W\implies L(w)\in \text{span}(e_2)$, so $W$ is not $L-$invariant.\\ \\
-In fact, for a pair $T,L$ there might be no non-trivial commonly invariant subspace.\\ \\
-Therefore, instead of attempting to describe the maps $L$ and $T$ via a specific basis, we do so with two different bases $\beta$ and $\gamma$ with the corresponding matrices $$_\beta[T]_ \gamma $$ $$_\beta[L]_ \gamma$$
+The line $W=\text{span}(e_1)$ is $A-$invariant: $w\in W \implies Aw=w.$\\
+But, $w\in W\implies Bw\in \text{span}(e_2)$, so $W$ is not $B-$invariant.\\ \\
+In fact, for a pair $A,B$ there might be no non-trivial commonly invariant subspace.\\ \\
+Therefore, instead of attempting to describe the maps $A$ and $B$ via a specific basis, we do so with two different bases $\beta$ and $\gamma$ with the corresponding matrices $$_\beta[A]_ \gamma $$ $$_\beta[B]_ \gamma$$
+Regarding $A$ and $B$ as matrices, this means considering two coordinate transformations: $$PAQ,\ PBQ$$where $P$ and $Q$ are invertible.\\ \\
+Throughout the paper we will be treating $A$ and $B$ as linear maps, however sticking to matrix notation at times. The precise statement
 
 
+\subsection{Matrix pencils}
+For maps $A,B\in \text{End}(V)$, our motivation is to find bases $\beta$ and $\gamma$ such that the matrices
+\begin{equation}\label{form}
+    _\beta[A]_ \gamma,\ _\beta[B]_ \gamma
+\end{equation}
+are of particularly nice type.
+Prioritizing simplification, Weierstrass canonical form pursues this goal by putting certain restrictions on $A$ and $B$.\\ \\
+We consider pairs $(A,B)$ referred to as \textit{regular}.
+
+\begin{definition}
+    A pair of maps $A,B$ is called \textit{regular} iff
+    \begin{equation}\label{pencil}
+        \exists \lambda\in \mathbb{C}\ s.t\ |A+\lambda B|\neq0
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    The set $$\{A+\lambda B: \lambda\in \mathbb{C}\}$$is called a \textit{matrix pencil of the pair $(A,B)$}
+\end{definition}
 
 
+We say that a matrix pencil of the pair $(A,B)$ is \textit{regular} iff $(A,B)$ is regular, and \textit{singular} otherwise. \\ \\
+The condition (\ref{pencil}) enables us to select a non-singular element of the matrix pencil which will help us derive a nice form of (\ref{form}).\\ \\
+Before explicitly stating the form, we present necessary lemmas about matrix pencils.
 
-\subsection{Properties of regular linear matrix pencils}
-
-Alternative criteria for singularity/regularity
 
 \begin{lemma}
     \label{lemma:singular_from_vector}
-    A matrix pencil $\penAB$ of vector space $\vsV$ is singular iff for all $x\in\C$, exists $\0\neq\vv\in\vsV$ s.t. $(\penAB)\vv=\0$.
+    A matrix pencil $\penAB$ of the pair $(A,B)$ is singular iff for all $x\in\C$, exists $\0\neq\vv\in\vsV$ s.t. $(\penAB)\vv=\0$.
 \end{lemma}
 \begin{proof}
     \begin{align*}
         |\pen{A}{B}|=0
         &\iff \forall x\in\C,\, A+Bx=0\\
-        &\iff \forall x\in\C,\, A+Bx \text{is singular}\\
+        &\iff \forall x\in\C,\, A+Bx \text{ is singular}\\
         &\iff \forall x\in\C,\, \exists \0\neq\vv\in\vsV,\, (A+Bx)\vv = \0\\
     \end{align*}
 \end{proof}
 
-
 \begin{lemma}
     \label{lemma:regular_symm}
-    Let $A+Bx$ is regular iff $B+Ax$ is regular.
+    $A+Bx$ is regular iff $B+Ax$ is regular.
 \end{lemma}
 \begin{proof}
     Note that the forward direction is equivalent to the backward direction.
@@ -73,7 +93,7 @@ Alternative criteria for singularity/regularity
 
 \begin{lemma}
     \label{lemma:regular_converge_inj}
-    Let $A+Bx$ be a regular matrix pencil on $\vsV$, if $B\inv(A(\vsS))=\vsS$ for some subspace $\vsS\subseteq\vsV$, then $\ker_{\vsS}A=\{\0\}$.
+    Let $A+Bx$ be a regular matrix pencil of the pair $(A,B)$. If $B\inv(A(\vsS))=\vsS$ for some subspace $\vsS\subseteq\vsV$, then $\ker_{\vsS}A=\{\0\}$.
 \end{lemma}
 \begin{proof}
     Suppose $\ker_{\vsS}A\neq\{\0\}$.
@@ -93,23 +113,76 @@ Alternative criteria for singularity/regularity
     \end{equation*}
 
     Therefore $A+Bx$ is singular for all $x\in\C$.
-    This contradict the assumption for the matrix pencil to be regular.
+    This contradicts the assumption for the matrix pencil to be regular.
 
     By contradiction, $\ker_{\vsS}A=\{\0\}$
 \end{proof}
 
-\subsection{Proof}
+We are now ready to state the desired form of (\ref{form}).
 
-Let $\vsV$ be a $n$-dimensional vector spaces.
 
-Let $\pen{A}{B}$ be a regular matrix pencil, where $A, B$ are linear map from $\vsV$ to $\vsV$.
+
+
+
+
+
+
+
+
+
+
+\subsection{Statement}
+For a regular pair of maps $(A,B)$, there exist bases $\beta,\gamma$ such that
+\begin{equation}
+\begin{aligned}
+{}_{\beta}[A]_{\gamma}
+&=
+\begin{pmatrix}
+J & 0\\
+0 & I
+\end{pmatrix},
+\\[1em]
+{}_{\beta}[B]_{\gamma}
+&=
+\begin{pmatrix}
+I & 0\\
+0 & N
+\end{pmatrix}.
+\end{aligned}
+\end{equation}
+Regarding $A$ and $B$ as matrices, equivalently: there exist invertible $P$ and $Q$ such that
+\begin{equation}
+PAQ=
+\begin{pmatrix}
+J & 0\\
+0 & I
+\end{pmatrix},
+PBQ=
+\begin{pmatrix}
+I & 0\\
+0 & N
+\end{pmatrix},
+\end{equation}
+
+
+
+\subsection{Method}
+
+
+Let $\vsV$ be a $n$-dimensional vector spaces and $\pen{A}{B}$ be a regular matrix pencil, where $A, B$ are maps from $\vsV$ to $\vsV$.
 
 Define
 \begin{align*}
     \vsS_0 &= \{\0\}\\
     \vsS_{m+1} &= B\inv(A(\vsS_{m}))
 \end{align*}
-Note that here, $A$ and $B\inv$ denote the image and pre-image, respectively.
+
+\begin{align*}
+    W_0 &= \vsV\\
+    W_{m+1} &= A\inv(B(W_{m}))
+\end{align*}
+
+Note that here, $A$ and $B\inv$ denote the image and pre-image, respectively. One may think of
 
 Define
 \begin{align*}
