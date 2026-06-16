@@ -5,22 +5,22 @@ The relevance of such systems will be discussed in Chapter 5.\\ \\
 Denote $T:V\rightarrow V$ as $$T(v):=Av$$and $L:V\rightarrow V$ as $$L(v):=Bv.$$
 Recalling the introduction of this paper, canonical forms are obtained by decomposing the space into invariant subspaces on which the operators have particularly simple matrix representations.\\
 Assume that we are able to find $k$ subspaces $S_1,S_2,...,S_k$ such that each $S_i$ is $T$ and $L$-invariant, and $$\bigoplus_{i=1}^k S_k=V.$$Picking a basis $\beta_i$ for $S_i$ and composing $\bigcup\beta_i$ gives us a block-diagonal matrix representation of $T$ \textit{and} $L$, respectively, \textit{under the same basis}.\\ \\
-The problem is: such subspaces rarely exist. The maps $T$ and $L$ might be too independent of each other and therefore a subspace might act nice under one map, but arbitrarily under the other. For example, take 
+The problem is: such subspaces rarely exist. The maps $T$ and $L$ might be too independent of each other and therefore a subspace might act nice under one map, but arbitrarily under the other. For example, take
 \[
 	T=
 	\begin{pmatrix}
 		1  & 0         \\
 		0  & 2  \\
-		
-		
+
+
 	\end{pmatrix}
     ,
     L=
 	\begin{pmatrix}
 		0  & 1        \\
 		1  & 0  \\
-		
-		
+
+
 	\end{pmatrix}
 \]
 The line $W=\text{span}(e_1)$ is $T-$invariant: $w\in W \implies T(w)=w.$\\
@@ -482,209 +482,3 @@ Hence, using $\vv$ and $\vu$ as basis, we can write
     \leftindex_\vu[B]_\vv&=I\\
 \end{align*}
 
-
-%     A\inv B\vu&=\lambda\vu\\
-%     B\vu&=A\lambda\vu\\
-% \end{align*}
-
-% Let $m$ be the minimum integer s.t. $\vu\in\vsS_m$.
-% If $m>0$, we have $\vu=\lambda^{-1}(\lambda\vu)\in\vsS_{m-1}$, creating a contradiction.
-% Hence, $m=0$ and $\vu=0$.
-
-% So the only eigenvalue of $B'$ is $0$.
-
-
-
-% Let the eigenvalues of $T$ be $\lambda_0, \lambda_1, \dots, \lambda_{k-1}$. Let $\vecspace{S}_i=\extker T-\lambda_i\id$.
-
-% Note that any polynomials of $T$ commute.
-
-% % \begin{lemma}
-% %     \label{lemma:closed_under_T_sub_eigen}
-% %     $\forall i\in[k]$, $\vecspace{S}_i$ is closed under $T-\lambda_i\id$.
-% % \end{lemma}
-% % \begin{proof}
-% %     $\forall \vec{u} \in \vecspace{S}_i$, $\exists m \in \N$, s.t. $(T-\lambda_i\id)^m\vec{u}=\0$. Hence, $(T-\lambda_i\id)^m(T-\lambda_i\id)\vec{u}=(T-\lambda_i\id)(T-\lambda_i\id)^m\vec{u}=\0$
-% % \end{proof}
-
-% \begin{theorem}
-%     \label{theorem:closed_under_T}
-%     $\forall i\in[k]$, $\vecspace{S}_i$ is closed under $T$.
-% \end{theorem}
-% \begin{proof}
-%     $T\vec{u}=(T-\lambda_i\id)\vec{u} + \lambda_i\id\vec{u}=\lambda_i\vec{u}\in\vecspace{S}_i$
-% \end{proof}
-
-% \begin{corollary}
-%     \label{corollary:closed_under_p_T}
-%     $\vecspace{S}_i$ is closed under any polynomials of $T$
-% \end{corollary}
-% % Note that due to being a subspace, Lemma \ref{theorem:closed_under_T} imply $\vecspace{S}_i$ is closed under any polynomials of $T$.
-
-% However, we can go one step further.
-% $T-\lambda_i\id$ is a well-defined function on $\vecspace{S}_i$ thanks to \ref{corollary:closed_under_p_T}.
-
-% \begin{lemma}
-%     \label{lemma:bijection}
-%     $\forall i\in[k], x\in\C$, if $x\neq\lambda_i$, $T-x\id$ is a bijection on $\vecspace{S}_i$
-% \end{lemma}
-% \begin{proof}
-%     \begin{align*}
-%         \ker_{\vecspace{S}_i}(T-x\id)
-%         &=\{\vec{v}\in\vecspace{S}_i|(T-x\id)\vec{v}=\0\}\\
-%         &=\{\vec{v}\in\vecspace{V}|T\vec{v}=x\vec{v} \land (T-\lambda_i\id)^{p_i}\vec{v}=\0\}\\
-%     \end{align*}
-%     Note that since $T\vec{v}=x\vec{v}$,
-%     \begin{equation*}
-%         (T-\lambda_i\id)\vec{v}=T\vec{v}-\lambda_i\vec{v}=(x-\lambda_i)\vec{v}
-%     \end{equation*}
-%     where $x-\lambda_i\neq0$ from the assumption. \\
-%     Hence,
-%     \begin{align*}
-%         \ker_{\vecspace{S}_i}(T-x\id)
-%         &=\{\vec{v}\in\vecspace{V}|T\vec{v}=x\vec{v} \land (x-\lambda_i)^{p_i}\vec{v}=\0\}\\
-%         &\subseteq\{\vec{v}\in\vecspace{V}|(x-\lambda_i)^{p_i}\vec{v}=\0\}\\
-%         &=\{\vec{v}\in\vecspace{V}|\vec{v}=\0\}\\
-%         &=\{\0\}\\
-%     \end{align*}
-%     Since $\vecspace{S}_i$ has finite dimension, $T-x\id$ is a bijection on $\vecspace{S}_i$.
-% \end{proof}
-
-% % \begin{lemma}
-% %     \label{lemma:disjoint}
-% %     $\forall i\neq j \in [k]$, $\vecspace{S}_i\cup \vecspace{S}_j = \{\0\}$.
-% % \end{lemma}
-% % \begin{proof}
-% %     Let $\vec{u}\in\vecspace{S}_i\cup\vecspace{S}_j$.
-% %     Suppose $\vec{u}\neq\0$.
-% %     Let $m_1 = \min\{m\in\N, (T-\lambda_i\id)^m\vec{u}=\0\}$.
-% %     Note that $m_1\neq0$.
-% %     Let $\vec{v}=(T-\lambda_i)^{m_1-1}\vec{u}$.
-% %     Note that $\vec{v}\neq\0$, $\vec{v}\in\vecspace{S}_j$ and $(T-\lambda_i\id)\vec{v}=\0$.
-% %     Hence, there exists $m_2\in\N$, s.t. $(T-\lambda_2\id)^{m_2}\vec{v}=\0$.
-% %     However, $(T-\lambda_2\id)\vec{v}=(T-\lambda_1\id+(\lambda_1-\lambda_2)\id)\vec{v}=(\lambda_1-\lambda_2)\vec{v}$.
-% %     Hence, $(T-\lambda_2\id)^{m_2}\vec{v}=(\lambda_1-\lambda_2)^{m_2}\vec{v}\neq\0$.
-% %     By contradiction, $\vec{u}=\0$
-% % \end{proof}
-
-% % Let $p_i$ denote $\min\{p\in\N|\extker(T-\lambda_i\id) = \ker(T-\lambda_i\id)^p\}$, whose existance is shown in Lemma \ref{lemma:ext_finite_power}.
-
-% % \begin{theorem}
-% %     \label{theorem:independent}
-% %     The subspaces $\vecspace{S}_0, \vecspace{S}_1, \dots, \vecspace{S}_{k-1}$ are disjoint.
-% % \end{theorem}
-% % \begin{proof}
-% %     Suppose for $\0\neq\vec{v}_0\in\vecspace{S}_0, \dots, \0\neq\vec{v}_{k-1}\vecspace{S}_{k-1}$, there exists $x_0,\dots,x_{k-1}$ s.t. $x_0\vec{v_0}+x_1\vec{v}_1+\dots+x_{k-1}\vec{v}_{k-1}$ and $x_i\neq0$ for some $i$.
-
-% %     WLOG, let $x_0\neq0$.
-% %     \begin{align*}
-% %         \0&=(T-\lambda_1\id)^{p_1}(T-\lambda_2\id)^{p_0}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}\left(\sum_{i=0}^{k-1}x_i\vec{v}_i\right)\\
-% %         &=(T-\lambda_1\id)^{p_1}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}(x_0\vec{v}_0)+\sum_{i=1}^{k-1}(T-\lambda_1\id)^{p_1}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}(x_i\vec{v}_i)\\
-% %     \end{align*}
-% %     Since polynomials of $T$ commute, we can rearrange $(T-\lambda_1\id)^{p_1}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}(x_i\vec{v}_i)$, moving the term $(T-\lambda_i\id)^{p_{i}}$ last.
-% %     Since $(T-\lambda_i\id)^{p_{i}}(x_i\vec{v_i})=\0$, the above equation imply $(T-\lambda_1\id)^{p_1}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}(x_0\vec{v}_0)=\0$.
-
-% %     However, for any $\0\neq\vec{v}\in\vecspace{S}_0$ and $i\neq0$, we have $(T-\lambda_{i}\id)^{p_i}\vec{v}\in\vecspace{S}_0$.
-% %     Also, since $\vec{v}\neq\0$, from Lemma \ref{lemma:disjoint}, we know $\vec{v}\notin\vecspace{S}_i$.
-% %     Therefore $(T-\lambda_{i}\id)^{p_i}\vec{v}\neq\0$.
-% %     Hence, $(T-\lambda_1\id)^{p_1}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}(x_0\vec{v}_0)\neq\0$, leading to contradiction.
-
-% %     Therefore, $\vecspace{S}_0, \dots, \vecspace{S}_{k-1}$ are independent from Lemma \ref{lemma:independent_from_vectors}.
-% % \end{proof}
-
-% \begin{lemma}
-%     \label{lemma:img_sum_ker}
-%     $\ker(T-\lambda_i\id)^{p_i}\oplus\im(T-\lambda_i\id)^{p_i}=\vecspace{V}$
-% \end{lemma}
-% \begin{proof}
-%     First, we will show that the two vector spaces are disjoint.
-
-%     Suppose $\vec{v} \in \im(T-\lambda_i\id)^{p_i}$, then there exist $\vec{u}\in\vecspace{V}$ s.t. $\vec{v}=(T-\lambda_i\id)^{p_i}\vec{u}$.
-%     Since $\vec{v}\in\ker(T-\lambda_i\id)^{p_i}$,
-%     \begin{align*}
-%         (T-\lambda_i\id)^{2p_i}\vec{u}
-%         &=(T-\lambda_i\id)^{p_i}\left((T-\lambda_i\id)^{p_i}\vec{u}\right)\\
-%         &=(T-\lambda_i\id)^{p_i}\vec{v}\\
-%         &=\0
-%     \end{align*}
-%     Hence, $\vec{u}\in\extker(T-\lambda_i\id)=\ker(T-\lambda_i\id)^{p_i}$.
-%     \begin{equation*}
-%         \vec{v} = (T-\lambda_i\id)^{p_i}\vec{u} = \0
-%     \end{equation*}
-%     Therefore, $\ker(T-\lambda_i\id)^{p_i}\cap\im(T-\lambda_i\id)^{p_i}=\{\0\}$.
-
-%     Since the two vector spaces are disjoint, they are also independent.
-%     Therefore,
-%     \begin{align*}
-%         &\dim\left(\ker(T-\lambda_i\id)^{p_i}\oplus\im(T-\lambda_i\id)^{p_i}\right)\\
-%         =&\dim\ker(T-\lambda_i\id)^{p_i} + \dim\im(T-\lambda_i\id)^{p_i}\\
-%         =&\dim\vecspace{V}\\
-%     \end{align*}
-%     by the dimension theorem.
-%     Hence, $\ker(T-\lambda_i\id)^{p_i}\oplus\im(T-\lambda_i\id)^{p_i}=\vecspace{V}$.
-% \end{proof}
-
-% \begin{theorem}
-%     $\vecspace{S}_0\oplus\vecspace{S}_1\oplus\dots\oplus\vecspace{S}_{k-1}=\vecspace{V}$
-% \end{theorem}
-% \begin{proof}
-%     Note that $\{\0\}\oplus\vecspace{S}=\vecspace{S}$. So for $k=0$, we will define $\vecspace{S}_0\oplus\dots\oplus\vecspace{S}_{k-1}=\{\0\}$.
-
-%     If $k=0$, since for any $n$-dimensional vector space $\vecspace{V}$ where $n > 0$, there exists eigenvalues for $T$, we have $n=0$.
-%     Thus, $\vecspace{V}=\{\0\}$ and the theorem holds.
-
-%     Suppose the theorem is true for some $k-1\in\N$. \\
-%     Consider the subspace $\vecspace{V}'=\im(T-\lambda_{k-1}\id)^{p_{k-1}}$.
-%     Note that from Lemma \ref{lemma:img_sum_ker}, we have $\vecspace{V} = \vecspace{S}_{k-1} \oplus \vecspace{V}'$.\\
-%     It is closed under $T$, as $\forall\vec{v}\in\vecspace{V}'$, there exist $\vec{u}\in\vecspace{V}$ s.t.
-%     \begin{equation*}
-%         \vec{v}=(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{u}
-%     \end{equation*}
-%     Hence,
-%     \begin{equation*}
-%         T\vec{v} = T(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{u} = (T-\lambda_{k-1}\id)^{p_{k-1}}(T\vec{u})\in\vecspace{V}'
-%     \end{equation*}
-
-%     Since $\vecspace{V}'\cap\vecspace{S}_{k-1}=\{\0\}$, $\spec_{\vecspace{V}'}T \subseteq \spec_{\vecspace{V}}T\setminus\{\lambda_{k-1}\}$.\\
-%     % $\forall i\in[k-1]$, let $\0\neq\vec{x}\in\ker(T-\lambda_i\id)\subseteq\vecspace{S}_i$.
-%     $\forall i\in[k-1]$, since $T-\lambda_{k-1}\id$ is a bijection on $\vecspace{S}_i$ (Lemma \ref{lemma:bijection}),
-%     \begin{equation*}
-%         \vecspace{S}_i=(T-\lambda_{k-1}\id)^{p_{k-1}}(\vecspace{S}_i)\subseteq\im(T-\lambda_{k-1}\id)^{p_{k-1}}=\vecspace{V}'
-%     \end{equation*}
-
-%     Hence, there are exactly $k-1$ eigen values of $T$ in $\vecspace{V}'$.
-%     We can apply induction hypothesis on $\vecspace{V}'$ to get
-%     \begin{equation*}
-%         \vecspace{V}' = \vecspace{S}_0\oplus\vecspace{S}_1\oplus\dots\oplus\vecspace{S}_{k-2}
-%     \end{equation*}
-
-%     Therefore,
-%     \begin{equation*}
-%         \vecspace{V} = \vecspace{V}' \oplus \vecspace{S}_{k-1} = \vecspace{S}_0\oplus\vecspace{S}_1\oplus\dots\oplus\vecspace{S}_{k-2} \oplus \vecspace{S}_{k-1}
-%     \end{equation*}
-
-%     %  let $\0\neq\vec{x}\in\ker(T-\lambda_i\id)\subseteq\vecspace{S}_i$.
-
-%     % need lemma to show kernel is closed under T
-%     % Note that $\0\neq(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{x}\in\im(T-\lambda_{k-1}\id)^{p_{k-1}}$ and $(T-\lambda_i\id)(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{x}=\0$.
-%     % Thus, $\lambda_i\in\spec_{\vecspace{V}'}T$.\\
-%     % Therefore, we can apply the induction hypothesis on $\vecspace{V}'$. We get
-%     % \begin{equation*}
-%     %     \vecspace{V}' = \vecspace{S}'_0\oplus\vecspace{S}'_1\oplus\dots\oplus\vecspace{S}'_{k-2}
-%     % \end{equation*}
-%     % where
-%     % \begin{equation*}
-%     %     \vecspace{S}'_i = \extker_{\vecspace{V}'}(T-\lambda_i\id)
-%     % \end{equation*}
-
-% \end{proof}
-
-% % \begin{lemma}
-% %     \label{lemma:construction_raw}
-% %     There exists linear independent subspaces $\vecspace{S_0}, \vecspace{S_1}, \dots, \vecspace{S_{k-1}}$ such that $\vecspace{V}=\vecspace{S_0} \oplus \vecspace{S_1} \oplus \dots \oplus \vecspace{S_{k-1}}$ and
-% %     $\vecspace{S_i} \subseteq \extker(T-\lambda_i \id)\sin$
-% % \end{lemma}
-% % \begin{proof}
-% %     We can construct such a list of subspaces recursively.
-% %     Let $\vecspace{V_0} = \vecspace{V}$. Let $S_i$
-% % \end{proof}
