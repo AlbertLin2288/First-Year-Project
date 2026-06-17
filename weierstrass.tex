@@ -1,6 +1,7 @@
 \section{The Weierstrass form}
 \subsection{Introduction and motivaition}
-The Weierstrass form is a canonical form of two matrices $A,B$ acting on the same space. It is often referred to as generalized Jordan form. The motivation for Weierstrass form goes further than just generalizing Jordan and finding an appropriate basis - it plays crucial role in understanding linear systems of the form $$B\dot{x}=Ax$$
+The Weierstrass form is a canonical form of two matrices $A,B$ acting on the same space.
+It is often referred to as generalized Jordan form. The motivation for Weierstrass form goes further than just generalizing Jordan and finding an appropriate basis - it plays crucial role in understanding linear systems of the form $$B\dot{x}=Ax$$
 The relevance of such systems will be discussed in Chapter 5.\\ \\
 Let $A,B\in \text{End}(V).$\\ \\
 Recalling the introduction of this paper, canonical forms are obtained by decomposing the space into invariant subspaces on which the operators have particularly simple matrix representations.\\
@@ -28,7 +29,7 @@ But, $w\in W\implies Bw\in \text{span}(e_2)$, so $W$ is not $B-$invariant.\\ \\
 In fact, for a pair $A,B$ there might be no non-trivial commonly invariant subspace.\\ \\
 Therefore, instead of attempting to describe the maps $A$ and $B$ via a specific basis, we do so with two different bases $\beta$ and $\gamma$ with the corresponding matrices $$_\beta[A]_ \gamma $$ $$_\beta[B]_ \gamma$$
 Regarding $A$ and $B$ as matrices, this means considering two coordinate transformations: $$PAQ,\ PBQ$$where $P$ and $Q$ are invertible.\\ \\
-Throughout the paper we will be treating $A$ and $B$ as linear maps, however sticking to matrix notation at times. The precise statement
+Throughout the paper we will be treating $A$ and $B$ as linear maps, however sticking to matrix notation at times.
 
 
 \subsection{Matrix pencils}
@@ -37,11 +38,11 @@ For maps $A,B\in \text{End}(V)$, our motivation is to find bases $\beta$ and $\g
     _\beta[A]_ \gamma,\ _\beta[B]_ \gamma
 \end{equation}
 are of particularly nice type.
-Prioritizing simplification, Weierstrass canonical form pursues this goal by putting certain restrictions on $A$ and $B$.\\ \\
+Prioritizing simplification, Weierstrass canonical form pursues this goal by putting a restriction on $A$ and $B$.  \\ \\
 We consider pairs $(A,B)$ referred to as \textit{regular}.
 
 \begin{definition}
-    A pair of maps $A,B$ is called \textit{regular} iff
+    A pair of maps $(A,B)$ is called \textit{regular} iff
     \begin{equation}\label{pencil}
         \exists \lambda\in \mathbb{C}\ s.t\ |A+\lambda B|\neq0
     \end{equation}
@@ -52,14 +53,14 @@ We consider pairs $(A,B)$ referred to as \textit{regular}.
 \end{definition}
 
 
-We say that a matrix pencil of the pair $(A,B)$ is \textit{regular} iff $(A,B)$ is regular, and \textit{singular} otherwise. \\ \\
-The condition (\ref{pencil}) enables us to select a non-singular element of the matrix pencil which will help us derive a nice form of (\ref{form}).\\ \\
+We say that a matrix pencil of the pair $(A,B)$ is \textit{regular} if $(A,B)$ is regular, and \textit{singular} otherwise. \\ \\
+The condition (\ref{pencil}) enables us to select a non-singular element of the matrix pencil which will help us derive a canonical form of (\ref{form}).\\ \\
 Before explicitly stating the form, we present necessary lemmas about matrix pencils.
 
 
 \begin{lemma}
     \label{lemma:singular_from_vector}
-    A matrix pencil $\penAB$ of the pair $(A,B)$ is singular iff for all $x\in\C$, exists $\0\neq\vv\in\vsV$ s.t. $(\penAB)\vv=\0$.
+    A matrix pencil $\penAB$ of the pair $(A,B)$ is singular if and only if for all $x\in\C$, exists $\0\neq\vv\in\vsV$ s.t. $(\penAB)\vv=\0$.
 \end{lemma}
 \begin{proof}
     \begin{align*}
@@ -72,7 +73,7 @@ Before explicitly stating the form, we present necessary lemmas about matrix pen
 
 \begin{lemma}
     \label{lemma:regular_symm}
-    $A+Bx$ is regular iff $B+Ax$ is regular.
+    $A+Bx$ is regular if and only if $B+Ax$ is regular.
 \end{lemma}
 \begin{proof}
     Note that the forward direction is equivalent to the backward direction.
@@ -91,7 +92,7 @@ Before explicitly stating the form, we present necessary lemmas about matrix pen
     \end{equation*}
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{lem:inject}
     \label{lemma:regular_converge_inj}
     Let $A+Bx$ be a regular matrix pencil of the pair $(A,B)$. If $B\inv(A(\vsS))=\vsS$ for some subspace $\vsS\subseteq\vsV$, then $\ker_{\vsS}A=\{\0\}$.
 \end{lemma}
@@ -133,7 +134,7 @@ We are now ready to state the desired form of (\ref{form}).
 
 \subsection{Statement}
 For a regular pair of maps $(A,B)$, there exist bases $\beta,\gamma$ such that
-\begin{equation}
+\begin{equation}\label{weierstrass}
 \begin{aligned}
 {}_{\beta}[A]_{\gamma}
 &=
@@ -168,248 +169,155 @@ I & 0\\
 
 \subsection{Method}
 
-\subsubsection{Wong sequences}
-Let $\vsV$ be a $n$-dimensional vector spaces and $\pen{A}{B}$ be a regular matrix pencil, where $A, B$ are maps from $\vsV$ to $\vsV$.
+Let $\vsV$ be a $n$-dimensional vector spaces and $\pen{A}{B}$ be a regular matrix pencil, where $A, B$ are maps from $\vsV$ to $\vsV$. Given the regularity of the pencil, we are able to choose $\lambda\in \C$ such that $(A+\lambda B)^{-1}$ is defined as a map.\\ \\
+All derivations of canonical forms begin with considering decompositions of $\vsV$ into independent subspaces. For a linear map $L$, we have the following.
 
-Define
-\begin{align*}
-    \vsS_0 &= \{\0\}\\
-    \vsS_{m+1} &= B\inv(A(\vsS_{m}))
-\end{align*}
+\begin{lemma}\label{lem:decom2}
+    For an arbitrary linear map $L:\vsV\rightarrow \vsV$, $\exists N\in\mathbb{N}$ such that $$V=\ker L^N \oplus imL^N$$
+\end{lemma}
 
-\begin{align*}
-    W_0 &= \vsV\\
-    W_{m+1} &= A\inv(B(W_{m}))
-\end{align*}
-
-Note that here, $A$ and $B\inv$ denote the image and pre-image, respectively
-
-Define
-\begin{align*}
-    \vsS &= \bigcup_{i\in\N} \vsS_i\\
-    \vsT &= A(\vsS)\\
-\end{align*} 
-
-We observe that $\forall m\in\N$, $\vsS_m$ is a subspace of $\vsV$.
-Furthermore, by induction, one can show $\vsS_m\subseteq\vsS_{m+1}$.
-Therefore, there exists $k\in\N$ s.t. $\forall m\ge k$, $\vsS_m = \vsS_k$.
-
-So we have $\vsS = \vsS_k$.
-
-
-Since $\vsS_{m+1} = B\inv(A(\vsS_{m}))$,
-\begin{align*}
-    \vv\in\vsS_{m+1}&\iff&\exists\vu\in\vsS_{m}, B\vv=A\vu
-\end{align*}
-Hence, an alternative definition for $\vsS_m$ is
-\begin{equation*}
-    \vsS_m = \left\{\vv_m\in\vsV:\exists \vv_0,\vv_1,\dots,\vv_{m-1}\in\vsV,\, \vv_0 = \0 \land \forall i \in [m],\, B\vv_{i+1}=A\vv{i}\right\}
-\end{equation*}
-
-Since
-\begin{equation*}
-    B\inv(A(\vsS)) = B\inv(A(\vsS_k)) = \vsS_{k+1} = \vsS
-\end{equation*}
-,by Lemma \ref{lemma:regular_converge_inj}, we have $A$ is injective on $\vsS$.
-Hence, $\forall\vv\in\vsS$, $\exists!\vu\in\vsS$ s.t. $B\vv=A\vu$. (uniqueness follows from injectiveness)
-
-Furthermore, $\forall\vv\in\vsS_{m+1},\vu\in\vsS$ s.t. $B\vv=A\vu$, we have $\vu\in\vsS_m$,
-and if $\forall\vv\in\vsS_0,\vu\in\vsS$ s.t. $B\vv=A\vu$, we have $\vu\in\vsS_0=\{0\}$.
-
-% Since $\vsS_m\subseteq\vsS$ for all $m\in\N$, $A$ is injective on $\vsS_m$.
-
-% Hence, $\forall\vv\in\vsS_{m+1}$, $\exists!\vu\in\vsS_{m}$ s.t. $B\vv=A\vu$. (uniqueness follows from injectiveness)
-% We claim that $\forall\vv\in\vsS_{m+1},\, \exists!\vu\in\vsS_{m}$ s.t. $B\vv=A\vu$, or equivalently, $A$ is injective on $\vsS_m$.
-% We will show this by contradiction.
-
-% \begin{proof}
-%     Suppose the statement is wrong.
-%     Then, let $m$ be the minimum case where the statement fail.
-%     This imply there exists $\0\neq\vv_m\in\vsS_m$ s.t. $A\vv_m=\0$.
-
-%     Then, there exists $\vv_0,\vv_1,\dots,\vv_{m-1}\in\vsV$ s.t. $\vv_0 = \0$ and $\forall i \in [m],\, B\vv_{i+1}=A\vv{i}$.
-
-%     Note that since $m$ is the minimum counter example, $\vv_m\notin\vsS_{m-1}$.\footnote{It's trivial to show $m>0$.}
-%     Since $\vv_i\in\vsS_i\subseteq\vsS_{m-1}$,
-%     \begin{equation*}
-%         \vv_m\notin\vspan\{\vv_0, \vv_1, \dots, \vv_{m-1}\}
-%     \end{equation*}
-
-%     For any $x\in\C$, define
-%     \begin{equation*}
-%         \vu = \sum_{i=0}^{m}\vv_i(-x)^{m-i}
-%     \end{equation*}
-
-%     Then we have
-%     \begin{align*}
-%         (A+Bx)\vu
-%         &=(A+Bx)\sum_{i=0}^{m}\vv_i(-x)^{m-i}\\
-%         &=\sum_{i=0}^{m}A\vv_i(-x)^{m-i}+\sum_{i=0}^{m}B\vv_i(-x)^{m-i}x\\
-%         &=\sum_{i=0}^{m-1}A\vv_i(-x)^{m-i}+A\vv_m(-x)^0+\sum_{i=1}^{m}B\vv_i(-x)^{m-i}x+B\vv_0(-x)^mx\\
-%     \end{align*}
-%     Note that $A\vv_m=\0$ and $B\vv_0=B\0=\0$, so
-%     \begin{align*}
-%         (A+Bx)\vu
-%         &=\sum_{i=0}^{m-1}A\vv_i(-x)^{m-i}+\sum_{i=1}^{m}B\vv_i(-x)^{m-i}x\\
-%         &=\sum_{i=0}^{m-1}B\vv_{i+1}(-x)^{m-i}-\sum_{i=1}^{m}B\vv_i(-x)^{m-i+1}\\
-%         &=\sum_{i=0}^{m-1}B\vv_{i+1}(-x)^{m-i}-\sum_{i=0}^{m-1}B\vv_{i+1}(-x)^{m-(i+1)+1}\\
-%         &=\sum_{i=0}^{m-1}B\vv_{i+1}(-x)^{m-i}-\sum_{i=0}^{m-1}B\vv_{i+1}(-x)^{m-i}\\
-%         &=\0\\
-%     \end{align*}
-
-%     Since
-%     \begin{equation*}
-%         \vu = \sum_{i=0}^{m}\vv_i(-x)^{m-i}=\sum_{i=0}^{m-1}(-x)^{m-i}\vv_i+\vv_m
-%     \end{equation*}
-%     , $\vu=\0$ imply
-%     \begin{equation*}
-%         \vv_m=\sum_{i=0}^{m-1}-(-x)^{m-i}\vv_i\in\vspan\{\vv_0, \vv_1, \dots, \vv_{m-1}\}
-%     \end{equation*}
-%     Therefore, $\vu\neq\0$.
-
-%     Hence, by Lemma \ref{lemma:singular_from_vector}, we have $A+Bx$ is not regular, creating a contradiction.
-
-% \end{proof}
-
-Similarly, we define
-\begin{align*}
-    \vsSp_0 &= \vsV\\
-    \vsSp_{m+1} &= A\inv(B(\vsSp_{m}))
-\end{align*}
-
-Define
-\begin{align*}
-    \vsSp &= \bigcap_{i\in\N} \vsSp_i\\
-    \vsTp &= B(\vsSp)\\
-\end{align*}
-
-We observe that $\forall m\in\N$, $\vsSp_m$ is a subspace of $\vsV$.
-Furthermore, by induction, one can show $\vsSp_m\supseteq\vsSp_{m+1}$.
-Therefore, there exists $k'\in\N$ s.t. $\forall m\ge k'$, $\vsSp_m = \vsSp_{k'}$.
-
-So we have $\vsS = \vsS_k$.
-
-Just like $\vsS_m$, we can also define $\vsSp$ using sequence of vectors, and
-\begin{equation*}
-    \vsSp_m = \left\{\vv_0\in\vsV:\exists \vv_1,\vv_2,\dots,\vv_m\in\vsV,\, \forall i \in [m],\, B\vv_{i+1}=A\vv_i\right\}
-\end{equation*}
-
-Since $A+Bx$ is regular, by Lemma \ref{lemma:regular_symm}, $B+Ax$ is regular.
-Since $A\inv(B(\vsSp))=\vsSp$, $B$ is injective on $\vsSp$.
-So $\forall\vv\in\vsSp$, $\exists!\vu\in\vsSp$ s.t. $A\vv=B\vu$.
-
-First, we claim that $\vsS$ and $\vsSp$ are disjoint.
 \begin{proof}
-    Suppose $\vv_k\in\vsS\cap\vsSp$.
-
-    Since $\vv_k\in\vsS=\vsS_k$, there exist vectors $\vv_0,\vv_1,\dots,\vv_{k-1}$ s.t. $\vv_0=\0$ and $B\vv_{i+1}=A\vv_i$ forall $i\in[k]$.
-
-    Since $\vv_k\in\vsSp\subseteq\vsSp_k$, there exists vectors $\vv_{k+1},\vv{k+2},\dots,\vv_{2k}$ s.t. $B\vv_{i+k+1}=A\vv_{i+k}$ forall $i\in[k]$.
-
-    Note that $B\vv_{i+1}=A\vv_i$ forall $i\in[2k]$ and $\vv_0=\0$.
-    Hence, $\vv_{2k}\in\vsS=\vsS_k$.
-
-    Hence, $\vv_{2k-1}\in\vsS_{k-1}$, $\vv_{2k-2}\in\vsS_{k-2}$, \dots, $\vv_{k}\in\vsS_0=\{\0\}$.
-
-    Therefore, $vv_k=\0$. This imply $\vsS\cap\vsSp = \{\0\}$
+  This is the same as Lemma \ref{lem:decom}. The proof is directly generalized for an arbitrary linear map $L$.
 \end{proof}
 
-And we also claim that $\vsT$ and $\vsTp$ are disjoint.
+Consider the well defined map $(A+\lambda B)^{-1}B:\vsV\rightarrow \vsV$. Lemma \ref{lem:decom2} implies we may pick an integer $N$ such that 
+
+\begin{equation}\label{plus}
+    V=\vsS \oplus W
+\end{equation}
+where $\vsS$ and $W$ are defined as
+\begin{align}
+    \vsS&:=\ker ((A+\lambda B)^{-1}B)^N\\
+    W&:=im ((A+\lambda B)^{-1}B)^N
+\end{align}
+The reason for choosing to work with $(A+\lambda B)^{-1}B$ instead of just $(A+\lambda B)^{\pm1}$ is that for a vector $\vv \in \vsV$, knowing what $(A+\lambda B)^{\pm 1}\vv$ gives may still not tell us what $A\vv$ and $B\vv$ individually are, which is core in the process of deriving the canonical form in (\ref{form}). Considering $(A+\lambda B)^{-1}B$ ultimately extracts us more information about $A$ and $B$, which will be evident in a series of lemmas. First denote $$\boxed{L_{A,B}=(A+\lambda B)^{-1}B}$$and note the following usual properties.
+% nzdcx
+\begin{property}
+
+\begin{enumerate}
+    \item \label{first} $L_{A,B}$ is nilpotent on $S$
+    \item \label{2nd} $L_{A,B}$ is invariant on $S$
+    \item \label{3rd} $L_{A,B}$ is invariant on $W$
+    \item \label{4th} $L_{A,B}$ is invertible on $W$
+    
+    
+\end{enumerate}
+\end{property}
+\
+
+\begin{remark}
+    We could have by symmetry chosen to work with $(B+\lambda A)^{-1}A$. Then the form (\ref{form}) also alters symmetrically.
+\end{remark}
+
+\subsection{Characterising the subspaces}
+A series of lemmas follows. Define $S$, $W$ and $L_{A,B}$ as in Section 4.4.
+\begin{lemma}\label{inectivityA}
+    $A$ is injective on $\vsS$
+\end{lemma}
+
 \begin{proof}
-    Suppose $\vv\in\vsT\cap\vsTp$.
+    We have that $L_{A,B}$ is nilpotent on $\vsS$ by definition. It can be seen that $A$ can be written as
+    \begin{equation}\label{expForA}
+        A=(A+\lambda B)(I-\lambda L_{A,B})
+    \end{equation}
 
-    Then, there exists $\vu\in\vsS$, $\vu'\in\vsSp$ s.t. $\vv=A\vu$, $\vv=B\vu'$.
-
-    Hence, $A\vu=B\vu'$, $\vu\in A\inv(B\vu')\subseteq\vsSp$.
-
-    Since $\vsS$ and $\vsSp$ are disjoint, $\vu\in\vsS\cap\vsSp=\{\0\}$.
-    \begin{equation*}
-        \vv=A\vu=A\0=\0
-    \end{equation*}
-
-    This imply $\vsT\cap\vsTp = \{\0\}$
+    \begin{claim}\label{cl:newinv}
+        $(I-\lambda L_{A,B})$ is invariant and invertible on $\vsS$
+    \end{claim}
+    \begin{proof}
+        From \ref{2nd}, $L_{A,B}$ is invariant on $\vsS$. Therefore $I-\lambda L_{A,B}$ is also invariant on $\vsS$ as a polynomial of $L_{A,B}$. Let $\vv\in \vsS$. $$(I-\lambda L_{A,B})\vv=0\implies \lambda L_{A,B}\vv = \vv\implies \lambda^n (L_{A,B})^n\vv=\vv\implies \vv=0 $$which by definition means $I-\lambda L_{A,B}$ is invertible.
+    \end{proof}
+    Having this claim, assume there is $\vu\in \vsS$ such that $A\vu=0$. We conclude the following sequence of implications. $$A\vu=0\implies (A+\lambda B)(I-\lambda L_{A,B})\vu=0\implies_{\text{invertibility of A+}\lambda B}\ (I-\lambda L_{A,B})\vu=0\implies_{\text{Claim}}\ \vu=0 $$which by the equivalence between injectivity and no non-trivial kernel, the claim follows.
+    
 \end{proof}
 
-Next, we claim $\vsV=\vsS\oplus\vsSp$.
-To do so, we note that the definition of $\vsS_m$ and $\vsSp_m$ can be generalized further.
-First, we will provide an alternative definition for $\vsS_m$ and $\vsSp_m$.
+\begin{lemma}\label{injectiveB}
+    $B$ is injective on $W$
+\end{lemma}
+
+\begin{proof}
+    From (\ref{4th}) $L_{A,B}$ is invertible on $W$. Let $v\in W$. $$Bv=0\implies (A+\lambda B)^{-1}Bv=0\implies L_{A,B} v=0\implies v=0$$and therefore $B$ has no nontrivial kernel in $W$, hence injective.
+\end{proof}
+
+
+
 \begin{lemma}
-    \label{lemma:alt_def_2}
-    For any $\lambda \in \C$, we have
-    \begin{align*}
-        % \vsS_m &= \{\vv_m:\exists \vv_0, \vv_1, \dots, \vv_{m-1},\,\vv_0=\0\land\forall i\in[m],\,B\vv_{i+1}=(A+\lambda B)\vv_i\}\\
-        % \vsSp_m &= \{\vv_0:\exists \vv_1, \dots, \vv_m,\,\forall i\in[m],\,B\vv_{i+1}=(A+\lambda B)\vv_i\}\\
-        \vsS_{m+1} &= B\inv((A+\lambda B)(\vsS_m))\\
-        \vsSp_{m+1} &= (A+\lambda B)\inv(B(\vsS_m))\\
-    \end{align*}
+    $A(S)\cap B(W)=\{0\}$ 
 \end{lemma}
 \begin{proof}
-    Recall that
-    \begin{align*}
-        \vsS_m &= \{\vv_m:\exists \vv_0, \vv_1, \dots, \vv_{m-1},\,\vv_0=\0\land\forall i\in[m],\,B\vv_{i+1}=A\vv_i\}\\
-        \vsSp_m &= \{\vv_0:\exists \vv_1, \dots, \vv_m,\,\forall i\in[m],\,B\vv_{i+1}=A\vv_i\}\\
-    \end{align*}
-    Given sequence $\vv_0,\vv_1,\dots,\vv_m$, for any $\lambda\in\C$, one can construct $\vu_0,\vu_1,\dots,\vu_m$ defined as:
-    \begin{equation*}
-        \vu_i = \sum_{j=0}^{i}\begin{pmatrix}i\\j\end{pmatrix}\lambda^{i-j}\vv_j
-    \end{equation*}
-    We have
-    \begin{align*}
-        B\vu_{i+1}
-        &=B\sum_{j=0}^{i+1}\begin{pmatrix}i+1\\j\end{pmatrix}\lambda^{i+1-j}\vv_j\\
-        &=B\begin{pmatrix}i+1\\0\end{pmatrix}\lambda^{i+1}\vv_0+B\sum_{j=1}^{i}\begin{pmatrix}i+1\\j\end{pmatrix}\lambda^{i+1-j}\vv_j+B\begin{pmatrix}i+1\\i+1\end{pmatrix}\lambda^{0}\vv_{i+1}\\
-        &=\lambda B\begin{pmatrix}i\\0\end{pmatrix}\lambda^{i}\vv_0+B\sum_{j=1}^{i}\left(\begin{pmatrix}i\\j\end{pmatrix}+\begin{pmatrix}i\\j-1\end{pmatrix}\right)\lambda^{i+1-j}\vv_j+\begin{pmatrix}i\\i\end{pmatrix}\lambda^{0}A\vv_{i}\\
-        &=\lambda B\begin{pmatrix}i\\0\end{pmatrix}\lambda^{i+1}\vv_0+B\sum_{j=1}^{i}\begin{pmatrix}i\\j\end{pmatrix}\lambda^{i+1-j}\vv_j+B\sum_{j=1}^{i}\begin{pmatrix}i\\j-1\end{pmatrix}\lambda^{i+1-j}\vv_j+\begin{pmatrix}i\\i\end{pmatrix}\lambda^{0}A\vv_{i}\\
-        &=\lambda B\begin{pmatrix}i\\0\end{pmatrix}\lambda^{i+1}\vv_0+B\sum_{j=1}^{i}\begin{pmatrix}i\\j\end{pmatrix}\lambda^{i+1-j}\vv_j+\sum_{j=1}^{i}\begin{pmatrix}i\\j-1\end{pmatrix}\lambda^{i+1-j}A\vv_{j-1}+\begin{pmatrix}i\\i\end{pmatrix}\lambda^{0}A\vv_{i}\\
-        &=\lambda B\begin{pmatrix}i\\0\end{pmatrix}\lambda^{i+1}\vv_0+B\sum_{j=1}^{i}\begin{pmatrix}i\\j\end{pmatrix}\lambda^{i+1-j}\vv_j+\sum_{j=0}^{i-1}\begin{pmatrix}i\\j\end{pmatrix}\lambda^{i-j}A\vv_{j}+\begin{pmatrix}i\\i\end{pmatrix}\lambda^{0}A\vv_{i}\\
-        &=\lambda B\sum_{j=0}^{i}\begin{pmatrix}i\\j\end{pmatrix}\lambda^{i-j}\vv_j+\sum_{j=0}^{i}\begin{pmatrix}i\\j\end{pmatrix}\lambda^{i-j}A\vv_{j}\\
-        &=(A+\lambda B)\sum_{j=0}^{i}\begin{pmatrix}i\\j\end{pmatrix}\lambda^{i-j}\vv_j\\
-        &=(A+\lambda B)\vu_i\\
-    \end{align*}
-    This process can also be reversed using $\lambda'=-\lambda$.
-    Hence, there's a one-to-one relation between the sequence $\vv_i$ and $\vu_i$.
+    Let $u\in A(S)\cap B(W)$. Then, by definition there are $v\in S$ and $w\in W$ such that $$u=Av=Bw$$
+    As in (\ref{expForA}), we may write $A$ as $$A=(A+\lambda B)(I-\lambda L_{A,B})$$Therefore, we have $$(A+\lambda B)(I-\lambda L_{A,B})v=Bw$$which means that $$(I-\lambda L_{A,B})v=(A+\lambda B)^{-1}Bw.$$
+    
+    Having that $L_{A,B}$ is defined as $L_{A,B}=(A+\lambda B)^{-1}B$, we arrive at $$(I-\lambda L_{A,B})v=L_{A,B}(w)$$
+    From Property \ref{3rd}, $L_{A,B}$ is invariant on $W$ and therefore $L_{A,B}(w)\in W \label{x}$.
+    
+    From Claim \ref{cl:newinv}, $(I-\lambda L_{A,B})$ is invariant on $S$ and therefore $(I-\lambda L_{A,B})v\in S \label{y}$
 
-    Hence,
-    \begin{align*}
-        \vsS_m &= \{\vv_m:\exists \vv_0, \vv_1, \dots, \vv_{m-1},\,\vv_0=\0\land\forall i\in[m],\,B\vv_{i+1}=(A+\lambda B)\vv_i\}\\
-        \vsSp_m &= \{\vv_0:\exists \vv_1, \dots, \vv_m,\,\forall i\in[m],\,B\vv_{i+1}=(A+\lambda B)\vv_i\}\\
-    \end{align*}
-    or equivalently,
-    \begin{align*}
-        \vsS_{m+1} &= B\inv((A+\lambda B)(\vsS_m))\\
-        \vsSp_{m+1} &= (A+\lambda B)\inv(B(\vsS_m))\\
-    \end{align*}
+    Since $\vsV=S\oplus W$, we have that $$(I-\lambda L_{A,B})v=L_{A,B}(w)=0 $$
+
+    But Property \ref{4th} implies $w=0$ and hence $$u=L_{A,B}(w)=0$$
 \end{proof}
 
-Now, we can prove $\vsV=\vsS\oplus\vsSp$.
+\begin{lemma}\label{charA}
+    For $v\in S$, there exists a unique $u\in S$ such that $$Bv=Au$$
+\end{lemma}
+
 \begin{proof}
-    Since $A+Bx$ is regular, there exist $\lambda\in\C$ s.t. $A+\lambda B$ is non-singular.
-    Pick one such lambda, using Lemma \ref{lemma:alt_def_2}, we have
-    % \begin{align*}
-    %     \vsS_m
-    %     &= \{\vv_m:\exists \vv_0, \vv_1, \dots, \vv_{m-1},\,\vv_0=\0\land\forall i\in[m],\,B\vv_{i+1}=(A+\lambda B)\vv_i\}\\
-    %     &= \{\vv_m:\exists \vv_0, \vv_1, \dots, \vv_{m-1},\,\vv_0=\0\land\forall i\in[m],\,(A+\lambda B)\inv B\vv_{i+1}=\vv_i\}\\
-    %     &= \{\vv_m:((A+\lambda B)\inv B)^m\vv_m=\0\}\\
-    %     &= \ker((A+\lambda B)\inv B)^m\\
-    % \end{align*}
-    % \begin{align*}
-    %     \vsSp_m
-    %     &= \{\vv_0:\exists \vv_1, \dots, \vv_m,\,\forall i\in[m],\,B\vv_{i+1}=(A+\lambda B)\vv_i\}\\
-    %     &= \{\vv_0:\exists \vv_1, \dots, \vv_m,\,\forall i\in[m],\,(A+\lambda )\inv B\vv_{i+1}=\vv_i\}\\
-    %     &= \{\vv_0:\exists \vv_m, \vv_0 = \left((A+\lambda )\inv B\right)^m\vv_{m}\}\\
-    %     &= \im((A+\lambda B)\inv B)^m\\
-    % \end{align*}
-    \begin{align*}
-        \vsS_{m+1} &= B\inv((A+\lambda B)(\vsS_m)) = ((A+\lambda B)\inv B)\inv(\vsS_m)\\
-        \vsSp_{m+1} &= (A+\lambda B)\inv(B(\vsS_m)) = ((A+\lambda B)\inv B)(\vsS_m)\\
-    \end{align*}
-    with $\vsS_0=\{\0\}$ and $\vsSp_0=\vsV$.
-
-    Hence, $\vsS_m=\ker((A+\lambda B)\inv B)^m$ and $\vsSp_m=\im((A+\lambda B)\inv B)^m$.
-
-    So the two subspaces can be written as extended kernel and image of some matrix. Hence, they span the vector space.
-
+    From Claim \ref{cl:newinv}, $I-\lambda L_{A,B}$ is invertible on $S$. Therefore let $v\in S$ and choose $$u=(I-\lambda L_{A,B})^{-1}L_{A,B} (v)$$where the map $(I-\lambda L_{A,B})^{-1}$ is restricted on $S$ and hence is defined due to invertibility of $(I-\lambda L_{A,B})$ on $S$. After some computation, it can be seen that this expression for $u$ works. It is clearly unique.
 \end{proof}
+
+
+Analogously, the following Lemma which will not be proven holds.
+\begin{lemma}\label{charB}
+    For $v\in W$, there exists unique $u\in W$ such that $$Av=Bu$$
+\end{lemma}
+
+
+$\newline$
+\subsection{Choosing bases}
+With $L_{A,B}$ being nil-potent on $S$, consider a null-chain $\{v_1,...,v_k\}$ in $S$ such that $L_{A,B}(v_{1})=0\text{ and }  L_{A,B}(v_{i+1})=v_i $. By definition of $L_{A,B}$, we would have
+\begin{align}
+   Bv_{i+1}&=(A+\lambda B)v_i\\
+   Bv_1&=0
+\end{align}
+However the form at (\ref{form}) indicates to instead find chains of the form 
+\begin{equation}\label{chainAB}
+    Bv_{i+1}=Av_{i}\text{ and }Bv_1=0
+\end{equation}
+Due to our previous lemmas, luckily we are able to identify such chains in $S$.\\\\
+Injectivity at Lemma \ref{inectivityA} and uniqueness at Lemma \ref{charA} together imply that the the map $$A^{-1}B:S\rightarrow S$$ described as 
+$$A^{-1}Bv=u \text{ where }Au=Bv$$is well defined and linear.\\
+The following result is enables us to find an appropriate basis for $S$ of the form (\ref{chainAB}). 
+
+\begin{lemma}
+    The map $A^{-1}B:S\rightarrow S$ is nil-potent on $S$
+\end{lemma}
+
+\begin{proof}
+    The proof of Lemma \ref{charA} states that for $v\in S$, there is unique $u\in S$ such that $Bv=Au$, where by definition of $A^{-1}B$ we have $A^{-1}Bv=u$. A closed form of $u$ is given in Lemma \ref{charA}.$$u=(I-\lambda L_{A,B})^{-1}L_{A,B} (v).$$
+    Therefore,
+    
+    $$A^{-1}Bv=(I-\lambda L_{A,B})^{-1}L_{A,B} (v)\ \forall v\in S$$
+    and hence we may write $$A^{-1}B=(I-\lambda L_{A,B})^{-1}L_{A,B}.$$
+    
+    By definition, we know that $L_{A,B}$ is nilpotent on $S$. 
+    The nilpotency implies that $$(I-\lambda L_{A,B})^{-1}=I+\lambda L_{A,B}+\lambda^2 L_{A,B}^2+...+\lambda ^{N}L_{A,B}^{N}$$for some integer $N$ and therefore $$(I-\lambda L_{A,B})^{-1}L_{A,B}=L_{A,B}+\lambda L_{A,B}^2+...+\lambda ^{N}L_{A,B}^{N+1}.$$This is a polynomial in the nilpotent map $L_{A,B}$ with no constant term, and it is well known that it is nilpotent as well.
+    
+    Therefore, $A^{-1}B=(I-\lambda L_{A,B})^{-1}L_{A,B}$ is nilpotent on $S$ as desired. 
+    
+    
+    \end{proof}
+
+    \begin{corollary}
+        There is a basis of $S$ composed of disjoint null-chains under $A^{-1}B.$
+    \end{corollary}
+
+    
+    Injectivity of $B$ on $W$ from Lemma \ref{injectiveB} and the uniqueness at Lemma \ref{charB} means we can do a similar thing on $W$.\\
+    The map $$B^{-1}A :W\rightarrow W$$described by $$B^{-1}Av=u \text{ where }Bu=Av$$is well defined and linear.
+    
+
+
 
 Therefore, $\dim\vsS+\dim\vsSp=n$, so $\dim\vsT+\dim\vsTp=n$.
 Since $\vsT$ and $\vsTp$ are disjoint, $\vsV=\vsT\oplus\vsTp$.
@@ -482,7 +390,11 @@ We also claim that $\spec -A'=\spec(A, B)$. Which we will show using double incl
 
 Now, we can apply similar method as we did for Jordan canonical form.
 For the subspace $\vsS$ and map $B'$, we can find a basis composed of null-chains.
-Let $$\{\vv_{0,1},\vv_{0,2},\dots,\vv_{0,m_0}\}, \{\vv_{1,1},\vv_{1,2},\dots,\vv_{1,m_1}\}, \dots, \{\vv_{\gamma-1,1},\vv_{\gamma-1,2},\dots,\vv_{\gamma-1,m_{\gamma-1}}\}$$ be such a basis.
+Let
+\begin{equation}
+\{\vv_{0,1},\vv_{0,2},\dots,\vv_{0,m_0}\} \cup \{\vv_{1,1},\vv_{1,2},\dots,\vv_{1,m_1}\} \cup \dots \cup \{\vv_{\gamma-1,1},\vv_{\gamma-1,2},\dots,\vv_{\gamma-1,m_{\gamma-1}}\} \tag{\(\star\)} \label{eq:vbasis}
+ \end{equation}
+be such a basis.
 % Let $\vv_0=\0$ and $\{\vv_1,\vv_2,\dots,\vv_m\}$ be such a chain.
 We have $$\vv_{i,j}=B'\vv_{i,j+1}=A\inv B\vv_{i,j+1}$$.
 Let $\vu_{i,j}=A\vv_{i,j}$. Since $A$ is an invertible map from $\vsS$ to $\vsT$, $\vu_{i,j}$ form a basis for $\vsT$.
@@ -555,3 +467,208 @@ Hence, using $\vv$ and $\vu$ as basis, we can write
     \leftindex_\vu[B]_\vv&=I\\
 \end{align*}
 
+%     A\inv B\vu&=\lambda\vu\\
+%     B\vu&=A\lambda\vu\\
+% \end{align*}
+
+% Let $m$ be the minimum integer s.t. $\vu\in\vsS_m$.
+% If $m>0$, we have $\vu=\lambda^{-1}(\lambda\vu)\in\vsS_{m-1}$, creating a contradiction.
+% Hence, $m=0$ and $\vu=0$.
+
+% So the only eigenvalue of $B'$ is $0$.
+
+
+
+% Let the eigenvalues of $T$ be $\lambda_0, \lambda_1, \dots, \lambda_{k-1}$. Let $\vecspace{S}_i=\extker T-\lambda_i\id$.
+
+% Note that any polynomials of $T$ commute.
+
+% % \begin{lemma}
+% %     \label{lemma:closed_under_T_sub_eigen}
+% %     $\forall i\in[k]$, $\vecspace{S}_i$ is closed under $T-\lambda_i\id$.
+% % \end{lemma}
+% % \begin{proof}
+% %     $\forall \vec{u} \in \vecspace{S}_i$, $\exists m \in \N$, s.t. $(T-\lambda_i\id)^m\vec{u}=\0$. Hence, $(T-\lambda_i\id)^m(T-\lambda_i\id)\vec{u}=(T-\lambda_i\id)(T-\lambda_i\id)^m\vec{u}=\0$
+% % \end{proof}
+
+% \begin{theorem}
+%     \label{theorem:closed_under_T}
+%     $\forall i\in[k]$, $\vecspace{S}_i$ is closed under $T$.
+% \end{theorem}
+% \begin{proof}
+%     $T\vec{u}=(T-\lambda_i\id)\vec{u} + \lambda_i\id\vec{u}=\lambda_i\vec{u}\in\vecspace{S}_i$
+% \end{proof}
+
+% \begin{corollary}
+%     \label{corollary:closed_under_p_T}
+%     $\vecspace{S}_i$ is closed under any polynomials of $T$
+% \end{corollary}
+% % Note that due to being a subspace, Lemma \ref{theorem:closed_under_T} imply $\vecspace{S}_i$ is closed under any polynomials of $T$.
+
+% However, we can go one step further.
+% $T-\lambda_i\id$ is a well-defined function on $\vecspace{S}_i$ thanks to \ref{corollary:closed_under_p_T}.
+
+% \begin{lemma}
+%     \label{lemma:bijection}
+%     $\forall i\in[k], x\in\C$, if $x\neq\lambda_i$, $T-x\id$ is a bijection on $\vecspace{S}_i$
+% \end{lemma}
+% \begin{proof}
+%     \begin{align*}
+%         \ker_{\vecspace{S}_i}(T-x\id)
+%         &=\{\vec{v}\in\vecspace{S}_i|(T-x\id)\vec{v}=\0\}\\
+%         &=\{\vec{v}\in\vecspace{V}|T\vec{v}=x\vec{v} \land (T-\lambda_i\id)^{p_i}\vec{v}=\0\}\\
+%     \end{align*}
+%     Note that since $T\vec{v}=x\vec{v}$,
+%     \begin{equation*}
+%         (T-\lambda_i\id)\vec{v}=T\vec{v}-\lambda_i\vec{v}=(x-\lambda_i)\vec{v}
+%     \end{equation*}
+%     where $x-\lambda_i\neq0$ from the assumption. \\
+%     Hence,
+%     \begin{align*}
+%         \ker_{\vecspace{S}_i}(T-x\id)
+%         &=\{\vec{v}\in\vecspace{V}|T\vec{v}=x\vec{v} \land (x-\lambda_i)^{p_i}\vec{v}=\0\}\\
+%         &\subseteq\{\vec{v}\in\vecspace{V}|(x-\lambda_i)^{p_i}\vec{v}=\0\}\\
+%         &=\{\vec{v}\in\vecspace{V}|\vec{v}=\0\}\\
+%         &=\{\0\}\\
+%     \end{align*}
+%     Since $\vecspace{S}_i$ has finite dimension, $T-x\id$ is a bijection on $\vecspace{S}_i$.
+% \end{proof}
+
+% % \begin{lemma}
+% %     \label{lemma:disjoint}
+% %     $\forall i\neq j \in [k]$, $\vecspace{S}_i\cup \vecspace{S}_j = \{\0\}$.
+% % \end{lemma}
+% % \begin{proof}
+% %     Let $\vec{u}\in\vecspace{S}_i\cup\vecspace{S}_j$.
+% %     Suppose $\vec{u}\neq\0$.
+% %     Let $m_1 = \min\{m\in\N, (T-\lambda_i\id)^m\vec{u}=\0\}$.
+% %     Note that $m_1\neq0$.
+% %     Let $\vec{v}=(T-\lambda_i)^{m_1-1}\vec{u}$.
+% %     Note that $\vec{v}\neq\0$, $\vec{v}\in\vecspace{S}_j$ and $(T-\lambda_i\id)\vec{v}=\0$.
+% %     Hence, there exists $m_2\in\N$, s.t. $(T-\lambda_2\id)^{m_2}\vec{v}=\0$.
+% %     However, $(T-\lambda_2\id)\vec{v}=(T-\lambda_1\id+(\lambda_1-\lambda_2)\id)\vec{v}=(\lambda_1-\lambda_2)\vec{v}$.
+% %     Hence, $(T-\lambda_2\id)^{m_2}\vec{v}=(\lambda_1-\lambda_2)^{m_2}\vec{v}\neq\0$.
+% %     By contradiction, $\vec{u}=\0$
+% % \end{proof}
+
+% % Let $p_i$ denote $\min\{p\in\N|\extker(T-\lambda_i\id) = \ker(T-\lambda_i\id)^p\}$, whose existance is shown in Lemma \ref{lemma:ext_finite_power}.
+
+% % \begin{theorem}
+% %     \label{theorem:independent}
+% %     The subspaces $\vecspace{S}_0, \vecspace{S}_1, \dots, \vecspace{S}_{k-1}$ are disjoint.
+% % \end{theorem}
+% % \begin{proof}
+% %     Suppose for $\0\neq\vec{v}_0\in\vecspace{S}_0, \dots, \0\neq\vec{v}_{k-1}\vecspace{S}_{k-1}$, there exists $x_0,\dots,x_{k-1}$ s.t. $x_0\vec{v_0}+x_1\vec{v}_1+\dots+x_{k-1}\vec{v}_{k-1}$ and $x_i\neq0$ for some $i$.
+
+% %     WLOG, let $x_0\neq0$.
+% %     \begin{align*}
+% %         \0&=(T-\lambda_1\id)^{p_1}(T-\lambda_2\id)^{p_0}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}\left(\sum_{i=0}^{k-1}x_i\vec{v}_i\right)\\
+% %         &=(T-\lambda_1\id)^{p_1}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}(x_0\vec{v}_0)+\sum_{i=1}^{k-1}(T-\lambda_1\id)^{p_1}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}(x_i\vec{v}_i)\\
+% %     \end{align*}
+% %     Since polynomials of $T$ commute, we can rearrange $(T-\lambda_1\id)^{p_1}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}(x_i\vec{v}_i)$, moving the term $(T-\lambda_i\id)^{p_{i}}$ last.
+% %     Since $(T-\lambda_i\id)^{p_{i}}(x_i\vec{v_i})=\0$, the above equation imply $(T-\lambda_1\id)^{p_1}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}(x_0\vec{v}_0)=\0$.
+
+% %     However, for any $\0\neq\vec{v}\in\vecspace{S}_0$ and $i\neq0$, we have $(T-\lambda_{i}\id)^{p_i}\vec{v}\in\vecspace{S}_0$.
+% %     Also, since $\vec{v}\neq\0$, from Lemma \ref{lemma:disjoint}, we know $\vec{v}\notin\vecspace{S}_i$.
+% %     Therefore $(T-\lambda_{i}\id)^{p_i}\vec{v}\neq\0$.
+% %     Hence, $(T-\lambda_1\id)^{p_1}\dots(T-\lambda_{k-1}\id)^{p_{k-1}}(x_0\vec{v}_0)\neq\0$, leading to contradiction.
+
+% %     Therefore, $\vecspace{S}_0, \dots, \vecspace{S}_{k-1}$ are independent from Lemma \ref{lemma:independent_from_vectors}.
+% % \end{proof}
+
+% \begin{lemma}
+%     \label{lemma:img_sum_ker}
+%     $\ker(T-\lambda_i\id)^{p_i}\oplus\im(T-\lambda_i\id)^{p_i}=\vecspace{V}$
+% \end{lemma}
+% \begin{proof}
+%     First, we will show that the two vector spaces are disjoint.
+
+%     Suppose $\vec{v} \in \im(T-\lambda_i\id)^{p_i}$, then there exist $\vec{u}\in\vecspace{V}$ s.t. $\vec{v}=(T-\lambda_i\id)^{p_i}\vec{u}$.
+%     Since $\vec{v}\in\ker(T-\lambda_i\id)^{p_i}$,
+%     \begin{align*}
+%         (T-\lambda_i\id)^{2p_i}\vec{u}
+%         &=(T-\lambda_i\id)^{p_i}\left((T-\lambda_i\id)^{p_i}\vec{u}\right)\\
+%         &=(T-\lambda_i\id)^{p_i}\vec{v}\\
+%         &=\0
+%     \end{align*}
+%     Hence, $\vec{u}\in\extker(T-\lambda_i\id)=\ker(T-\lambda_i\id)^{p_i}$.
+%     \begin{equation*}
+%         \vec{v} = (T-\lambda_i\id)^{p_i}\vec{u} = \0
+%     \end{equation*}
+%     Therefore, $\ker(T-\lambda_i\id)^{p_i}\cap\im(T-\lambda_i\id)^{p_i}=\{\0\}$.
+
+%     Since the two vector spaces are disjoint, they are also independent.
+%     Therefore,
+%     \begin{align*}
+%         &\dim\left(\ker(T-\lambda_i\id)^{p_i}\oplus\im(T-\lambda_i\id)^{p_i}\right)\\
+%         =&\dim\ker(T-\lambda_i\id)^{p_i} + \dim\im(T-\lambda_i\id)^{p_i}\\
+%         =&\dim\vecspace{V}\\
+%     \end{align*}
+%     by the dimension theorem.
+%     Hence, $\ker(T-\lambda_i\id)^{p_i}\oplus\im(T-\lambda_i\id)^{p_i}=\vecspace{V}$.
+% \end{proof}
+
+% \begin{theorem}
+%     $\vecspace{S}_0\oplus\vecspace{S}_1\oplus\dots\oplus\vecspace{S}_{k-1}=\vecspace{V}$
+% \end{theorem}
+% \begin{proof}
+%     Note that $\{\0\}\oplus\vecspace{S}=\vecspace{S}$. So for $k=0$, we will define $\vecspace{S}_0\oplus\dots\oplus\vecspace{S}_{k-1}=\{\0\}$.
+
+%     If $k=0$, since for any $n$-dimensional vector space $\vecspace{V}$ where $n > 0$, there exists eigenvalues for $T$, we have $n=0$.
+%     Thus, $\vecspace{V}=\{\0\}$ and the theorem holds.
+
+%     Suppose the theorem is true for some $k-1\in\N$. \\
+%     Consider the subspace $\vecspace{V}'=\im(T-\lambda_{k-1}\id)^{p_{k-1}}$.
+%     Note that from Lemma \ref{lemma:img_sum_ker}, we have $\vecspace{V} = \vecspace{S}_{k-1} \oplus \vecspace{V}'$.\\
+%     It is closed under $T$, as $\forall\vec{v}\in\vecspace{V}'$, there exist $\vec{u}\in\vecspace{V}$ s.t.
+%     \begin{equation*}
+%         \vec{v}=(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{u}
+%     \end{equation*}
+%     Hence,
+%     \begin{equation*}
+%         T\vec{v} = T(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{u} = (T-\lambda_{k-1}\id)^{p_{k-1}}(T\vec{u})\in\vecspace{V}'
+%     \end{equation*}
+
+%     Since $\vecspace{V}'\cap\vecspace{S}_{k-1}=\{\0\}$, $\spec_{\vecspace{V}'}T \subseteq \spec_{\vecspace{V}}T\setminus\{\lambda_{k-1}\}$.\\
+%     % $\forall i\in[k-1]$, let $\0\neq\vec{x}\in\ker(T-\lambda_i\id)\subseteq\vecspace{S}_i$.
+%     $\forall i\in[k-1]$, since $T-\lambda_{k-1}\id$ is a bijection on $\vecspace{S}_i$ (Lemma \ref{lemma:bijection}),
+%     \begin{equation*}
+%         \vecspace{S}_i=(T-\lambda_{k-1}\id)^{p_{k-1}}(\vecspace{S}_i)\subseteq\im(T-\lambda_{k-1}\id)^{p_{k-1}}=\vecspace{V}'
+%     \end{equation*}
+
+%     Hence, there are exactly $k-1$ eigen values of $T$ in $\vecspace{V}'$.
+%     We can apply induction hypothesis on $\vecspace{V}'$ to get
+%     \begin{equation*}
+%         \vecspace{V}' = \vecspace{S}_0\oplus\vecspace{S}_1\oplus\dots\oplus\vecspace{S}_{k-2}
+%     \end{equation*}
+
+%     Therefore,
+%     \begin{equation*}
+%         \vecspace{V} = \vecspace{V}' \oplus \vecspace{S}_{k-1} = \vecspace{S}_0\oplus\vecspace{S}_1\oplus\dots\oplus\vecspace{S}_{k-2} \oplus \vecspace{S}_{k-1}
+%     \end{equation*}
+
+%     %  let $\0\neq\vec{x}\in\ker(T-\lambda_i\id)\subseteq\vecspace{S}_i$.
+
+%     % need lemma to show kernel is closed under T
+%     % Note that $\0\neq(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{x}\in\im(T-\lambda_{k-1}\id)^{p_{k-1}}$ and $(T-\lambda_i\id)(T-\lambda_{k-1}\id)^{p_{k-1}}\vec{x}=\0$.
+%     % Thus, $\lambda_i\in\spec_{\vecspace{V}'}T$.\\
+%     % Therefore, we can apply the induction hypothesis on $\vecspace{V}'$. We get
+%     % \begin{equation*}
+%     %     \vecspace{V}' = \vecspace{S}'_0\oplus\vecspace{S}'_1\oplus\dots\oplus\vecspace{S}'_{k-2}
+%     % \end{equation*}
+%     % where
+%     % \begin{equation*}
+%     %     \vecspace{S}'_i = \extker_{\vecspace{V}'}(T-\lambda_i\id)
+%     % \end{equation*}
+
+% \end{proof}
+
+% % \begin{lemma}
+% %     \label{lemma:construction_raw}
+% %     There exists linear independent subspaces $\vecspace{S_0}, \vecspace{S_1}, \dots, \vecspace{S_{k-1}}$ such that $\vecspace{V}=\vecspace{S_0} \oplus \vecspace{S_1} \oplus \dots \oplus \vecspace{S_{k-1}}$ and
+% %     $\vecspace{S_i} \subseteq \extker(T-\lambda_i \id)\sin$
+% % \end{lemma}
+% % \begin{proof}
+% %     We can construct such a list of subspaces recursively.
+% %     Let $\vecspace{V_0} = \vecspace{V}$. Let $S_i$
+% % \end{proof}

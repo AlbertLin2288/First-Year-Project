@@ -1,0 +1,51 @@
+\section{Applications and Examples}
+
+As we have stated before, the main application of the Weierstrass canonical form is to help solve the differential system of equations: $E\dot{x} = Ax$. Given that $E$ may not be an invertible matrix, we must find another way to simplify such $DAE$'s. This leads to another application that will be useful in finding a solution for $x$: the Drazin inverse of a matrix.
+
+\subsection{The Drazin inverses}
+
+\textbf{Definition:} For $A \in \mathbb{R}^{n \times n}$, there exists a \textit{drazin inverse} $A^D \in \mathbb{R}^{n \times n}$ such that it has these properties:
+\begin{itemize}
+    \item $A A^D = A^D A$
+    \item $A^DAA^D = A^D$
+    \item $\exists\ k \in \mathbb{N}$ such that $A^DA^{k+1} = A^k$
+\end{itemize}
+The existence of such an inverse for any matrix and its uniqueness can be proven and it is shown here [10, Theorem 2.19](insert citation here).
+\\From [1] article: Considering the regular matrix pencil $A - E\partial$, for $A$ and $E$ such that $AE = EA$, the drazin inverses of $A$ and $E$ are as follows:
+\begin{center}
+    $E^D = [V\ W] \begin{bmatrix} I_{n_1} & 0 \\ 0 & 0 \end{bmatrix} [EV\ AW]^{-1}$
+    and
+    $A^D = [V\ W] \begin{bmatrix} J^D & 0 \\ 0 & I_{n_2} \end{bmatrix} [EV\ AW]^{-1}$
+\end{center}
+
+The proof that these two follow the three properties of the drazin inverses appears in [2](insert citation here). The forms the drazin inverses take are very similar to applying the Weierstrass canonical form transformation on each of $E$ and $A$.
+
+% Then from Stephan's article: Proposition 2.15: writte the drazin inverses of A and E from the pencil
+
+\subsection{Solving the DAE}
+\subsubsection{Using the drazin inverse}
+
+Using the generalized inverses that we have found in the previous section, we manage to find the general solution to the initial value problem $E\dot{x} = Ax$; $x(0) = x_o$, for the case where $E$ and $A$ commute. It takes the form:
+\begin{center}
+    $x(t) = e^{E^DAt}E^DEx_0$
+\end{center}
+It follows from \textit{Remark 2.21} in [2], but the system $E\dot{x} = Ax\ +\ f$ is replaced by a simpler version where $f = 0$.
+% then mention solving the linear system using the Drazin inverses that we found: (Remark 2.21 in the article)
+
+This way of finding the solution of the DAE is long and computational (given the fact that $E^D$ must be computed), with the additional restriction that $AE = EA$. A better way to reach the solution would be through the use of the generalized eigen-chains.
+\subsubsection{Using the generalized eigenvectors}
+As in section \textit{3.2 Differential algebraic equation - revisited} of [2], the generalized eigenvectors of the regular pencil $A\ - E\partial$ constitute a basis of solutions for $\ker(A - E\frac{d}{dt})$ (i.e. the space of solutions for the system of differential equations $E\dot{x} = Ax$). The proposition in [2] goes as follows:\\
+Consider a regular pencil $A\ - E\partial \in \mathbb{C}^{n\times n}[\partial]$. Then $(v_1, v_2,..., v_k)$ for $\lambda$ a generalized eigenvalue of the pencil is a \textit{chain of generalized eigenvectors} if and only if the following functions are linearly independent solutions for $E\dot{x} = Ax$:
+\begin{center}
+    $x_i:\mathbb{R}\rightarrow \mathbb{C}^n$\quad $x_i(t) = e^{\lambda t}\begin{bmatrix}
+        v_1 & v_2 &\dots& v_n
+    \end{bmatrix} \begin{bmatrix}
+        \frac{t^{i - 1}}{(i - 1)!} \\
+        \vdots \\
+        t \\
+        1
+    \end{bmatrix}$,
+    for $i \in \{1, 2, \dots, k\}$
+\end{center}
+
+\subsection{Example}

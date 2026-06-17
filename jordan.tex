@@ -1,5 +1,26 @@
-\section{Prelude: Invariant subspaces}
-\lettrine{C}{onsider}
+\section{The Jordan form}
+
+The theory of canonical matrix forms has its genesis in the late 20th century in Jordan's original treatment of a matrix decomposition beyond diagonalzation. The history in its self has become a subject of study, for example see \cite{brechenmacher:tel-00142786}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{./images/image}
+    \caption{\cite{brechenmacher:tel-00142786} page 14: A visual comparasion of the historical role of different works in matrix theory}
+    \label{fig:history}
+\end{figure}
+
+The existance of the Jordan canonical form (JCF) is one of the more central results of elementary linear algebra.
+This is not only because of its applications within systems theory.
+But also purely algebraically as an invariant of endomorphisms on an abstract vector space under isomorphism to \( \mathbb{C}^n \).
+
+We hope to convince the reader that the JCF can be considered a special case of the Weierstrass canonical form (WCF). 
+Or conversely that the WCF is a generalisation of the JCF.
+In order to achieve this we will first present a proof of the JCF.
+And then use notions and techniques developed there to prove the Weierstrass form. Our intention is that during this process the entanglement of the two forms will emerge in a statisfying way. 
+And, as the authors are algebraically predisposed, we will work through the lens of linear maps in need of a basis under which the maps' character is obvious.
+Quick transitions into the world of matrices will reveal the famous JCF and WCF matrix structures, these will be saved for conclusionary sections.
+
+\subsection{Prelude: Invariant subspaces} \lettrine{C}{onsider}
 a linear operator \( T \in \lmap(\vsV) \), where \(\vsV\) is a finite dimensional vector space.
 For any subspace \(\vsS \subset \vsV\) the image of \(T\) over \(\vsS\) is, in general, some other arbitrary subspace.
 It is natural then to want to consider subspaces which preserve their structure under \( T \). The following definition captures this idea.
@@ -11,10 +32,9 @@ It is natural then to want to consider subspaces which preserve their structure 
     \end{equation*}
 \end{definition}
 
-
 It is best to give some examples of such subspaces before investigating them further:
 
-\subsection{Examples and properties}
+\subsubsection{Examples and properties}
 
 \begin{example}
     The subspace called the eigenspace of \(T\) at eigenvalue \(\lambda\)
@@ -80,22 +100,14 @@ It is best to give some examples of such subspaces before investigating them fur
 \end{figure}
 
 Because of their behavior, we want to search for building blocks of \( \vsV \) of invariant subspaces - similarly to how primes are building blocks of the integers.
-By building blocks, we mean invariant subspaces
+By building blocks me mean some number of subspaces, say \(k\)-many, such that if \(\beta_i\) is a basis for the \(i\)th subspace \(\vsS\) we have:
+% By building blocks, we mean invariant subspaces \( \vsS_1,\vsS_2,...,\vsS_k \)
+% such that given a basis \(\beta_i\) for each \(\vsS_i\), we have
+\begin{align*}
+    &\text{For} \quad \beta = \bigcup_{i=1}^k \beta_i  \quad \beta \ \text{is a basis for} \ \vsV \\
+    &\text{Or equivilently} \quad \bigoplus_{i=1}^k\vsS_i=\vsV
+\end{align*}
 
-\begin{equation*}
-    \vsS_1,\vsS_2,...,\vsS_\sigma
-\end{equation*}
-
-such that given basis \(\beta_i\) for \(\vsS_i\), we have
-\begin{equation*}
-    \beta = \bigcup_{i=1}^\sigma \beta_i
-\end{equation*}
-is a basis for \( \vsV \).
-
-Equivalently,
-\begin{equation*}
-    \bigoplus_{i=1}^\sigma\vsS_i=\vsV
-\end{equation*}
 
 If we one succeeds in this, then there would be a matrix representation of \(T\) in the form
 
@@ -174,10 +186,7 @@ It should already be obvious which invariant subspaces to start from. Before con
 %     and consequently invariant under any polynomial \(P(T)\).
 % \end{lemma}
 
-\section{The Jordan form}
-
-
-\subsubsection{Statement}
+\subsection{Statement}
 For a linear operator \(T \in \lmap(\vsV)\) where \(\vsV\) is finite dimensional, there is a matrix representation of \(T\) of the form
 \begin{equation*}
     \begin{pmatrix}
@@ -214,7 +223,7 @@ For some \(T\in\lmap(\vsV)\), let the spectrum of \(T\) be \(\{\lambda_1, \lambd
 It is important to note that
 
 \begin{equation*}
-    E_{\lambda_i}\cap E_{\lambda_j}=\{\0\}  \ \text{, for all }i\neq j\leq k,
+    E_{\lambda_i}\cap E_{\lambda_j}=\{\0\}  \ \text{, for all }i\neq j\leq \sigma,
 \end{equation*}
 
 and that for an arbitrary basis \(\beta_i\) for \(E_{\lambda_i}\), the set
@@ -259,7 +268,6 @@ An example is the matrix
 with its corresponding linear map.
 
 If \(\bigoplus E_{\lambda_i}\) is not enough to cover \(\vsV\), we want to somehow expand each \(E_{\lambda_i}\) into a bigger subspace, with the importance to keep their invariance and disjointedness.
-
 
 \subsection{Generalising the eigenspaces}
 
@@ -373,7 +381,7 @@ We claim
 \end{proof}
 
 
-\begin{lemma}
+\begin{lemma}\label{lem:decom}
     \label{lem:img_sum_ker}
     \begin{equation*}
         \ker(T-\lambda_i\id)^{\kappa_i}\oplus\im(T-\lambda_i\id)^{\kappa_i}=\vsV
@@ -522,7 +530,7 @@ As one may guess:
     \end{equation}
 
 
-    Applying \(L^{n-1}\) on both sides and considering null-chain properties gives
+    Applying \(L^{n-1}\) on both sides and considering the definition of a null-chain gives
 
     \begin{equation*}
         c_1L^{n-1}(\vv_1)+...+c_nL^{n-1}(\vv_n)=\0\implies c_n\vv_1=\0\implies c_n=0.
@@ -563,7 +571,6 @@ For example consider the matrix
 Note that \(2\in\spec A\), with \(\dim\vsG_2=3\).
 However, the longest null-chain for \(A-2I\) is of length \(2\), so one null-chain is not enough.
 
-\subsection{Collecting the null-chains}
 The idea is to pick multiple such chains. Then it can be shown:
 \begin{theorem}\label{theorem:multnull}
     A non-zero finite-dimensional vector space \(\vsV\) under a nil-potent linear map \(L\) always has a basis composed of disjoint null-chains.
@@ -571,7 +578,7 @@ The idea is to pick multiple such chains. Then it can be shown:
 \begin{proof}
     % Note:
     % Maybe we could put it in an appendix instead?
-    \textit{The proof of this is surprisingly lengthy and the reader may skip it - its ideas are important but are not all crucial for following work.}
+
 
     We show this via strong induction on the dimension of \(\vsV\).
     Consider a vector space \(\vsV\) under under a nilpotent map \(L\) with \( \dim\vsV=1 \).
@@ -679,9 +686,10 @@ The idea is to pick multiple such chains. Then it can be shown:
 
 \end{proof}
 
-Therefore, since \(T-\lambda_i\id\) is nilpotent on \(\Gi\), by the above theorem we may construct an appropriate basis \(\beta_i\) - composed of nullchains - for \(\Gi\).
+\subsection{Picking a basis}
+\(T-\lambda_i\id\) is nilpotent on the generalized eigenspace \(\Gi\) and therefore by Theorem \ref{theorem:multnull} we may construct an appropriate basis \(\beta_i\) - composed of nullchains - for \(\Gi\).
 
-Let us consider the matrix representation of \(\beta_i\) under \(T\).
+Define $\beta_i$ as a basis of $\Gi$ composed of null-chains and consider its matrix representation under $T$. 
 
 A single null-chain in its decomposition has the following structure:
 
