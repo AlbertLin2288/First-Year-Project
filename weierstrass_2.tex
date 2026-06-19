@@ -1,0 +1,661 @@
+\section{The Weierstrass form}
+\subsection{Problem statement}
+The Weierstrass form is a canonical form of two matrices $A,B$ acting on the same space.
+It is often referred to as generalized Jordan form. The motivation for Weierstrass form goes further than just generalizing Jordan and finding an appropriate basis - it plays crucial role in understanding linear systems of the form $$B\dot{x}=Ax$$
+The relevance of such systems will be discussed in Chapter 5.
+
+Let $A,B\in \mathcal{L}(V).$
+
+Recalling the introduction of this paper, canonical forms are obtained by decomposing the space into invariant subspaces on which the operators have particularly simple matrix representations.\\
+Assume that we are able to find $k$ subspaces $S_1,S_2,...,S_k$ such that each $S_i$ is $A$ and $B$-invariant, and $$\bigoplus_{i=1}^k S_k=V.$$Picking a basis $\beta_i$ for $S_i$ and composing $\bigcup\beta_i$ gives us a block-diagonal matrix representation of $A$ \textit{and} $B$, respectively, \textit{under the same basis}.
+
+The problem is: such subspaces rarely exist. The maps $A$ and $B$ might be too independent of each other and therefore a subspace might act nice under one map, but arbitrarily under the other. For example, take
+\[
+	A=
+	\begin{pmatrix}
+		1  & 0         \\
+		0  & 2  \\
+
+
+	\end{pmatrix}
+    ,
+    B=
+	\begin{pmatrix}
+		0  & 1        \\
+		1  & 0  \\
+
+
+	\end{pmatrix}
+\]
+The line $W=\text{span}(e_1)$ is $A-$invariant: $w\in W \implies Aw=w.$\\
+But, $w\in W\implies Bw\in \text{span}(e_2)$, so $W$ is not $B-$invariant.\\ \\
+In fact, for a pair $A,B$ there might be no non-trivial commonly invariant subspace.\\ \\
+Therefore, instead of attempting to describe the maps $A$ and $B$ via a specific basis, we do so with two different  bases $\beta$ and $\gamma$ such that the matrices
+\begin{equation}\label{form}
+    _\beta[A]_ \gamma,\ _\beta[B]_ \gamma
+\end{equation}
+are of particularly nice type.
+Prioritizing simplification, Weierstrass canonical form pursues this goal by having to put a restriction on $A$ and $B$.
+
+We consider pairs $(A,B)$ referred to as \textit{regular}.
+
+\begin{definition}
+    A pair of maps $(A,B)$ is called \textit{regular} iff
+    \begin{equation}\label{pencil}
+        \exists \lambda\in \mathbb{C}\ s.t\ |A+\lambda B|\neq0
+    \end{equation}
+\end{definition}
+
+\subsubsection{Statement}
+For a regular pair of maps $(A,B)$, there exist bases $\beta,\gamma$ such that
+\begin{equation}\label{weierstrass}
+\begin{aligned}
+{}_{\beta}[A]_{\gamma}
+&=
+\begin{pmatrix}
+J & 0\\
+0 & I
+\end{pmatrix},
+\\[1em]
+{}_{\beta}[B]_{\gamma}
+&=
+\begin{pmatrix}
+I & 0\\
+0 & N
+\end{pmatrix}.
+\end{aligned}
+\end{equation}
+Regarding $A$ and $B$ as matrices, equivalently: there exist invertible $P$ and $Q$ such that
+\begin{equation}
+PAQ=
+\begin{pmatrix}
+J & 0\\
+0 & I
+\end{pmatrix},
+PBQ=
+\begin{pmatrix}
+I & 0\\
+0 & N
+\end{pmatrix},
+\end{equation}
+
+
+
+
+\subsection{Matrix pencils}
+A useful tool in studying pairs of the form \((A, B)\) for \(A, B \in \mathcal{L}(\vsV) \) is the so-called matrix pencil \footnote{For a rigorous analysis matrix pencils see \cite{gantmacher2026theory} page Chapter 12, page 24.} induced by the pair:
+
+\begin{definition}
+    The function \[P(x) = \penAB,  \ x \in \mathbb{C} \]
+    is called the \textit{linear matrix pencil of the pair $(A,B)$}
+\end{definition}
+
+
+We say that a matrix pencil of the pair $(A,B)$ is \textit{regular} if and only if $(A,B)$ is regular.  They are both called \textit{singular} otherwise.
+
+The condition (\ref{pencil}) enables us to select a non-singular element of the matrix pencil which will help us derive a canonical form of (\ref{form}).
+
+Some properties of matrix pencils follow directly from their definition and will be useful.
+\begin{lemma}
+    \label{lemma:singular_from_vector}
+    A matrix pencil $\penAB$ of the pair $(A,B)$ is singular if and only if for all $x\in\C$, exists nonzero $\vv\in\vsV$ such that $(\penAB)\vv=\0$.
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        |\pen{A}{B}|=0
+        &\iff \forall x\in\C,\, A+Bx=0\\
+        &\iff \forall x\in\C,\, A+Bx \text{ is singular}\\
+        &\iff \forall x\in\C,\, \exists \0\neq\vv\in\vsV,\, (A+Bx)\vv = \0\\
+    \end{align*}
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:regular_symm}
+    $A+Bx$ is regular if and only if $B+Ax$ is regular.
+\end{lemma}
+\begin{proof}
+    Note that the forward direction is equivalent to the backward direction.
+
+    If $A+Bx$ is regular, then there exists $x\in\C$ s.t. $|A+Bx|\neq0$.
+
+    If $x=0$, then $A$ is invertible.
+    \begin{equation*}
+        |Ax+B|=|A(x\id+A\inv B)|=|A||x\id+A\inv B|
+    \end{equation*}
+    Pick $x\notin\spec -A\inv B$, we have $|Ax+B|\neq0$.
+
+    Otherwise,
+    \begin{equation*}
+        |Ax\inv+B|=|x\inv(A+Bx)|=x^{-n}|A+Bx|\neq0
+    \end{equation*}
+\end{proof}
+
+\begin{lemma}\label{lem:inject}
+    \label{lemma:regular_converge_inj}
+    Let $A+Bx$ be a regular matrix pencil of the pair $(A,B)$. If $B\inv(A(\vsS))=\vsS$ for some subspace $\vsS\subseteq\vsV$, then $\ker_{\vsS}A=\{\0\}$.
+\end{lemma}
+\begin{proof}
+    Suppose $\ker_{\vsS}A\neq\{\0\}$.
+
+    Since $B\inv(A(\vsS))=\vsS$,
+    \begin{equation*}
+        \im_{\vsS}B = B(\vsS) = B(B\inv(A(\vsS))) \subseteq A(\vsS)
+    \end{equation*}
+
+    Hence, for any $x\in\C$, we have
+    \begin{equation*}
+        \im_{\vsS}(A+Bx)\subseteq\im_{\vsS}A+\im_{\vsS}Bx=\im_{\vsS}A
+    \end{equation*}
+    And
+    \begin{equation*}
+        \dim\ker_{\vsS}(A+Bx)=\dim\vsS-\dim\im_{\vsS}(A+Bx)\ge\dim\vsS-\dim\im_{\vsS}A=\dim\ker_{\vsS}A>0
+    \end{equation*}
+
+    Therefore $A+Bx$ is singular for all $x\in\C$.
+    This contradicts the assumption for the matrix pencil to be regular.
+
+    By contradiction, $\ker_{\vsS}A=\{\0\}$
+\end{proof}
+
+We are now ready to state the desired form of (\ref{form}).
+
+
+
+\subsection{Choosing subspaces}\label{method2}
+
+Let $\pen{A}{B}$ be a regular matrix pencil over an   $n$-dimensional vector space $\vsV$.
+Given the regularity of the pencil we are able to choose $\lambda\in \C$ such that $(A+\lambda B)^{-1}$ is well defined.
+
+All derivations of canonical forms begin with considering decompositions of $\vsV$ into independent subspaces.
+
+Lemma \ref{lem:decom} served us well throughout section \(1\) making the following a promising statement.
+
+\begin{lemma}\label{lem:decom2}
+    For an arbitrary linear map $L:\vsV\rightarrow \vsV$, $\exists N\in\mathbb{N}$ such that $$V=\ker L^N \oplus \im L^N$$
+\end{lemma}
+
+\begin{proof}
+  This is the same as Lemma \ref{lem:decom}. The proof is directly generalized for an arbitrary linear map $L$.
+\end{proof}
+
+Consider the well-defined map $(A+\lambda B)^{-1}B:\vsV\rightarrow \vsV$. Lemma \ref{lem:decom2} implies we may pick an integer $N$ such that
+
+\begin{equation}\label{plus}
+    V=\vsS \oplus W
+\end{equation}
+where $\vsS$ and $W$ are defined as
+\begin{align}
+    \vsS&:=\ker ((A+\lambda B)^{-1}B)^N\\
+    W&:=\im ((A+\lambda B)^{-1}B)^N
+\end{align}
+\begin{remark}
+    The reason for choosing to work with $(A+\lambda B)^{-1}B$ instead of, say  $(A+\lambda B)^{\pm1}$, is that for a vector $\vv \in \vsV$, knowing what $(A+\lambda B)^{\pm 1}\vv$ gives may still not tell us what $A\vv$ and $B\vv$ individually are, which is core in the process of deriving the canonical form of (\ref{form}). Considering $(A+\lambda B)^{-1}B$ ultimately extracts us more information about $A$ and $B$, which will be evident in a series of lemmas.
+\end{remark}
+Denote $$\boxed{L_{A,B}=(A+\lambda B)^{-1}B}$$and note the following usual properties.
+% nzdcx
+\begin{property}
+    \mbox{}
+\begin{enumerate}
+    \item \label{first} $L_{A,B}$ is nilpotent on $S$
+    \item \label{2nd} $L_{A,B}$ is invariant on $S$
+    \item \label{3rd} $L_{A,B}$ is invariant on $W$
+    \item \label{4th} $L_{A,B}$ is invertible on $W$
+\end{enumerate}
+\end{property}
+\
+
+\begin{remark}
+    We could have by symmetry chosen to work with $(B+\lambda A)^{-1}A$. Then the form (\ref{weierstrass}) also alters symmetrically.
+\end{remark}
+
+\subsection{Characterising the subspaces}
+A series of lemmas follows. Define $S$, $W$ and $L_{A,B}$ as in Section \ref{method2}
+\begin{lemma}\label{injectivityA}
+    $A$ is injective on $\vsS$
+\end{lemma}
+
+\begin{proof}
+    We have that $L_{A,B}$ is nilpotent on $\vsS$ by definition. It can be easily seen that $A$ can be written alternatively as
+    \begin{equation}\label{expForA}
+        A=(A+\lambda B)(I-\lambda L_{A,B})
+    \end{equation}
+
+    \begin{claim}\label{cl:newinv}
+        $(I-\lambda L_{A,B})$ is invariant and invertible on $\vsS$
+    \end{claim}
+    \begin{proof}
+         $L_{A,B}$ is invariant on $\vsS$ from property (\ref{2nd}),. Therefore any polynomial of  $I-\lambda L_{A,B}$ is also invertible on $\vsS$. Let $\vv\in \vsS$ and consider what happens if its $(I-\lambda L_{A,B})-$map is zero. $$(I-\lambda L_{A,B})\vv=0\implies \lambda L_{A,B}\vv = \vv\implies \lambda^n (L_{A,B})^n\vv=\vv\implies \vv=0 $$which by definition means $I-\lambda L_{A,B}$ is invertible on $S$.
+    \end{proof}
+    Having this claim, assume there is $\vu\in \vsS$ such that $A\vu=0$. We conclude the following sequence of implications. $$A\vu=0\implies (A+\lambda B)(I-\lambda L_{A,B})\vu=0\implies_{\text{invertibility of A+}\lambda B}\ (I-\lambda L_{A,B})\vu=0\implies_{\text{Claim}}\ \vu=0 $$ and we are done by equivalence between injectivity and a trivial kernel.
+
+\end{proof}
+\newpage
+\begin{lemma}\label{injectivityB}
+    $B$ is injective on $W$
+\end{lemma}
+
+\begin{proof}
+    From property (\ref{4th}) $L_{A,B}$ is invertible on $W$. Let $v\in W$ and consider its $B-$map. $$Bv=0\implies (A+\lambda B)^{-1}Bv=0\implies L_{A,B} v=0\implies_{\text{invertible}}\  v=0$$and therefore $B$ has a trivial kernel on $W$ which again is equivalent to injectivity.
+\end{proof}
+
+
+
+\begin{lemma}\label{copying}
+    $A(S)\cap B(W)=\{0\}$
+\end{lemma}
+\begin{proof}
+    Let $u\in A(S)\cap B(W)$. Then, by definition there are $v\in S$ and $w\in W$ such that $$u=Av=Bw$$
+    As in (\ref{expForA}), we may write $A$ in the alternative form $$A=(A+\lambda B)(I-\lambda L_{A,B})$$Therefore, implementing this form of $A$ gives $$(A+\lambda B)(I-\lambda L_{A,B})v=Bw$$which after taking the inverse means that $$(I-\lambda L_{A,B})v=(A+\lambda B)^{-1}Bw.$$
+
+    The denotation $L_{A,B}=(A+\lambda B)^{-1}B$ means we can substitute and have that $$(I-\lambda L_{A,B})v=L_{A,B}(w)$$
+    From Property (\ref{3rd}) $L_{A,B}$ is invariant on $W$ and therefore $L_{A,B}(w)\in W \label{x}$.
+
+    From Claim \ref{cl:newinv}, $(I-\lambda L_{A,B})$ is invariant on $S$ therefore $(I-\lambda L_{A,B})v\in S \label{y}$
+
+    Recall that \(\vsS\) and \(\vecspace{W}\) intersect only at zero by construction. Therefore we must have $$(I-\lambda L_{A,B})v=L_{A,B}(w)=0 $$
+
+    But Property (\ref{4th}) implies $w=0$ and hence $u=L_{A,B}(w)=0$
+\end{proof}
+
+\begin{lemma}\label{charA}
+    For $v\in S$ there exists a unique $u\in S$ such that $$Bv=Au$$
+\end{lemma}
+
+\begin{proof}
+    From Claim \ref{cl:newinv}, $I-\lambda L_{A,B}$ is invertible and invariant on $S$. Therefore let $v\in S$ and choose $$u=(I-\lambda L_{A,B})^{-1}|_S\ L_{A,B} (v)$$where the map $(I-\lambda L_{A,B})^{-1}$ is restricted on $S$ and hence is defined due to its invertibility on $S$. After some computation, it can be seen that this expression for $u$ works. It is clearly unique.
+\end{proof}
+
+
+Similarly the following Lemma which will not be proven holds.
+\begin{lemma}\label{charB}
+    For $v\in W$, there exists unique $u\in W$ such that $$Av=Bu$$
+\end{lemma}
+
+
+% $\newline$
+% \vspace
+\subsection{Bases for the subspaces}\label{sectionbasis}
+\subsubsection{Basis for the kernel }\label{basisS}
+Recall that $L_{A,B}$ is defined as $L_{A,B}=(A+\lambda B)^{-1}B$ and is nilpotent on
+$S=\ker((A+\lambda B)^{-1}B)^N$.
+Consequently we would like to consider a null-chain $\{v_1,...,v_k\}$ under $L_{A,B}$ in $S$ such that $L_{A,B}v_1=0\text{ and }  L_{A,B}v_{i+1}=v_i $. By definition of $L_{A,B}$, we would have
+\begin{align*}
+   Bv_{i+1}&=(A+\lambda B)v_i=Av_i+\lambda Bv_i\label{18}\\
+   Bv_1&=0
+\end{align*}
+However, the above sums become unwieldy quickly and it turns out we can achieve the desired effect by neglecting the second term, as in:
+\begin{equation}\label{chainAB}
+    Bv_{i+1}=Av_i\text{ and }Bv_1=0
+\end{equation}
+
+Due to our previous lemmas we are able to identify such chains in $S$.
+
+Define $A^{-1}B:S\rightarrow S$ where
+$A^{-1}Bv:=u \text{ is given by }Au=Bv$
+
+Lemmas \ref{injectivityA} and \ref{charA} give injectivity of \(A\) on \(\vsS\) and uniqueness of \((\vv,\vu)\) pairs respectively, ensuring \(A^{-1}B\) is well defined and linear.
+
+\begin{remark}
+    The notation $A^{-1}B$ is used to describe the above-defined map and it does not mean $A$ is invertible!
+\end{remark}
+\newpage
+As \(A^{-1}B\) is invariant on \(\vsS\) we may use the same procedure as in the Jordan form to find a basis \(\beta_S\) of \(S\).
+We arrive at a basis of the following form - initially defining $\beta_S$ as a set composed of chains and then expressing its properties under $A^{-1}B$:
+\begin{equation}
+\beta_S=\{v_{0}^{(1)},v_{0}^{(2)},\dots,v_{0}^{(m_0)}\} \cup \{v_{1}^{(1)},v_{1}^{(2)},\dots,v_{1}^{(m_1)}\} \cup \dots \cup \{v_{t}^{(1)},v_{t}^{(2)},\dots,v_{t}^{(m_t)}\} \tag{\(\star\)} \label{eq:vbasis}
+ \end{equation}
+\begin{equation}
+    A^{-1}Bv_{i}^{(1)}=\delta_i v_{i}^{(1)} \text{ and } A^{-1}Bv_{i}^{(k+1)}=\delta_i v_{i}^{(k+1)}+v_{i}^{(k)}, \ \delta_i \in \spec A^{-1}B
+\end{equation}
+By Theorem \ref{theorem:multnull} we know such chains exist. By definition of $A^{-1}B$ we may "multiply by A" and rewrite the above as
+\begin{equation}\label{BAdel0}
+   Bv_{i}^{(1)}=\delta_iA v_{i}^{(1)} \text{ and } Bv_{i}^{(k+1)}=\delta_iA v_{i}^{(k+1)}+Av_{i}^{(k)}
+\end{equation}
+
+It turns out that the only eigenvalue for $A^{-1}B$ is $\delta=0$, which implies (\ref{BAdel0}) is of form (\ref{chainAB}).
+This is a consequence of the following lemma.
+
+\begin{lemma}
+    The map $A^{-1}B:S\rightarrow S$ is nilpotent on $S$
+\end{lemma}
+
+\begin{proof}
+    In Lemma \ref{charA} it is stated that for $v\in S$ there is unique $u\in S$ such that $Bv=Au$, where by definition of $A^{-1}B$ we have $A^{-1}Bv=u$. A closed form of $u$ is given in the proof of Lemma \ref{charA}:$$u=(I-\lambda L_{A,B})^{-1}|_S\ L_{A,B} (v).$$
+    Therefore, we may rewrite $A^{-1}B$ in terms of the closed form for $u$
+    \begin{align*}
+    &A^{-1}Bv=(I-\lambda L_{A,B})^{-1}|_S\ L_{A,B} (v)\ \forall v\in S \\
+    &A^{-1}B=(I-\lambda L_{A,B})^{-1}|_S\ L_{A,B}|_S.
+    \end{align*}
+
+    By the nilpotency of \(L_{A,B}\) on $S$ (definition), it is well known that we may express $(I-\lambda L_{A,B})^{-1}|_S$ without the inverse as
+    $$(I-\lambda L_{A,B})^{-1}|_S=(I+\lambda L_{A,B}+\lambda^2 L_{A,B}^2+...+\lambda ^{N}L_{A,B}^{N})|_S$$for some integer $N$ and therefore, after multiplying by $L_{A,B}|_S$ we get $$(I-\lambda L_{A,B})^{-1}|_S\ L_{A,B}|_S=(L_{A,B}+\lambda L_{A,B}^2+...+\lambda ^{N}L_{A,B}^{N+1})|_S.$$This is a polynomial in the $S$-nilpotent map $L_{A,B}$ with no constant term, and thus it is $S$-nilpotent as well.
+
+    Therefore $A^{-1}B=(I-\lambda L_{A,B})^{-1}|_S\ L_{A,B}|_S$ is nilpotent on $S$ as desired.
+
+
+    \end{proof}
+\newpage
+    \begin{corollary}\label{betterform}
+        There is a basis $\beta_S$ of $S$ composed of disjoint null-chains under $A^{-1}B.$
+
+    \end{corollary}
+    Since the only eigenvalue of the map $A^{-1}B$ on $S$ is $\delta=0$ by nilpotency on \(S\) the basis $\beta_S$ now takes the following form.
+    \begin{equation}\label{BAdel2}
+    \beta_S=\{v_{0}^{(1)},v_{0}^{(2)},\dots,v_{0}^{(m_0)}\} \cup \{v_{1}^{(1)},v_{1}^{(2)},\dots,v_{1}^{(m_1)}\} \cup \dots \cup \{v_{t}^{(1)},v_{t}^{(2)},\dots,v_{t}^{(m_t)}\}
+ \end{equation}
+\begin{equation}
+   Bv_{i}^{(1)}=0 \text{ and } Bv_{i}^{(k+1)}=Av_{i}^{(k)}
+\end{equation}
+
+    \subsubsection{Basis for the image}\label{basisW}
+
+
+    Injectivity of $B$ on $W=\im((A+\lambda B)^{-1}B)^{N}$   and the uniqueness of $(\vv, \vu)$ pairs follow from Lemmas \ref{injectivityB} and \ref{charB} respectively.
+    Hence we can introduce a new linear map which describes this relationship.
+    In a similar vain as Section \ref{basisS}. \\
+    Define the function
+    $$B^{-1}A :W\rightarrow W$$described by $$B^{-1}Av:=u \text{ where }Bu=Av$$
+    Note that the above is well defined and linear.
+
+    The invariance of $B^{-1}A$ on $W$  allows for the use of the JCF to find an appropriate basis $\beta_W$. It is constructed in the following way - $\beta_W$ as a set and then write its properties under $B^{-1}A$ which follow from Jordan theory:
+    \begin{equation}\label{definitionbw}
+\beta_W=\{u_{0}^{(1)},u_{0}^{(2)},\dots,u_{0}^{(k_0)}\} \cup \{u_{1}^{(1)},u_{1}^{(2)},\dots,u_{1}^{(k_1)}\} \cup \dots \cup \{u_{l}^{(1)},u_{l}^{(2)},\dots,u_{l}^{(k_l)}\}
+ \end{equation} $$B^{-1}Au_{i}^{(1)}=\delta_i u_{i}^{(1)}\text{ and }B^{-1}Au_{i}^{(k+1)}=\delta_i u_{i}^{(k+1)}+u_{i}^{(k)}$$ By definition of $B^{-1}A$ we may "multiply" by $B$ in the last line and rewrite it as
+    \begin{equation}
+        Au_{i}^{(1)}=\delta_i Bu_{i}^{(1)}\text{ and }Au_{i}^{(k+1)}=\delta_i Bu_{i}^{(k+1)}+Bu_{i}^{(k)}
+    \end{equation}
+    \\
+
+    \begin{remark}
+        Everything is done analogously as in the previous section, however since we are working in the image $W=im((A+\lambda B)^{-1}B)^N$, the map $B^{-1}A$ is not nilpotent on $W$ the way $A^{-1}B$ was on $S=\ker((A+\lambda  B)^{-1}B)^N$ .
+    \end{remark}
+
+\subsection{Bases for $V$}
+\subsubsection{Choosing initial basis for V}
+We have described an appropriate way to choose bases $\beta_S$ and $\beta_W$ for $S=\ker((A+\lambda B)^{-1}B)^N$ and $W= \im((A+\lambda B)^{-1}B)^{N}$ in Section \ref{sectionbasis}. This was done through implementing Jordan canonical form.  Since  $$V=S\oplus W,$$ we have that $\beta=\beta_S\cup\beta_W$ is a basis for $V$. However we know that we must describe $A$ and $B$ by an additional basis $\gamma$ with the matrices
+$$_\gamma[A]_\beta\text{ and } _\gamma[B]_\beta,  $$respectively. The choice for $\gamma$ is shown in the following section.
+
+
+
+\subsubsection{Choosing a second basis for $V$}
+There is a specific way to pick an additional basis $\gamma$ for $V$, alongside the already concluded $\beta=\beta_S\cup \beta_W$, so that we could conclude form (\ref{weierstrass}).
+
+We have constructed a basis $\beta_S$ of $S$ (in Corollary \ref{betterform}) defined as \begin{equation}
+\beta_S=\{v_{0}^{(1)},v_{0}^{(2)},\dots,v_{0}^{(m_0)}\} \cup \{v_{1}^{(1)},v_{1}^{(2)},\dots,v_{1}^{(m_1)}\} \cup \dots \cup \{v_{t}^{(1)},v_{t}^{(2)},\dots,v_{t}^{(m_t)}\} \label{eq:vbasis}
+ \end{equation}
+\begin{equation}\label{BAdel}
+   Bv_{i}^{(1)}=0 \text{ and } Bv_{i}^{(k+1)}=Av_{i}^{(k)}
+\end{equation}
+
+
+We can see in (\ref{BAdel}) that the action of $B$ on each of the the vectors $v_i^{(k)}$ in $\beta_S$ can be described only in terms of the map $A$.
+
+
+
+Therefore, define the $A-$image of $\beta_S$ as $$\boxed{\gamma_S=A(\beta_S)}$$ where
+\begin{equation}
+    A(\beta_S)=\{Av:v\in \beta_S\}
+\end{equation}
+
+Likewise, we have constructed a basis $\beta_W$ of $W$ (as in (\ref{definitionbw})), defined as
+  \begin{equation}
+\beta_W=\{u_{0}^{(1)},u_{0}^{(2)},\dots,u_{0}^{(k_0)}\} \cup \{u_{1}^{(1)},u_{1}^{(2)},\dots,u_{1}^{(k_1)}\} \cup \dots \cup \{u_{l}^{(1)},u_{l}^{(2)},\dots,u_{l}^{(k_l)}\}  \label{eq:vbasis22}
+ \end{equation}
+  \begin{equation}\label{AinB2}
+        Au_{i}^{(1)}=\delta_i Bu_{i}^{(1)}\text{ and }Au_{i}^{(k+1)}=\delta_i Bu_{i}^{(k+1)}+Bu_{i}^{(k)}
+    \end{equation}
+
+Analogously, it can be seen in (\ref{AinB2}) that the action of $A$ on each of the vectors $u_i^{(k)}$ in $\beta_W$ can be described only in terms of the map $B$.
+
+Therefore, define the $B-$image of $\beta_W$ as $$\boxed{\gamma_W=B(\beta_W)}$$ where
+\begin{equation}
+    B(\beta_W)=\{Bv:v\in \beta_W\}
+\end{equation}
+
+\begin{lemma}
+    $\gamma=\gamma_S\cup \gamma_W$ is a basis for $V$, where  $\gamma_S$ and $\gamma_W$ are defined as above.
+\end{lemma}
+\begin{proof}
+    Injectivity of $A$ on $S$ (Lemma \ref{injectivityA}) implies that $\gamma_S$ is a basis of $A(S)$.
+
+    Similarly, injectivity of $B$ on $W$ (Lemma \ref{injectivityB}) implies that $\gamma_W$ is a basis of $B(W)$.
+
+    Lemma \ref{copying} states that $A(S)\cap B(W)=\{0\}$ which therefore means that $$A(S)\oplus B(W)=V$$and hence $$\gamma_S\cup \gamma_W\text{ is a basis for V}$$
+
+Therefore, we will take $\gamma=\gamma_S\cup \gamma_W$ as the additional basis for $V$, where $\gamma_S$ and $\gamma_W$ are defined as above.
+
+
+
+\end{proof}
+\subsection{Deriving the Weierstrass form}
+We will now show that
+\begin{equation}\label{weierstrass}
+\begin{aligned}
+{}_{\gamma}[A]_{\beta}
+&=
+\begin{pmatrix}
+J & 0\\
+0 & I
+\end{pmatrix},
+\\[1em]
+{}_{\gamma}[B]_{\beta}
+&=
+\begin{pmatrix}
+I & 0\\
+0 & N
+\end{pmatrix}.
+\end{aligned}
+\end{equation}
+where $$\gamma = \gamma_S\cup \gamma_W=A(\beta_S)\cup B(\beta_W),$$ \\
+$$\beta=\beta_S\cup \beta_W,$$
+$\beta_S$ and $\beta_W$ are defined in Section \ref{basisS} and Section \ref{basisW}, respectively.
+
+Before we begin, note the following necessary lemma about how the images of $A$ and $B$ on each of $S$ and $W$ intertwine.
+\begin{lemma}
+    \begin{equation}\label{incl1}
+    B(S)\subseteq A(S)
+\end{equation}
+and
+\begin{equation}\label{incl2}
+    A(W)\subseteq B(W)
+\end{equation}
+\end{lemma}
+\begin{proof}
+   The result follows due to Lemma \ref{charA} and due to Lemma \ref{charB}.
+\end{proof}
+
+
+This is useful in the following way of describing $_{\gamma}[A]_{\beta}$ and $_{\gamma}[B]_{\beta}$.\\ \\
+Since $\text{span}(\gamma_S)=A(S)$ by definition of $\gamma_S$, (\ref{incl1}) implies each element of $B(\beta_S)$ may be represented only in terms of $\gamma_S$.
+
+Similarly, $\text{span}(\gamma_W)=B(W)$ by definition of $\gamma_W$ and from (\ref{incl2}) each element of $A(\beta_W)$ is expressed only in terms of $\gamma_W$
+
+As a result, we may write ${}_{\gamma}[A]_{\beta}$ and ${}_{\gamma}[B]_{\beta}$ in the following way
+\begin{equation}\label{begginingoftheend}
+    \begin{aligned}
+{}_{\gamma}[A]_{\beta}
+&=
+\begin{pmatrix}
+_{\gamma_W}[A]_{\beta_W} & 0\\
+0 & _{\gamma_S}[A]_{\beta_S}
+\end{pmatrix},
+\\[1em]
+{}_{\gamma}[B]_{\beta}
+&=
+\begin{pmatrix}
+_{\gamma_W}[B]_{\beta_W} & 0\\
+0 & _{\gamma_S}[B]_{\beta_S}
+\end{pmatrix}.
+\end{aligned}
+\end{equation}
+
+
+Recall the definitions of $\gamma_S$ and $\gamma_W$.
+\begin{equation*}
+\gamma_S=A(\beta_S)=\{Av_{0}^{(1)},Av_{0}^{(2)},\dots,Av_{0}^{(m_0)}\} \cup \{Av_{1}^{(1)},Av_{1}^{(2)},\dots,Av_{1}^{(m_1)}\} \cup \dots \cup \{Av_{t}^{(1)},Av_{t}^{(2)},\dots,Av_{t}^{(m_t)}\}
+ \end{equation*}
+ \begin{equation*}
+\gamma_W=B(\beta_W)=\{Bu_{0}^{(1)},Bu_{0}^{(2)},\dots,Bu_{0}^{(k_0)}\} \cup \{Bu_{1}^{(1)},Bu_{1}^{(2)},\dots,Bu_{1}^{(k_1)}\} \cup \dots \cup \{Bu_{l}^{(1)},Bu_{l}^{(2)},\dots,Bu_{l}^{(k_l)}\}
+ \end{equation*}
+
+Since $\gamma_S=A(\beta_S)$, we may trivially conclude the matrix representation
+\begin{equation}\label{!1}
+{}_{\gamma_S}[A]_{\beta_S}=I_{|\beta_S|}
+\end{equation}
+
+
+Similarly, $\gamma_W=B(\beta_W)$ and therefore
+\begin{equation}\label{!2}
+_{\gamma_W}[B]_{\beta_W}=I_{|\beta_W|}
+\end{equation}
+
+As a consequence of (\ref{begginingoftheend}), we are left to determine a closed form for $_{\gamma_S}[B]_{\beta_S}$ and $_{\gamma_W}[A]_{\beta_W}$.\\\\
+Start with $_{\gamma_S}[B]_{\beta_S}$. Recall the definition of $\beta_S$ at (\ref{BAdel2}):
+
+\begin{equation}
+    \beta_S=\{v_{0}^{(1)},v_{0}^{(2)},\dots,v_{0}^{(m_0)}\} \cup \{v_{1}^{(1)},v_{1}^{(2)},\dots,v_{1}^{(m_1)}\} \cup \dots \cup \{v_{t}^{(1)},v_{t}^{(2)},\dots,v_{t}^{(m_t)}\}
+ \end{equation}
+\begin{equation}\label{important}
+   Bv_{i}^{(1)}=0 \text{ and } Bv_{i}^{(k+1)}=Av_{i}^{(k)}
+\end{equation}
+Therefore we may express $B(\beta_S)$ as
+\begin{equation}
+    B(\beta_S)=\{Bv_{0}^{(1)},Bv_{0}^{(2)},\dots,Bv_{0}^{(m_0)}\} \cup \{Bv_{1}^{(1)},Bv_{1}^{(2)},\dots,Bv_{1}^{(m_1)}\} \cup \dots \cup \{Bv_{t}^{(1)},Bv_{t}^{(2)},\dots,Bv_{t}^{(m_t)}\}
+ \end{equation}
+which by (\ref{important}) can be expressed in terms of $A$ in the following way.
+\begin{equation}
+    B(\beta_S)=\{0,Av_{0}^{(1)},\dots,Av_{0}^{(m_0-1)}\} \cup \{0,Av_{1}^{(1)},\dots,Av_{1}^{(m_1-1)}\} \cup \dots \cup \{0,Av_{t}^{(1)},\dots,Av_{t}^{(m_t-1)}\}
+ \end{equation}
+
+ We know that $\gamma_S=A(\beta_S)$ and thus we have that $_{\gamma_S}[B]_{\beta_S}$=$N$ where
+
+ \begin{equation}\label{finish1}
+    N=
+    % \begin{array}{cc c}
+    %     &1&2_2\\
+    %     \multirow{2}{0em}{$\left[\right.$}&&1\\
+    %     &&2\\
+    % \end{array}
+    \begin{bNiceMatrix}
+        \begin{array}{c c c c}
+            0 & 1 &        &   \\
+              & 0 & \ddots &   \\
+              &   & \ddots & 1 \\
+              &   &        & 0 \\
+        \end{array}
+         &&&\text{\Huge 0} \\
+        &
+        \begin{array}{c c c c}
+            0 & 1 &        &   \\
+              & 0 & \ddots &   \\
+              &   & \ddots & 1 \\
+              &   &        & 0 \\
+        \end{array}
+         && \\
+        &&\ddots&\\
+        \text{\Huge 0}&&&
+        \begin{array}{c c c c}
+            0 & 1 &        &   \\
+              & 0 & \ddots &   \\
+              &   & \ddots & 1 \\
+              &   &        & 0 \\
+        \end{array} \\
+    \CodeAfter
+        \OverBrace[shorten,yshift=3pt]{1-1}{1-1}{m_0}
+        \OverBrace[shorten,yshift=3pt]{2-2}{2-2}{m_1}
+        \OverBrace[shorten,yshift=3pt]{4-4}{4-4}{m_{t}}
+    \end{bNiceMatrix}
+\end{equation}
+We now derive a closed form of $_{\gamma_W}[A]_{\beta_W}$.
+Recall the definition of $\beta_W$ at (\ref{definitionbw}).
+\begin{equation}
+\beta_W=\{u_{0}^{(1)},u_{0}^{(2)},\dots,u_{0}^{(k_0)}\} \cup \{u_{1}^{(1)},u_{1}^{(2)},\dots,u_{1}^{(k_1)}\} \cup \dots \cup \{u_{l}^{(1)},u_{l}^{(2)},\dots,u_{l}^{(k_l)}\}
+ \end{equation}
+  \begin{equation}\label{AinB}
+        Au_{i}^{(1)}=\delta_i Bu_{i}^{(1)}\text{ and }Au_{i}^{(k+1)}=\delta_i Bu_{i}^{(k+1)}+Bu_{i}^{(k)}
+    \end{equation}
+
+Expressing $A(\beta_W)$ gives
+\begin{equation}
+A(\beta_W)=\{Au_{0}^{(1)},Au_{0}^{(2)},\dots,Au_{0}^{(k_0)}\} \cup \{Au_{1}^{(1)},Au_{1}^{(2)},\dots,Au_{1}^{(k_1)}\} \cup \dots \cup \{Au_{l}^{(1)},Au_{l}^{(2)},\dots,Au_{l}^{(k_l)}\}
+ \end{equation}
+
+We can express each vector of $A(\beta_W)$ in terms of $B$, due to (\ref{AinB}), as
+\begin{align*}
+A(\beta_W)=\{\delta_0 Bu_{0}^{(1)},\ \delta_0 Bu_{0}^{(2)}+Bu_{0}^{(1)},\dots,\delta_0 Bu_{0}^{(k_0)}+Bu_{0}^{(k_0-1)}\} \cup\\
+\{\delta_1 Bu_{1}^{(1)},\ \delta_1Bu_{1}^{(2)}+Bu_{1}^{(1)},\dots,\delta_1 Bu_{1}^{(k_1)}+Bu_{1}^{(k_1-1)}\} \cup\\
+\vdots\\
+\{\delta_l Bu_{l}^{(1)},\ \delta_lBu_{l}^{(2)}+Bu_{l}^{(1)},\dots,\delta_l Bu_{l}^{(k_l)}+Bu_{l}^{(k_l-1)}\}\quad
+ \end{align*}
+
+Because $\gamma_W=B(\beta_W)$, we have that $_{\gamma_W}[A]_{\beta_W}=J$ where \\ \\
+\begin{equation}\label{finish2}
+    J=
+    % \begin{array}{cc c}
+    %     &1&2_2\\
+    %     \multirow{2}{0em}{$\left[\right.$}&&1\\
+    %     &&2\\
+    % \end{array}
+    \begin{bNiceMatrix}
+        \begin{array}{c c c c}
+            \delta_0 & 1 &        &   \\
+              & \delta_0 & \ddots &   \\
+              &   & \ddots & 1 \\
+              &   &        & \delta_0 \\
+        \end{array}
+         &&&\text{\Huge 0} \\
+        &
+        \begin{array}{c c c c}
+            \delta_1 & 1 &        &   \\
+              & \delta_1 & \ddots &   \\
+              &   & \ddots & 1 \\
+              &   &        & \delta_1 \\
+        \end{array}
+         && \\
+        &&\ddots&\\
+        \text{\Huge 0}&&&
+        \begin{array}{c c c c}
+            \delta_l & 1 &        &   \\
+              & \delta_l & \ddots &   \\
+              &   & \ddots & 1 \\
+              &   &        & \delta_l \\
+        \end{array} \\
+    \CodeAfter
+        \OverBrace[shorten,yshift=3pt]{1-1}{1-1}{k_0}
+        \OverBrace[shorten,yshift=3pt]{2-2}{2-2}{k_1}
+        \OverBrace[shorten,yshift=3pt]{4-4}{4-4}{k_{l}}
+    \end{bNiceMatrix}
+\end{equation}
+
+Therefore, (\ref{!1}),  (\ref{!2}),  (\ref{finish1}) and  (\ref{finish2}) together imply that
+\begin{equation*}
+\begin{aligned}
+{}_{\gamma}[A]_{\beta}
+&=
+\begin{pmatrix}
+J & 0\\
+0 & I
+\end{pmatrix},
+\\[1em]
+{}_{\gamma}[B]_{\beta}
+&=
+\begin{pmatrix}
+I & 0\\
+0 & N
+\end{pmatrix}.
+\end{aligned}
+\end{equation*}
+With this, we have given a closed Weierstrass form, as desired. The above form may be easily concluded for matrices, where we would have transformation invertible matrices $P$ and $Q$ which change the coordinates to $\gamma$ and $\beta$, respectively.
+
+
+
+
+
+
+
+
+
+% % \begin{proof}
+% %     We can construct such a list of subspaces recursively.
+% %     Let $\vecspace{V_0} = \vecspace{V}$. Let $S_i$
+% % \end{proof}
