@@ -1,29 +1,43 @@
 \section{The Jordan form}
-
-The theory of canonical matrix forms has its genesis in the late 20th century in Jordan's original treatment of a matrix decomposition beyond diagonalzation. The history in its self has become a subject of study, for example see \cite{brechenmacher:tel-00142786}.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\linewidth]{./images/image}
-    \caption{\cite{brechenmacher:tel-00142786} page 14: A visual comparasion of the historical role of different works in matrix theory}
-    \label{fig:history}
-\end{figure}
+% \begin{figure}[H]
+%     \usetikzlibrary{arrows.meta}
+%     \centering
+%     \begin{tikzpicture}
+%         \node at (0,2) {Jordan Cannonical Form};
+%         \node at (0,1) {Weierstrass Canonical Form};
+%         \node at (0,0) {Kronecker Canonical Form};
+%         \draw[-{Stealth}, thick] (3,2) -- (3, 0)node[midway, right] {Generality} ;
+%     \end{tikzpicture}
+% \end{figure}
 
 The existance of the Jordan canonical form (JCF) is one of the more central results of elementary linear algebra.
-This is not only because of its applications within systems theory.
-But also purely algebraically as an invariant of endomorphisms on an abstract vector space under isomorphism to \( \mathbb{C}^n \).
+This is not only because of its applications within systems theory, but also purely algebraically as an invariant of endomorphisms on an abstract vector space under isomorphism to \( \mathbb{C}^n   \).
 
 We hope to convince the reader that the JCF can be considered a special case of the Weierstrass canonical form (WCF). 
 Or conversely that the WCF is a generalisation of the JCF.
 In order to achieve this we will first present a proof of the JCF.
-And then use notions and techniques developed there to prove the Weierstrass form. Our intention is that during this process the entanglement of the two forms will emerge in a statisfying way. 
-And, as the authors are algebraically predisposed, we will work through the lens of linear maps in need of a basis under which the maps' character is obvious.
+And then use notions and techniques developed there to prove the Weierstrass form. Our intention is that during this process the entanglement of the two forms will emerge in a satisfying way. 
+Furthermore, as the authors are algebraically predisposed, we will work through the lens of linear maps in need of a basis under which the maps' character is obvious.
 Quick transitions into the world of matrices will reveal the famous JCF and WCF matrix structures, these will be saved for conclusionary sections.
 
-\subsection{Prelude: Invariant subspaces} \lettrine{C}{onsider}
-a linear operator \( T \in \lmap(\vsV) \), where \(\vsV\) is a finite dimensional vector space.
+
+\subsection{Problem statement}
+
+It is well known that all finite dimensional vector spaces are isomorphic to \( \mathbb{C}^n\) for some $n$, for a proof see \cite{axler2024linear} Theorem 3.70. From this one can choose a basis for the vector space and by observing what any linear operator does to this basis arrive at a so called basis representation of that map, which is a matrix whose columns are the coefficients of the basis vectors under the map. This culminates in the fact that, for a fixed basis, the set of linear operators on a vector space with dimension \(n\) is isomorphic to the square matrices of that size \( \mathbb{C}^{n \times n}\), again see \cite{axler2024linear} Theorem 3.71 for a proof. From here matrix theory and useful applications thereof abound.
+
+However a question arises, since there are many bases for the vector space there must be many matrices who actually represent the same linear map. Given a matrix can we perform a systemic change of basis such that if any two matrices derive from the same linear operator, regardless of a choice of basis, we will arrive at the same matrix representation? Would such a 'canonical form' of a matrix reveal invariants of the underlying map under changes of basis ? Intuitively such a form should implicitly contain all the information contained in the map itself. 
+
+Formally we might re-state these questions as follows:
+
+Let \( T \in \mathcal{L}(\vsV)\), can we construct a basis \(\beta\) of \(\vsV\) such that for any bases \(\gamma\) and \(\gamma^\prime\) we have \({}_{\beta}[T]_\gamma = {}_{\beta}[T]_{\gamma^\prime}\)?
+
+In the following section we hope to present an intuitive yet rigorous anwser to this question. With the goal of the proof evolving naturally from the question.
+
+\subsection{Where to start: Invariant subspaces} 
+Consider a linear operator \( T \in \lmap(\vsV) \), where \(\vsV\) is a finite dimensional vector space.
 For any subspace \(\vsS \subset \vsV\) the image of \(T\) over \(\vsS\) is, in general, some other arbitrary subspace.
-It is natural then to want to consider subspaces which preserve their structure under \( T \). The following definition captures this idea.
+It seems reasonable then to want to consider subspaces which preserve their structure under \( T \). The following definition captures this idea.
+
 \begin{definition}
     A subspace \( \vsS \) is called \textit{invariant} under the linear map \( T \) if
 
@@ -37,7 +51,7 @@ It is best to give some examples of such subspaces before investigating them fur
 \subsubsection{Examples and properties}
 
 \begin{example}
-    The subspace called the eigenspace of \(T\) at eigenvalue \(\lambda\)
+    The so called eigenspace of \(T\) at eigenvalue \(\lambda\)
     \begin{equation*}
         E_\lambda = \{\vv: T\vv=\lambda \vv\}
     \end{equation*}
@@ -67,16 +81,16 @@ It is best to give some examples of such subspaces before investigating them fur
     \end{equation*}
 
     is invariant under \( T \).
-    This is indeed a subspace, and the invariance here follows from its definition.
+    This is indeed a subspace, and the invariance here again follows from its definition.
     \begin{equation*}
         \vv\in K \implies \exists k,\; T^k\vv=\0 \implies T^{k-1}T\vv=\0 \implies T\vv\in K
     \end{equation*}
 
-    This set has a stronger structure than being just invariant. It can be seen that
-    \begin{equation}
-        \vv\notin K\implies T\vv\notin K \label{eq:initial}
-    \end{equation}
-    which is not in general true for invariant subspaces.
+    This set has a stronger structure than being just invariant. It can be shown that
+    \begin{equation*}
+        \vv\notin K\implies T\vv\notin K
+    \end{equation*}
+    which is not true in general for invariant subspaces.
 \end{example}
 
 
@@ -99,53 +113,55 @@ It is best to give some examples of such subspaces before investigating them fur
     \caption{A subspace \( \vsS \) invariant  under \(T\)}
 \end{figure}
 
-Because of their behavior, we want to search for building blocks of \( \vsV \) of invariant subspaces - similarly to how primes are building blocks of the integers.
-By building blocks me mean some number of subspaces, say \(k\)-many, such that if \(\beta_i\) is a basis for the \(i\)th subspace \(\vsS\) we have:
+Because of their behavior we could try to 'build' \(\vsV\) out of invariant subspaces - similar to how primes can be used to build the integers.
+By this we really mean finding some number of subspaces, say \(k\)-many, such that if \(\beta_i\) is a basis for the \(i\)th subspace \(\vsS_i\) we have:
 % By building blocks, we mean invariant subspaces \( \vsS_1,\vsS_2,...,\vsS_k \)
 % such that given a basis \(\beta_i\) for each \(\vsS_i\), we have
 \begin{align*}
-    &\text{For} \quad \beta = \bigcup_{i=1}^k \beta_i  \quad \beta \ \text{is a basis for} \ \vsV \\
-    &\text{Or equivilently} \quad \bigoplus_{i=1}^k\vsS_i=\vsV
+    & \quad \beta = \bigcup_{i=1}^k \beta_i  \  \text{ is a basis for} \ \vsV \\
+    &\text{or equivalently} \quad \bigoplus_{i=1}^k\vsS_i=\vsV
 \end{align*}
 
 
-If we one succeeds in this, then there would be a matrix representation of \(T\) in the form
+If one succeeds in this, then the matrix representation of \(T\) would take the form
 
 \begin{equation*}
-    {}_\beta[T]_\beta =
+    [T]_\beta =
     \begin{pmatrix}
         A_1    & 0      & \cdots & 0      \\
         0      & A_2    & \cdots & 0      \\
         \vdots & \vdots & \ddots & \vdots \\
-        0      & 0      & \cdots & A_\sigma
+        0      & 0      & \cdots & A_k
     \end{pmatrix}
 \end{equation*}
 
-This structure is strictly due to the invariance of the subspaces - if \(\beta_i\) is a basis for \( \vsS_i \) consisting of \(\beta_{i1},\beta_{i2},...,\beta_{ik}\), then
+This structure is strictly due to the invariance of the subspaces. 
+If \(\beta_i = \{ \beta_{i1},\beta_{i2},...,\beta_{im} \} \), for some \(m \in \mathbb{N}\), then
 
 \begin{equation*}
-    T(\beta_{ij})\in \vsS_i\ \forall j\leq k,
+    T(\beta_{ij})\in \vsS_i \quad \forall j\leq k,
 \end{equation*}
 
-and therefore may be expressed only in terms of \(\beta_{i1},\beta_{i2},...,\beta_{ik}\) - hence the above pattern.
+and therefore may be expressed only in terms of \(\beta_{i1},\beta_{i2},...,\beta_{im}\) which implies the coordinates of this vector in the \(\beta_{l \neq i}\) bases must all be zero.
+Therefore this vector, when expressed in \(\beta\), is only nonzero in the \(i1\) to \(im\) rows. So the column vectors of \([T]_\beta\) from different \(\beta_i\) can never be nonzero in the same row. Therefore the above.
 
 \vspace{\baselineskip}
 
-Our goal is to achieve this decomposition with choosing the best possible invariant subspaces - so that the above \(A_i\) blocks are of the simplest scheme.
+Our goal is to achieve this decomposition whilst choosing the best possible invariant subspaces - so that the above \(A_i\) blocks are as simple as possible.
 
-It should already be obvious which invariant subspaces to start from. Before continuing, some properties:
+Before continuing some observations of invariant subspaces are in order.
 
 
 \begin{property}
-    Invariant subspaces (except \(\{\0\}\)) \(\vsS\) under \(T\) all contain an eigenvector of \(T\). This is for the reason that the linear map
+    Invariant subspaces (except \(\{\0\}\)) \(\vsS\) under \(T\) all contain an eigenvector of \(T\). This is because the linear map
 
     \begin{equation*}
-        T^*:\vsS\rightarrow \vsS\ \text{,} \ T^*\vv=T\vv
+        T^*:\vsS\rightarrow \vsS,  \ T^*\vv=T\vv
     \end{equation*}
 
-    is well defined due to the invariance. Then we just pick the eigenvector of \( T^* \) (always exists).
-
+    is well defined due to the invariance. Then we just pick the eigenvector of \( T^* \) which must always exist.\footnotemark
 \end{property}
+
 
 \begin{lemma}\label{lem:invariance_sum}
     If \(\vsS\) is invariant under \(T\) and \(L\), then \(\vsS\) is invariant under \(T+xL\) for any \(x\in\C\).
@@ -171,13 +187,14 @@ It should already be obvious which invariant subspaces to start from. Before con
         T^{n+1}(\vsS)=T(T^n(\vsS))\subseteq T(\vsS) \subseteq \vsS
     \end{equation*}
 
-    So by induction, the statement is true.
+    By induction we are done.
 \end{proof}
 
 \begin{corollary}\label{col:invariant_poly}
     If \(\vsS\) is invariant under \(T\), then it is also invariant under any polynomial of \(T\).
 \end{corollary}
 
+\footnotetext{Turns out this is due to a property of the complex field called \textit{algebraic closure}. See \cite{halmos1958finite} page 104 for a more detailed discussion of this.} 
 % \begin{lemma}\label{lem:invariance2}
 %     \begin{equation*}
 %         \vsS\ \text{invariant under } T\iff \vsS\ \text{invariant under } T-x\id\ \forall x\in \C,
@@ -186,33 +203,13 @@ It should already be obvious which invariant subspaces to start from. Before con
 %     and consequently invariant under any polynomial \(P(T)\).
 % \end{lemma}
 
-\subsection{Statement}
-For a linear operator \(T \in \lmap(\vsV)\) where \(\vsV\) is finite dimensional, there is a matrix representation of \(T\) of the form
-\begin{equation*}
-    \begin{pmatrix}
-        J_1    & 0      & \cdots & 0      \\
-        0      & J_2    & \cdots & 0      \\
-        \vdots & \vdots & \ddots & \vdots \\
-        0      & 0      & \cdots & J_k
-    \end{pmatrix}
-\end{equation*}
-
-where \(J_i\) is a square matrix of the form
 
 % Note:
 % Question: are the k blocks meant to be jordan block or jordan matrix of each eigenvalue?
 
-\begin{equation*}
-    \begin{pmatrix}
-        \lambda    & 1      & \cdots & 0      \\
-        0      & \lambda    & \cdots & 0      \\
-        \vdots & \vdots & \ddots & 1 \\
-        0      & 0      & \cdots & \lambda
-    \end{pmatrix}
-\end{equation*}
 
 
-\subsection{Method}
+\subsection{Why diagonalization is not enough}
 We start with considering the simplest invariant subspaces - the eigenspaces.
 For some \(T\in\lmap(\vsV)\), let the spectrum of \(T\) be \(\{\lambda_1, \lambda_2,...,\lambda_\sigma\}\), and define the corresponding eigenspaces
 
@@ -254,7 +251,7 @@ is linearly independent.
 \end{figure}
 
 
-Is \(\bigoplus_{i=1}^{\sigma} E_{\lambda_i} = \vsV\) true? - if yes, \(\bigcup \beta_i\) may be our basis.
+If the direct sum of the eigenspaces is \(\vsV\) then the above union could be out basis.
 
 Sadly, this is often not the case.
 An example is the matrix
@@ -265,9 +262,9 @@ An example is the matrix
         0 & 0 & 1
     \end{pmatrix}
 \end{equation*}
-with its corresponding linear map.
 
-If \(\bigoplus E_{\lambda_i}\) is not enough to cover \(\vsV\), we want to somehow expand each \(E_{\lambda_i}\) into a bigger subspace, with the importance to keep their invariance and disjointedness.
+If the direct sum of the eigensapces is not enough to span \(\vsV\), we could try to somehow expand each eigenspace into a bigger subspace such that they do span \(\vsV\). 
+However we must be careful as preserving the invariance and disjointness of the subspaces is essential.
 
 \subsection{Generalising the eigenspaces}
 
@@ -289,17 +286,17 @@ We will define
 Intuitively this can be thought of as extending the subspace to include vectors that are 'close' to becoming eigenvectors.
 In the sense that they are a finite number of iterations of \(T- \lambda_i\id\) away from \(\0\).
 
-However, we still have to show that this is a valid choice.
+We still have to show that this is a valid choice.
 More specifically, we need to show that each \(\Gi\) is invariant under \(T\), and
 \begin{equation*}
     \bigoplus_{i=1}^\sigma\Gi=\vsV
 \end{equation*}
 
 
-\subsection{Showing the subspaces works}
+\subsection{Properties of the generalised eigenspaces}
 
-The definition of the extended eigenspace uses infinity as upperbound.
-However, infinity is tricky to works with sometimes, so we provide the following lemma:
+The definition of the extended eigenspace uses infinity as an upperbound.
+However, infinity is tricky to work with sometimes, so we prove the following lemma:
 
 \begin{lemma} \label{lem:conv}
     For any \(\lambda_i\in\spec T\), there exists \(\kappa_i\in\N\) s.t. for any \(\kappa_i\le k\in\N\), we have \(\Gi=\Gi^{k}=\Gi^{\kappa_i}\).
@@ -348,7 +345,7 @@ With this, we can show:
 \end{proof}
 
 \begin{corollary} \label{col:Gi_invariance}
-    Noteably, \(\Gi\) is invariant under \(T-x\id\) for any choice of \(x\in\C\).
+    Notably, \(\Gi\) is invariant under \(T-x\id\) for any choice of \(x\in\C\).
 \end{corollary}
 
 However, we can go one step further.
@@ -386,10 +383,10 @@ We claim
     \begin{equation*}
         \ker(T-\lambda_i\id)^{\kappa_i}\oplus\im(T-\lambda_i\id)^{\kappa_i}=\vsV
     \end{equation*}
-    where \(\kappa_i\) is as defined in lemma \ref{lem:conv}.
+    where \(\kappa_i\) is as defined in Lemma \ref{lem:conv}.
 \end{lemma}
 \begin{proof}
-    First, we will show that the two vector spaces are disjoint.
+    First we will show that the two vector spaces are disjoint.
 
     Suppose $\vv \in \im(T-\lambda_i\id)^{\kappa_i}$, then there exist $\vu\in\vsV$ s.t. $\vv=(T-\lambda_i\id)^{\kappa_i}\vu$.
     Since $\vv\in\ker(T-\lambda_i\id)^{\kappa_i}$,
@@ -405,21 +402,21 @@ We claim
     \end{equation*}
     Therefore, $\ker(T-\lambda_i\id)^{\kappa_i}\cap\im(T-\lambda_i\id)^{\kappa_i}=\{\0\}$.
 
-    Since the two vector spaces are disjoint, they are also independent.
-    Therefore,
+    Since the two vector spaces are disjoint they are also independent.
+    
+    By the dimension theorem:
     \begin{align*}
         &\dim\left(\ker(T-\lambda_i\id)^{\kappa_i}\oplus\im(T-\lambda_i\id)^{\kappa_i}\right)\\
         =&\dim\ker(T-\lambda_i\id)^{\kappa_i} + \dim\im(T-\lambda_i\id)^{\kappa_i}\\
         =&\dim\vsV\\
     \end{align*}
-    by the dimension theorem.
-    Hence, $\ker(T-\lambda_i\id)^{\kappa_i}\oplus\im(T-\lambda_i\id)^{\kappa_i}=\vsV$.
+    Hence $\ker(T-\lambda_i\id)^{\kappa_i}\oplus\im(T-\lambda_i\id)^{\kappa_i}=\vsV$.
 \end{proof}
 
 
 
 \begin{theorem}
-    \(\vsG_{\lambda_1}\oplus\vsG_{\lambda_2}\oplus\dots\oplus\vsG_{\lambda_\sigma}=\vsV\)
+\(\vsG_{\lambda_1}\oplus\vsG_{\lambda_2}\oplus\dots\oplus\vsG_{\lambda_\sigma}=\vsV\) \label{theorem:dirsumv}
 \end{theorem}
 \begin{proof}
     Note that \(\{\0\}\oplus\vsG=\vsG\). So for \(\sigma=0\), we will define \(\vsG_{\lambda_1}\oplus\dots\oplus\vsG_{\lambda_\sigma}=\{\0\}\).
@@ -430,9 +427,9 @@ We claim
     Suppose the theorem is true for some \(\sigma-1\in\N\). \\
     Consider the subspace \(\vsV'=\im(T-\lambda_\sigma\id)^{\kappa_\sigma}\).
     Note that from Lemma \ref{lem:img_sum_ker}, we have $\vsV = \vsG_{\lambda_\sigma} \oplus \vsV'$.\\
-    As \(\vsV'\) is an image of \(T-\lambda_\sigma\) on some subspace, we can apply example \ref{ex:invariance_image} to show  \(\vsV'\) is invariant under \(T\).
+    As \(\vsV'\) is an image of \(T-\lambda_\sigma\) on some subspace, we can apply Example \ref{ex:invariance_image} to show  \(\vsV'\) is invariant under \(T\).
 
-    Since \(\vsV'\cap\vsG_{\lambda_\sigma}=\{\0\}\), \(\spec_{\vsV'}T \subseteq \spec_{\vsV}T\setminus\{\lambda_\sigma\}\).\\
+    Since \(\vsV'\cap\vsG_{\lambda_\sigma}=\{\0\}\), the invariance of $T$ \(\spec_{\vsV'}T \subseteq \spec_{\vsV}T\setminus\{\lambda_\sigma\}\).\\
     % $\forall i\in[k-1]$, let $\0\neq\vec{x}\in\ker(T-\lambda_i\id)\subseteq\vsG_i$.
     \(\forall i<\sigma\), since \(T-\lambda_\sigma\id\) is a bijection on \(\vsG_i\) (Lemma \ref{lem:bijection}),
     \begin{equation*}
@@ -455,22 +452,14 @@ We claim
 
 \subsection{Introducing the null-chains}
 
-There is an appropiate way to pick a basis for \(\Gi\). Recall that each \(\vv\in \Gi\) eventually gets mapped to \(\0\) under \(T-\lambda_i\id\) (in other words, \(T-\lambda_i I\) is nilpotent on \(\Gi\)), so it is natural to define the following set:
+The definition of \(\Gi\) hints at what might be an appropriate choice of basis. Recall that each vector in \(\Gi\) eventually gets mapped to the zero vector under \(T-\lambda_i\id\) i.e. the map is nilpotent on \(\Gi\). So it is natural to define the following sets.
 
 \begin{definition}
-    A \textit{null-chain} under  linear map \(L\) is a set of (one or more) \textbf{non-zero} vectors \(\{\vv_1,\vv_2,..\vv_n\}\)
-
-    such that
-
-    \begin{equation*}
-        L(\vv_{i+1})=\vv_{i}\text{ for }i\leq n-1
-    \end{equation*}
-
-    and
-
-    \begin{equation*}
-        L(\vv_1)=0
-    \end{equation*}
+    A \textit{null-chain} under  linear map \(L\) is a set of (one or more) \textbf{non-zero} vectors \(\{\vv_1,\vv_2,..\vv_n\}\) such that
+    \begin{align*}
+        &L(\vv_1)=0 \\
+        &L(\vv_{i+1})=\vv_{i} \ \text{ for } \ i\leq n-1
+    \end{align*}
 \end{definition}
 
 \begin{figure}[H]
@@ -508,11 +497,11 @@ There is an appropiate way to pick a basis for \(\Gi\). Recall that each \(\vv\i
 
         \fill (0,0) circle (1.5pt);
     \end{tikzpicture}
-    \caption{A null-chain \(\{v_1,v_2,v_3\}\) under \(T-\lambda_iI\) in a generalised eigenspace}
+    \caption{A null-chain \(\{\vv_1,\vv_2,\vv_3\}\) under \(T-\lambda_iI\) in some generalised eigenspace}
 \end{figure}
 
 
-As one may guess:
+This definition immediately yields the following lemma. 
 \begin{lemma}\label{lem:nullchain-indp}
     A null-chain under a linear map \( L \) forms a linearly independent set.
 \end{lemma}
@@ -556,9 +545,9 @@ As one may guess:
 % TODO:
 % Add proof for this (modified)
 
-We can pick null-chain in \(\Gi\) under \(T-\lambda_i\id\) and check whether it is a basis for \(\Gi\).
-In general this is not the case.
-For example consider the matrix
+ We should check weather a null-chain in \(\Gi\) under \(T-\lambda_i\id\) is a basis for \(\Gi\).
+A quick counter example shows in general this is not the case.
+Consider the matrix
 
 \begin{equation*}
     A=\begin{pmatrix}
@@ -568,47 +557,40 @@ For example consider the matrix
     \end{pmatrix}
 \end{equation*}
 
-Note that \(2\in\spec A\), with \(\dim\vsG_2=3\).
-However, the longest null-chain for \(A-2I\) is of length \(2\), so one null-chain is not enough.
+Note that \(2\in\spec A\) with \(\dim\vsG_2=3\).
+However the longest null-chain for \(A-2I\) is of length \(2\) so one null-chain cannot span \(G_3\).
 
 The idea is to pick multiple such chains. Then it can be shown:
 \begin{theorem}\label{theorem:multnull}
-    A non-zero finite-dimensional vector space \(\vsV\) under a nil-potent linear map \(L\) always has a basis composed of disjoint null-chains.
+    A nonzero finite-dimensional vector space \(\vsV\) with a nilpotent linear map \(L\) always has a basis composed of disjoint null-chains.
 \end{theorem}
 \begin{proof}
     % Note:
     % Maybe we could put it in an appendix instead?
 
 
-    We show this via strong induction on the dimension of \(\vsV\).
-    Consider a vector space \(\vsV\) under under a nilpotent map \(L\) with \( \dim\vsV=1 \).
+    We perform strong induction on the dimension of \(\vsV\).
+    Let \(\vsV\) be a vector space with \( \dim\vsV=1 \) and \(L\) a nilpotent linear operator on \(V\).
 
-    Any \(\vv\neq\0\in\vsV\) is a basis of \(\vsV\), and since \(L\vv=\0\), the null-chain
+    Any \(\vv\neq\0\in\vsV\) is a basis of \(\vsV\) and since \(L\vv=\0\) the null-chain \(\{\vv\} \) is a basis.
 
-    \begin{equation*}
-        \{\vv\}
-    \end{equation*}
+    Now that we have our base case let \( \dim\vsV=k \).
 
-    is a basis.
-
-    Now that we have our base case, let \( \dim\vsV=k \).
-
-    We hypothesizing that:
+    Hypothesizing that:
 
     \textit{Every vector space with dimension \(\leq k-1\) which is nilpotent under \(L\) has a basis of disjoint null-chains.}
 
-    The map \(L\) is obviously non-invertible on \(\vsV\), therefore
+    The map \(L\) is not invertible on \(\vsV\) by its nilpotency. Therefore
     \begin{equation}\label{eq:dim-image-bound}
         \dim L(\vsV)< \dim\vsV
     \end{equation}
-    where \(L(\vsV)\) is the image \(L\) over \(\vsV\).
 
-    Dimension theorem for \(L\) on \(V\) states
+    The dimension theorem gives 
     \begin{equation}
         \dim\vsV=\dim L(\vsV) + \dim\ker L
     \end{equation}
-    Note that \(L(\vsV)\) is a subspace of \(\vsV\), therefore it is also nilpotent under \(L\).
-    Considering \eqref{eq:dim-image-bound}, by the induction hypothesis there is a basis of \(L(\vsV)\) of the form
+    Note that \(L(\vsV)\) is a subspace of \(\vsV\) therefore it is also nilpotent under \(L\).
+    The induction hypothesis and \eqref{eq:dim-image-bound} guarantee there is a basis of \(L(\vsV)\) of the form
 
     % TODO: read and understand the proof and evaluate its correctness
     % Also fix any styling error
@@ -620,7 +602,7 @@ The idea is to pick multiple such chains. Then it can be shown:
         C_l & = \{\beta_{l1}, \beta_{l2}, \ldots, \beta_{lk_l}\}. \\
     \end{align*}
 
-    where \(C_i\)'s are \(l\) many disjoint nullchains such that
+    where the \(C_i\)'s are \(\ell\)-many disjoint nullchains such that
 
     \begin{align*}
         L(\beta_{i1})     & = 0          \\
@@ -630,38 +612,34 @@ The idea is to pick multiple such chains. Then it can be shown:
     We have that
 
     \begin{equation*}
-        |\bigcup_{i=1}^\sigma C_i|= \dim L(\vsV).
+        |\bigcup_{i=1}^\ell C_i|= \dim L(\vsV).
     \end{equation*}
 
     Note that the first vector in each chain is in \( \ker(L)\) and therefore
     \begin{equation}
-        l\leq \dim\ker L
+        \ell \leq \dim\ker L
     \end{equation}
     because of the linear independence of the \(\beta_{i1}\)'s.\\
-    Consider the last vector \(\beta_{ik_i}\) in each chain - it is in \(L(\vsV)\), therefore
+    Consider the last vector \(\beta_{ik_i}\) in each chain. It is in \(L(\vsV)\)  giving
     \begin{equation}
-        \forall i\leq l, \exists \vu_i\ s.t \ L(\vu_i)=\beta_{ik_i}
+        \forall i\leq l, \ \exists \vu_i\ : \ L(\vu_i)=\beta_{ik_i}
     \end{equation}
-    Thus we have upgraded our initial chains by adding one more vector
+    Thus we can upgrade our initial chains by adding one more vector
     \begin{equation}
-        C_i\cup\{\vu_i\} \label{eq:newc}
+        C_i\cup\{\vu_i\} \label{eq:newc}, \ i \leq \sigma
     \end{equation}
-    and due to their independence at \ref{col:nullchainS}, we have a linearly independent set of size
+    and due to their independence due to Corollary \ref{col:nullchainS} we have a linearly independent set of size \( \dim L(\vsV)+ \ell \).
 
-    \begin{equation*}
-        \dim L(\vsV)+l
-    \end{equation*}
-
-    If \(l=\dim\ker L\), we are done because of dimension theorem - the collection of the newly constructed nullchains at \eqref{eq:newc} is the desired basis.
+    If \(\ell=\dim\ker L\) we are done by the dimension theorem and the collection of newly constructed nullchains at \eqref{eq:newc} is the desired basis.
 
     Otherwise, extend the linearly independent set \(\{\beta_{11}, \beta_{21},...,\beta_{l1}\}\)into a basis of \(\ker L\):
     \begin{equation*}
         {\beta_{11}, ...,\beta_{l1}, \vw_{l+1},\vw_{l+2}...,\vw_{\dim\ker L}}
     \end{equation*}
 
-    Then we have constructed new \(\dim\ker L-l\) chains - all of size 1.
+    We have constructed  \(\dim\ker L-l\) more chains all of length one.
 
-    Collecting everything, we have:
+    Collecting everything we have:
     \begin{align*}
             & \{\vw_{\dim\ker L}\},   \\
             & \{\vw_{\dim\ker L-1}\}, \\
@@ -673,31 +651,26 @@ The idea is to pick multiple such chains. Then it can be shown:
             & C_l \cup \{\vu_l\}.       \\
     \end{align*}
 
-    The union of everything above is a linearly independent set due to \ref{col:nullchainS}, and it is of size
-
+    The union of everything above is a linearly independent set due to Corollary \ref{col:nullchainS}. And has cardinality 
     \begin{align*}
-        \dim\ker L-l+\dim T(\vsV) + l   \\
+        &\dim\ker L-l+\dim T(\vsV) + l   \\
         &= \dim\ker L+\dim T(\vsV)      \\
         &= \dim\vsV,
     \end{align*}
-
-    which means that it is a basis due to dimension theorem.
-
-
 \end{proof}
 
 \subsection{Picking a basis}
-\(T-\lambda_i\id\) is nilpotent on the generalized eigenspace \(\Gi\) and therefore by Theorem \ref{theorem:multnull} we may construct an appropriate basis \(\beta_i\) - composed of nullchains - for \(\Gi\).
+The map \(T-\lambda_i\id\) is nilpotent on the generalized eigenspace \(\Gi\) and therefore by Theorem \ref{theorem:multnull} we may construct an appropriate basis \(\beta_i\) composed of nullchains for \(\Gi\).
 
-Define $\beta_i$ as a basis of $\Gi$ composed of null-chains and consider its matrix representation under $T$. 
-
-A single null-chain in its decomposition has the following structure:
+Consider the matrix representation of \(T\) for the basis
+$\beta_i$ of $\Gi$.
+A single null-chain \(N\) of length \(m+1\) in this basis has the following structure:
 
 \begin{align*}
     (T-\lambda_i\id)\vv_1   & = \0          \\
     (T-\lambda_i\id)\vv_2   & = \vv_1       \\
     \vdots                                  \\
-    (T-\lambda_i\id)\vv_n   & = \vv_{n-1}   \\
+    (T-\lambda_i\id)\vv_m   & = \vv_{m-1}   \\
 \end{align*}
 
 
@@ -707,33 +680,51 @@ which in terms of \(T\) gives
     T\vv_1 & = \lambda_i \vv_1              \\
     T\vv_2 & = \lambda_i \vv_2 + \vv_1      \\
     \vdots                                  \\
-    T\vv_n & = \lambda_i \vv_n + \vv_{n-1}  \\
+    T\vv_n & = \lambda_i \vv_m + \vv_{m-1}  \\
 \end{align*}
 
-Putting this in a matrix pattern gives
+
+Computing the matrix representation of \(T\) with respect to the nullchain above yields
 \begin{equation}
-    J_1=
+     J_{\lambda_i, 1}=
     \begin{pmatrix}
         \lambda_i & 1         & 0      & \cdots & 0         \\
         0         & \lambda_i & 1      & \cdots & 0         \\
-        0         & 0         & \cdots & \ddots & \vdots    \\
-        \vdots    & \vdots    & \ddots & \ddots & 1         \\
+        0         & 0         & \ddots  & \ddots & \vdots    \\
+        \vdots    & \vdots    & \ddots &  & 1         \\
 
         0         & 0         & \cdots & 0      & \lambda_i \\
-    \end{pmatrix}
+    \end{pmatrix} \in \mathbb{C}^{m \times m}
     \label{eq:jordanblock}
 \end{equation}
 
 
-This structure is called a Jordan block. Since the basis \(\beta_i\) is composed of multiple null-chains, its matrix pattern gives
+This structure is the so-called Jordan block. Of course this does not really make sense as the nullchain \(N\) is not a basis for any meaningful subspace we have studied. However since the basis \(\beta_i\) is composed of multiple disjoint null-chains we can use (\ref{eq:jordanblock}) to find the matrix representation of the restriction of \(T\) onto \(G_{\lambda_i}\)
 \begin{equation}
-    J=
+    [T|_{G_{\lambda_i}}] _{ \beta_i} = J_{\lambda_i} =
     \begin{pmatrix}
-        J_1    & 0      & \cdots & 0      \\
-        0      & J_2    & \cdots & 0      \\
+        J_{\lambda_i, 1}    & 0      & \cdots & 0      \\
+        0      & J_{\lambda_i, 2}   & \cdots & 0      \\
         \vdots & \vdots & \ddots & \vdots \\
-        0      & 0      & \cdots & J_k
+        0      & 0      & \cdots & J_{\lambda_i, k} 
+    \end{pmatrix}
+    \label{eq:quasi-jordan-form}
+\end{equation}
+where each \(J_{i \leq k}\) is of form \eqref{eq:jordanblock}.
+
+
+Theorem \ref{theorem:dirsumv} and theorem \ref{theorem:multnull} immediately give  $\beta=\bigcup_{i=1}^{\sigma}\beta_i$ is a basis for $V$.
+ Furthermore all \(G_{\lambda_i} \) are disjoint and \(T\)-invariant. So computing the basis representation of \(T\) using \(\beta\) gives
+
+\begin{equation}
+    [T]_\beta=
+    \begin{pmatrix}
+        J_{\lambda_1}    & 0      & \cdots & 0      \\
+        0      & J_{\lambda_2}    & \cdots & 0      \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0      & 0      & \cdots & J_{\lambda_\sigma}
     \end{pmatrix}
     \label{eq:jordan-form}
 \end{equation}
-where each \(J_i\) is of form \eqref{eq:jordanblock}
+where each block $J_{\lambda_i}$ is of form (\ref{eq:quasi-jordan-form}).
+Ultimately this is the desired Jordan canonical form of the linear operator $T$.

@@ -1,11 +1,15 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx} % Required for inserting images
+\usepackage[absolute,overlay]{textpos}
 \usepackage{tikz}
 \usepackage{float}
+\usepackage{tikz-3dplot}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{mathtools}
 \usepackage{lettrine}
+\usepackage{booktabs}
+\usepackage{changepage}
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage{leftindex}
@@ -97,17 +101,41 @@
 \DeclareMathOperator{\spec}{spec}
 \DeclareMathOperator{\vspan}{span}
 
-\title{Generalized eigenvalues and Weierstrass Form}
-\author{Gloria, Bodhi, Branko, Albert}
-\date{April 2026}
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
 
+\title{Generalized eigenvalues and the Weierstrass Canonical Form}
+\author{Gloria, Bodhi, Branko, Albert}
+\date{}
 \begin{document}
+\begin{titlepage}
+
+  
+\begin{textblock*}{10cm}(1cm, 1cm)
+     \includegraphics[width=0.5\textwidth]{./Report_template/banner}
+\end{textblock*}
+
 \maketitle
+\vfill
+\begin{center}
+  \input{./images/basischange}
+\end{center}
+\vfill
+\noindent\rule{\textwidth}{0.0001pt}
+\input{abstract}
+\thispagestyle{empty}
+\end{titlepage}
+
+\setcounter{page}{1}
+
 \tableofcontents
+\include{intro}
+\setcounter{section}{-1} 
 \include{prelims}
 \include{jordan}
 \include{weierstrass}
 \include{applications}
+\include{conclusion}
 \bibliographystyle{plain}
 \bibliography{refs}
 \end{document}

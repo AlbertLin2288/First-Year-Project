@@ -1,6 +1,6 @@
 \section{Applications and Examples}
 
-As we have stated before, the main application of the Weierstrass canonical form is to help solve the differential system of equations: $E\dot{x} = Ax$. Given that $E$ may not be an invertible matrix, we must find another way to simplify such $DAE$'s. This leads to another application that will be useful in finding a solution for $x$: the Drazin inverse of a matrix.
+As we have stated before, the main application of the Weierstrass canonical form is to help solve the differential system of equations: $B\dot{x} = Ax$. Given that $B$ may not be an invertible matrix, we must find another way to simplify such $DAE$'s. This leads to a separate application of Weierstrass form, which will be useful in finding a solution for $x$: the Drazin inverse of a matrix.
 
 \subsection{The Drazin inverses}
 
@@ -10,32 +10,32 @@ As we have stated before, the main application of the Weierstrass canonical form
     \item $A^DAA^D = A^D$
     \item $\exists\ k \in \mathbb{N}$ such that $A^DA^{k+1} = A^k$
 \end{itemize}
-The existence of such an inverse for any matrix and its uniqueness can be proven and it is shown here [10, Theorem 2.19](insert citation here).
-\\From [1] article: Considering the regular matrix pencil $A - E\partial$, for $A$ and $E$ such that $AE = EA$, the drazin inverses of $A$ and $E$ are as follows:
+The existence of such an inverse for any matrix and its uniqueness can be proven and it is shown in \textit{Theorem 2.19} in \cite{kunkel2006differential}
+\\From \cite{berger2012quasi}: Given a regular matrix pencil $A - B\partial$, with $A$ and $B$ such that $AB = BA$, then the drazin inverses of $A$ and $B$ are as follows:
 \begin{center}
-    $E^D = [V\ W] \begin{bmatrix} I_{n_1} & 0 \\ 0 & 0 \end{bmatrix} [EV\ AW]^{-1}$
+    $B^D = [W\ S] \begin{bmatrix} I_{n_1} & 0 \\ 0 & 0 \end{bmatrix} [BW\ AS]^{-1}$
     and
-    $A^D = [V\ W] \begin{bmatrix} J^D & 0 \\ 0 & I_{n_2} \end{bmatrix} [EV\ AW]^{-1}$
+    $A^D = [S\ W] \begin{bmatrix} J^D & 0 \\ 0 & I_{n_2} \end{bmatrix} [BW\ AS]^{-1}$
 \end{center}
 
-The proof that these two follow the three properties of the drazin inverses appears in [2](insert citation here). The forms the drazin inverses take are very similar to applying the Weierstrass canonical form transformation on each of $E$ and $A$.
+The proof that $E^D$ and $A^D$ follow the three properties of the drazin inverses appears in \cite{berger2012quasi} at \textit{Proposition 2.15}. The forms the drazin inverses take are very similar to applying the Weierstrass canonical form transformation on each of $B$ and $A$.
 
 % Then from Stephan's article: Proposition 2.15: writte the drazin inverses of A and E from the pencil
 
 \subsection{Solving the DAE}
 \subsubsection{Using the drazin inverse}
 
-Using the generalized inverses that we have found in the previous section, we manage to find the general solution to the initial value problem $E\dot{x} = Ax$; $x(0) = x_o$, for the case where $E$ and $A$ commute. It takes the form:
+Using the generalized inverses that we have found in the previous section, we manage to find the general solution to the initial value problem $B\dot{x} = Ax$; $x(0) = x_o$, for the case where $A$ and $B$ commute. It takes the form:
 \begin{center}
-    $x(t) = e^{E^DAt}E^DEx_0$
+    $x(t) = e^{B^DAt}B^DBx_0$
 \end{center}
-It follows from \textit{Remark 2.21} in [2], but the system $E\dot{x} = Ax\ +\ f$ is replaced by a simpler version where $f = 0$.
+It follows from \textit{Remark 2.21} in \cite{berger2012quasi}, but the system $B\dot{x} = Ax\ +\ f$ is replaced by a simpler version where $f = 0$.
 % then mention solving the linear system using the Drazin inverses that we found: (Remark 2.21 in the article)
 
-This way of finding the solution of the DAE is long and computational (given the fact that $E^D$ must be computed), with the additional restriction that $AE = EA$. A better way to reach the solution would be through the use of the generalized eigen-chains.
+This way of finding the solution of the DAE is long and computational (given the fact that $B^D$ must be computed), with the additional restriction that $AB = BA$. A better way to reach the solution would be through the use of the generalized eigen-chains.
 \subsubsection{Using the generalized eigenvectors}
-As in section \textit{3.2 Differential algebraic equation - revisited} of [2], the generalized eigenvectors of the regular pencil $A\ - E\partial$ constitute a basis of solutions for $\ker(A - E\frac{d}{dt})$ (i.e. the space of solutions for the system of differential equations $E\dot{x} = Ax$). The proposition in [2] goes as follows:\\
-Consider a regular pencil $A\ - E\partial \in \mathbb{C}^{n\times n}[\partial]$. Then $(v_1, v_2,..., v_k)$ for $\lambda$ a generalized eigenvalue of the pencil is a \textit{chain of generalized eigenvectors} if and only if the following functions are linearly independent solutions for $E\dot{x} = Ax$:
+As in section \textit{3.2 Differential algebraic equation - revisited} of \cite{berger2012quasi}, the generalized eigenvectors of the regular pencil $A\ - B\partial$ constitute a basis of solutions for $\ker(A - B\frac{d}{dt})$ (i.e. the space of solutions for the system of differential equations $B\dot{x} = Ax$). The proposition in \cite{berger2012quasi} goes as follows:\\
+Consider a regular pencil $A\ - B\partial \in \mathbb{C}^{n\times n}[\partial]$. Then $(v_1, v_2,..., v_k)$ for $\lambda$ a generalized eigenvalue of the pencil is a \textit{chain of generalized eigenvectors} if and only if the following functions are linearly independent solutions for $B\dot{x} = Ax$:
 \begin{center}
     $x_i:\mathbb{R}\rightarrow \mathbb{C}^n$\quad $x_i(t) = e^{\lambda t}\begin{bmatrix}
         v_1 & v_2 &\dots& v_n
@@ -49,3 +49,51 @@ Consider a regular pencil $A\ - E\partial \in \mathbb{C}^{n\times n}[\partial]$.
 \end{center}
 
 \subsection{Example}
+
+We are trying to find two square matrices $P$ and $Q$ such that
+$PAQ = 
+\begin{bmatrix}
+    J & 0 \\ 0 & I
+\end{bmatrix}$
+and $PBQ = \begin{bmatrix}
+    I & 0 \\ 0 & N
+\end{bmatrix}$
+where $A = \begin{bmatrix}
+    3 & 0 \\ -1 & 1
+\end{bmatrix}$
+and $B = \begin{bmatrix}
+    2 & 1 \\ -4 & -2
+\end{bmatrix}$.
+
+
+For the Weierstrass form to exist as we have defined in the proofs above, we need to make sure that the pencil $A + B\partial$ is regular.
+The determinant of $A-\lambda B$ for $\lambda := 1$ is $6$ which is nonzero, so the pencil is indeed regular.
+\begin{center}
+    $det(A+\lambda B) = \left | \begin{matrix}
+    3 - 2\lambda & -\lambda \\ -1 +4\lambda & 1 + 2\lambda
+    \end{matrix} \right | = 3\lambda + 3$
+\end{center}
+The polynomial for the pencil has degree only one, when it should have degree two. This tells us that there must be a hidden root: an infinite eigenvalue.
+The eigenvalues with which we are working are $\lambda_1 = -1$ and $\lambda_\infty$. As in the proof, we split the basis of $\mathbb{R}^2$ into two subspaces: one that deals with the finite eigenvalues and another that tackles the infinite ones.
+
+First, we look for an eigenvector for $\lambda_1$. As defined in (\ref{AinB}), we look for $v_1 \in \mathbb{R}^2$ s.t. $Av_1 = \lambda_1Bv_1$. We get $v_1 = \begin{bmatrix} 1 \\ -5 \end{bmatrix}$ as the first column for the matrix $Q$.  \vspace{1em} \\ 
+Next, using (\ref{BAdel2}), we get $Bv_2 = 0$, for the first vector in the chain that is contained in the ``infinite'' vector subspace. Solving it, we get $v_2 = \begin{bmatrix} -1 \\ 2 \end{bmatrix}$. \\
+Collecting the two vectors, we get $Q = \begin{bmatrix} v_1 & v_2 \end{bmatrix} = \begin{bmatrix} 1 & -1 \\ -5 & 2 \end{bmatrix}$ \\
+Now we need to find $P = \begin{bmatrix} Bv_1 & Av_2 \end{bmatrix}^{-1}$, so we can easily reach $P = \begin{bmatrix} \frac{1}{3} & \frac{1}{3} \\ -\frac{2}{3} & -\frac{1}{3} \end{bmatrix}$ \\
+To check that everything is correct: 
+\begin{center}
+    $PAQ = \begin{bmatrix} \frac{1}{3} & \frac{1}{3} \\ -\frac{2}{3} & -\frac{1}{3} \end{bmatrix}
+    \begin{bmatrix} 3 & 0 \\ -1 & 1 \end{bmatrix}
+    \begin{bmatrix} 1 & -1 \\ -5 & 2 \end{bmatrix} = \begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$ \\
+    \vspace{1em}
+    $\implies PAQ = \begin{bmatrix} J & 0 \\ 0 & I \end{bmatrix}$, where $J = \lambda_1$ and $I$ is one-dimensional. \\
+    \vspace{1em}
+    and \\
+    \vspace{1em}
+    $PBQ = \begin{bmatrix} \frac{1}{3} & \frac{1}{3} \\ -\frac{2}{3} & -\frac{1}{3} \end{bmatrix}
+    \begin{bmatrix} 2 & 1 \\ -4 & -2 \end{bmatrix}
+    \begin{bmatrix} 1 & -1 \\ -5 & 2 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$
+    \\
+    \vspace{1em}
+    $\implies PBQ = \begin{bmatrix} I & 0 \\ 0 & N \end{bmatrix}$, where $N = 0$ since it is a nilpotent Jordan matrix of dimension one.
+\end{center}

@@ -7,36 +7,45 @@ For some linear operator \(T: \vecspace{V} \to \vecspace{V}\), denote:
 \begin{center}
     \setlength{\tabcolsep}{12pt} 
     \begin{tabular}{|l|l|}
-            \textbf{Object} & \textbf{Denotation} \\ \hline
-            Kernel of \(T\) & \( \ker_\vecspace{V}\,T = \ker T \) \\
-            Extended kernel of \(T\)& \(\extker T = \bigcup_{i=0}^\infty \ker T ^i\)\\
-            The identity function or matrix on \(\vecspace{V}\) & \(I\) \\
-            The image of a function \(f\) \textbf{or} matrix \(A\) & \(\im f\) or \( \im A\) \\ 
-            The spectrum & \( \spec T\) \\ 
-            The cardinality of the spectrum & \(\sigma = |\spec T| \) \\ 
-            The set of endomorphisms from \(\vecspace{V}\) to \( \vecspace{V}\) & \(\mathcal{L}(\vecspace{V}) \)
+            \hline & \\
+            A finite dimensional vector space over the complex field & \(\vsV\) \\[1ex]
+            Extended kernel of \(T\)& \(\extker T = \bigcup_{i=0}^\infty \ker T ^i\)\\[1ex]
+            The cardinality of the spectrum of a linear map $T$ & \(\sigma = |\spec T| \) \\  [1ex]
+            The set of endomorphisms from \(\vecspace{V}\) to \( \vecspace{V}\) & \(\mathcal{L}(\vecspace{V}) \) \\[1ex]
+            Determinant of a matrix representation $A$ of a linear map $T$ & \(|T|\)  \\[1ex]
+            Restriction of a map \(T\) on a subset \(S\) of its domain & \(T|_S\) \\[1ex]
+            Composition of linear maps \(T\) and \(L\) & \(TL\)\\[1ex]
+            Image of a vector \(\vv\) under a linear map \(T\) & \(T\vv\)\\[1ex]
+            & \\
+            \hline 
         \end{tabular}
-\end{center}
-    \subsection{Fundamental definitions}
+\end{center}    
+   
+    \subsection{Some definitions}
 
     % Note:
     % Maybe terminology need to be modified,
     % Mutually disjoint (Which isn't defined here) seems to be the same as independent, and pairwise disjoint is never used.
-    For subspaces $\vecspace{S}, \vecspace{S}'$ of $\vecspace{V}$, $\vecspace{S}$ and $\vecspace{S}'$ are disjoint iff $\vecspace{S} \cap \vecspace{S}' = \{\0\}$
 
-    For subspaces $\vecspace{S}, \vecspace{S}'$ of $\vecspace{V}$, if $\vecspace{S}$ and $\vecspace{S}'$ are disjoint, we define
-    \begin{equation*}
-        \vecspace{S} \oplus \vecspace{S}' = \{\vec{v}+\vec{u}|\vec{v}\in\vecspace{S},\vec{u}\in\vecspace{S}\}
-    \end{equation*}
-    , which is also a subspace of $\vecspace{V}$.
+    \begin{definition}
+        We call \(m\)-many subspaces \(\vsS_1, \vsS_2, \dots, \vsS_m \subset \vsV\) independent if and only if the equation 
+        \[0 = \vec{s}_1 + \vec{s}_2 + \cdots + \vec{s} _m , \ \vec{s}_i \in \vsS_i \] 
+        has only the solution \( \vec{s}_1, \vec{s}_2, \dots, \vec{s} _m = \0 \).
+    \end{definition}
+    \vspace{1pt}
+    \begin{definition}
+    For subspaces $\vecspace{S}, \vecspace{S}' \subset \vecspace{V}$ we call $\vecspace{S}$ and $\vecspace{S}'$ disjoint if and only if $\vecspace{S} \cap \vecspace{S}' = \{\0\}$
+    \end{definition}
+    \vspace{1pt}
+    \begin{definition}
+    For disjoint subspaces $\vecspace{S}, \vecspace{S}' \subset \vecspace{V}$ we define
+    \[
+        \vecspace{S} \oplus \vecspace{S}' = \{\vec{v}+\vec{u} \ | \ \vec{v}\in\vecspace{S},\vec{u}\in\vecspace{S}\}
+    \]
+    which is also a subspace of $\vecspace{V}$.
+    \end{definition}
 
-    Also, the notation $\vecspace{S}\oplus\vecspace{S}'$ implies the two subspaces are disjoint.
-
-    A set of finite dimensional subspace $\{\vecspace{S_0}, \vecspace{S_1}, \dots, \vecspace{S_{n-1}}\}$ are independent if the union of their basis are linear independent for any choices of basis.
-
-    A matrix pencil is a function $\C \to \lmap(\vsV)$ where $\vsV$ is some vector space.
-    In this article we will only consider 2-pencil for finite dimensional $\vsV$.
-    Such pencil could be express as $P(x)=\penAB$ where $A,B\in\lmap(\vsV)$.
+    % A set of finite dimensional subspace $\{\vecspace{S_0}, \vecspace{S_1}, \dots, \vecspace{S_{n-1}}\}$ are independent if the union of their basis are linear independent for any choices of basis.
 
 
-    matrix pencil $\pen{A}{B}$ is singular if $|\pen{A}{B}|=0$, it is regular if it is not singular.
+    

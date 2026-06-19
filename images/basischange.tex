@@ -1,0 +1,40 @@
+\tdplotsetmaincoords{70}{110}
+
+\begin{tikzpicture}[tdplot_main_coords, scale=3, every node/.style={scale=1}]
+    
+    % axis
+    \draw[gray!70, thin] (-0.3,0,0) -- (1.5,0,0);
+    \draw[gray!70, thin] (0,-0.3,0) -- (0,1.5,0);
+    \draw[gray!70, thin] (0,0,-0.3) -- (0,0,1.5);
+    
+    % standard basis
+    \draw[-stealth, thick, blue!70] (0,0,0) -- (1,0,0) node[anchor=north east]{$\mathbf{e}_1$};
+    \draw[-stealth, thick, blue!70] (0,0,0) -- (0,1,0) node[anchor=north west]{$\mathbf{e}_2$};
+    \draw[-stealth, thick, blue!70] (0,0,0) -- (0,0,1) node[anchor=south]{$\mathbf{e}_3$};
+    
+    % f basis
+    \draw[-stealth, thick, red!70] (0,0,0) -- (0.8,0.5,0.2) node[anchor=west]{$\mathbf{f}_1$};
+    \draw[-stealth, thick, red!70] (0,0,0) -- (-0.3,0.9,0.3) node[anchor=south]{$\mathbf{f}_2$};
+    \draw[-stealth, thick, red!70] (0,0,0) -- (0.2,-0.2,1.0) node[anchor=south west]{$\mathbf{f}_3$};
+    
+    % v and lambda v
+    \draw[-stealth, thick, teal!70] (0,0,0) -- (2*0.9,2*0.7,2*0.6) node[anchor=south]{$\mathbf{\lambda v}$};
+
+    \draw[-stealth, thick, violet!70] (0,0,0) -- (0.9,0.7,0.6) node[anchor=south]{$\mathbf{v}$};
+
+     % proj lines
+    \draw[dashed, gray] (0.9,0.7,0.6) -- (0.9,0.7,0);
+    \draw[dashed, gray] (0.9,0.7,0) -- (0.9,0,0);
+    \draw[dashed, gray] (0.9,0.7,0) -- (0,0.7,0);
+    
+    \draw[dashed, gray] (2*0.9,2*0.7,2*0.6) -- (2*0.9,2*0.7,0);
+    \draw[dashed, gray] (2*0.9,2*0.7,2*0) -- (2*0.9,2*0,2*0);
+    \draw[dashed, gray] (2*0.9,2*0.7,2*0) -- (2*0,0.2*7,2*0);
+    
+    % zero vec
+    \node[below] at (0,0 ,0) {\(\0\)};
+
+    % caption
+    %\node[above] at (0,0,1.5) {\small $\{\mathbf{e}_i\} \xrightarrow{\ \text{change of basis}\ } \{\mathbf{f}_i\}$};
+
+\end{tikzpicture}
