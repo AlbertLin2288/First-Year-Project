@@ -1,6 +1,6 @@
 \section{Applications and Examples}
 
-As we have stated before, the main application of the Weierstrass canonical form is to help solve the differential system of equations: $B\dot{x} = Ax$. Given that $B$ may not be an invertible matrix, we must find another way to simplify such $DAE$'s. This leads to a separate application of Weierstrass form, which will be useful in finding a solution for $x$: the Drazin inverse of a matrix.
+As we have stated before, the main application of the Weierstrass canonical form is to help solve differential algebraic equations (DAEs) of the form  $B\dot{x} = Ax$. Given that $B$ may not be an invertible matrix, we must find another way to simplify such DAEs. This leads to a separate application of Weierstrass form, which will be useful in finding a solutions : the Drazin inverse of a matrix.
 
 \subsection{The Drazin inverses}
 
@@ -25,14 +25,15 @@ The proof that $E^D$ and $A^D$ follow the three properties of the drazin inverse
 \subsection{Solving the DAE}
 \subsubsection{Using the drazin inverse}
 
-Using the generalized inverses that we have found in the previous section, we manage to find the general solution to the initial value problem $B\dot{x} = Ax$; $x(0) = x_o$, for the case where $A$ and $B$ commute. It takes the form:
+Using the generalized inverses that we have found in the previous section, we manage to find the general solution to the initial value problem $B\dot{x} = Ax$; $x(0) = x_0$, for the case where $A$ and $B$ commute. It takes the form:
 \begin{center}
     $x(t) = e^{B^DAt}B^DBx_0$
 \end{center}
 It follows from \textit{Remark 2.21} in \cite{berger2012quasi}, but the system $B\dot{x} = Ax\ +\ f$ is replaced by a simpler version where $f = 0$.
 % then mention solving the linear system using the Drazin inverses that we found: (Remark 2.21 in the article)
 
-This way of finding the solution of the DAE is long and computational (given the fact that $B^D$ must be computed), with the additional restriction that $AB = BA$. A better way to reach the solution would be through the use of the generalized eigen-chains.
+This way of finding the solution of the DAE is long and computational (given the fact that $B^D$ must be computed), with the additional restriction that $AB = BA$. A better way to reach the solution would be through the use of the generalized eigenvectors.
+
 \subsubsection{Using the generalized eigenvectors}
 As in section \textit{3.2 Differential algebraic equation - revisited} of \cite{berger2012quasi}, the generalized eigenvectors of the regular pencil $A\ - B\partial$ constitute a basis of solutions for $\ker(A - B\frac{d}{dt})$ (i.e. the space of solutions for the system of differential equations $B\dot{x} = Ax$). The proposition in \cite{berger2012quasi} goes as follows:\\
 Consider a regular pencil $A\ - B\partial \in \mathbb{C}^{n\times n}[\partial]$. Then $(v_1, v_2,..., v_k)$ for $\lambda$ a generalized eigenvalue of the pencil is a \textit{chain of generalized eigenvectors} if and only if the following functions are linearly independent solutions for $B\dot{x} = Ax$:
@@ -48,7 +49,61 @@ Consider a regular pencil $A\ - B\partial \in \mathbb{C}^{n\times n}[\partial]$.
     for $i \in \{1, 2, \dots, k\}$
 \end{center}
 
-\subsection{Example}
+\subsubsection{By directly applying the transformation}
+If we apply the transformation matrices that turn a pencil into the Weierstrass canonical form on the DAE, we manage to directly decouple the system into two independent part as for example \cite{janheiland}. We can deal with each of them separately since they each represent the two subspaces that partition the vectorspace.
+Consider the homogenous DAE 
+\begin{equation}
+ B\dot{x}= Ax \label{eq:dae}
+\end{equation}
+Let \(P\) and \(Q\) be square matrices such that
+\[ PAQ =
+    \begin{bmatrix}
+        J & 0 \\ 
+        0 & I
+    \end{bmatrix} \ \ \text{and} \ \
+    PBQ =
+    \begin{bmatrix}
+        I & 0 \\ 
+        0 & N
+    \end{bmatrix}
+\]
+Then some algebra yields 
+\begin{align*}
+    &B\dot{x}= Ax \\
+    &P\cdot| \quad B\dot{x}= Ax \\
+    & PB \dot x = PAx
+\end{align*}
+Now we want $A$ and $B$ to turn into the WCF, so we are missing Q on the right side of each. We define ${\tilde{x}} := Q^{-1}x$ as our new variable. The system becomes: 
+\begin{center}
+    $PBQ\dot{\tilde{x}} = PAQ\tilde{x}$
+    \(\iff\) 
+    \(\begin{bmatrix}
+        I & 0 \\ 0 & N
+    \end{bmatrix} \) \(\dot{\tilde{x}} = \) \(\begin{bmatrix}
+        J & 0 \\ 0 & I
+    \end{bmatrix} \)\(\tilde{x}\)
+\end{center}
+
+If we let \( {\tilde x} = 
+\begin{bmatrix}
+    \tilde x_1 \\
+    \tilde x_2
+\end{bmatrix}
+\)
+the system above can be expressed as the following
+\[ \Bigg\{ \begin{matrix}
+     \dot{\tilde x} _1= J \tilde x_1 \\
+     N \dot{\tilde x}_2 = \tilde x_2
+\end{matrix}  \]
+
+The first equation is a homogeneous linear system so we may recall its solution is of the form \(\tilde x_1 = Qce^{Jt}\) for some constant \(c \in \mathbb{C}\).\footnote{\(c\) Is determined by initial conditions of the system.}
+And due to the structure of \(N \in \mathbb{C}^{m \times m}\) shown in Section \ref{section:weierstrass} for  we get \(\tilde x_{2,1} = \tilde x_{2,m} = 0\) and \(\tilde x_{2, i} = \dot{\tilde x}_{2, i}\) if and only if  \(N_{i+1, i} \neq 0\) and zero otherwise. Lastly we apply \(Q\) to retrieve \(x\).
+
+Hence we have fully characterised all solutions of (\ref{eq:dae}).
+
+
+
+\subsection{Example: Computing the Weierstrass Canonical Form}
 
 We are trying to find two square matrices $P$ and $Q$ such that
 $PAQ = 
@@ -66,10 +121,10 @@ and $B = \begin{bmatrix}
 \end{bmatrix}$.
 
 
-For the Weierstrass form to exist as we have defined in the proofs above, we need to make sure that the pencil $A + B\partial$ is regular.
+For the Weierstrass form to exist as we have defined in the proofs above, we need to make sure that the pencil $A - B\partial$ is regular.
 The determinant of $A-\lambda B$ for $\lambda := 1$ is $6$ which is nonzero, so the pencil is indeed regular.
 \begin{center}
-    $det(A+\lambda B) = \left | \begin{matrix}
+    $\text{det}(A-\lambda B) = \left | \begin{matrix}
     3 - 2\lambda & -\lambda \\ -1 +4\lambda & 1 + 2\lambda
     \end{matrix} \right | = 3\lambda + 3$
 \end{center}
