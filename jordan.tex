@@ -152,15 +152,19 @@ Our goal is to achieve this decomposition whilst choosing the best possible inva
 Before continuing some observations of invariant subspaces are in order.
 
 
-\begin{property}
-    Invariant subspaces (except \(\{\0\}\)) \(\vsS\) under \(T\) all contain an eigenvector of \(T\). This is because the linear map
+\begin{lemma}
+    Invariant subspaces (except \(\{\0\}\)) \(\vsS\) under \(T\) all contain an eigenvector of \(T\).
+\end{lemma}
+
+\begin{proof}
+     This is because the linear map
 
     \begin{equation*}
         T^*:\vsS\rightarrow \vsS,  \ T^*\vv=T\vv
     \end{equation*}
 
     is well defined due to the invariance. Then we just pick the eigenvector of \( T^* \) which must always exist.\footnotemark
-\end{property}
+\end{proof}
 
 
 \begin{lemma}\label{lem:invariance_sum}
@@ -419,9 +423,13 @@ We claim
 \(\vsG_{\lambda_1}\oplus\vsG_{\lambda_2}\oplus\dots\oplus\vsG_{\lambda_\sigma}=\vsV\) \label{theorem:dirsumv}
 \end{theorem}
 \begin{proof}
+    We will show this by induction on $\sigma$.
+    
     Note that \(\{\0\}\oplus\vsG=\vsG\). So for \(\sigma=0\), we will define \(\vsG_{\lambda_1}\oplus\dots\oplus\vsG_{\lambda_\sigma}=\{\0\}\).
-
-    If \(k=0\), since for any \(n\)-dimensional vector space \(\vsV\) where \(n > 0\), there exists eigenvalues for \(T\), we have \(n=0\).
+    
+    Base case:\\
+    Recall since for any \(n\)-dimensional vector space \(\vsV\) where \(n > 0\) there exists eigenvalues for \(T\).
+    If \(\sigma=0\) then  we have \(n=0\).
     Thus, \(\vsV=\{\0\}\) and the theorem holds.
 
     Suppose the theorem is true for some \(\sigma-1\in\N\). \\

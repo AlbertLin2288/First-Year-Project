@@ -282,7 +282,7 @@ Consequently we would like to consider a null-chain $\{v_1,...,v_k\}$ under $L_{
    Bv_{i+1}&=(A+\lambda B)v_i=Av_i+\lambda Bv_i\label{18}\\
    Bv_1&=0
 \end{align*}
-However the above sums become unwieldy quickly and it turns out we can achieve the desired effect by neglecting the second term, as in: 
+However, the above sums become unwieldy quickly and it turns out we can achieve the desired effect by neglecting the second term, as in: 
 \begin{equation}\label{chainAB}
     Bv_{i+1}=Av_i\text{ and }Bv_1=0
 \end{equation}
@@ -299,7 +299,7 @@ Lemmas \ref{injectivityA} and \ref{charA} give injectivity of \(A\) on \(\vsS\) 
 \end{remark}
 \newpage
 As \(A^{-1}B\) is invariant on \(\vsS\) we may use the same procedure as in the Jordan form to find a basis \(\beta_S\) of \(S\).
-We arrive at a basis of the following form - initially defining $B_S$ as a set composed of chains and then expressing its properties under $A^{-1}B$: 
+We arrive at a basis of the following form - initially defining $\beta_S$ as a set composed of chains and then expressing its properties under $A^{-1}B$: 
 \begin{equation}
 \beta_S=\{v_{0}^{(1)},v_{0}^{(2)},\dots,v_{0}^{(m_0)}\} \cup \{v_{1}^{(1)},v_{1}^{(2)},\dots,v_{1}^{(m_1)}\} \cup \dots \cup \{v_{t}^{(1)},v_{t}^{(2)},\dots,v_{t}^{(m_t)}\} \tag{\(\star\)} \label{eq:vbasis}
  \end{equation}
@@ -327,9 +327,9 @@ This is a consequence of the following lemma.
     \end{align*}
 
     By the nilpotency of \(L_{A,B}\) on $S$ (definition), it is well known that we may express $(I-\lambda L_{A,B})^{-1}|_S$ without the inverse as
-    $$(I-\lambda L_{A,B})^{-1}|_S=(I+\lambda L_{A,B}+\lambda^2 L_{A,B}^2+...+\lambda ^{N}L_{A,B}^{N})|_S$$for some integer $N$ and therefore, after multiplying by $L_{A,B}|_S$ we get $$(I-\lambda L_{A,B})^{-1}|_S\ L_{A,B}|_S=(L_{A,B}+\lambda L_{A,B}^2+...+\lambda ^{N}L_{A,B}^{N+1})|_S.$$This is a polynomial in the $S-$ nilpotent map $L_{A,B}$ with no constant term, and thus it is $S-$ nilpotent as well.
+    $$(I-\lambda L_{A,B})^{-1}|_S=(I+\lambda L_{A,B}+\lambda^2 L_{A,B}^2+...+\lambda ^{N}L_{A,B}^{N})|_S$$for some integer $N$ and therefore, after multiplying by $L_{A,B}|_S$ we get $$(I-\lambda L_{A,B})^{-1}|_S\ L_{A,B}|_S=(L_{A,B}+\lambda L_{A,B}^2+...+\lambda ^{N}L_{A,B}^{N+1})|_S.$$This is a polynomial in the $S$-nilpotent map $L_{A,B}$ with no constant term, and thus it is $S$-nilpotent as well.
     
-    Therefore, $A^{-1}B=(I-\lambda L_{A,B})^{-1}|_S\ L_{A,B}|_S$ is nilpotent on $S$ as desired. 
+    Therefore $A^{-1}B=(I-\lambda L_{A,B})^{-1}|_S\ L_{A,B}|_S$ is nilpotent on $S$ as desired. 
     
     
     \end{proof}
@@ -338,25 +338,25 @@ This is a consequence of the following lemma.
         There is a basis $\beta_S$ of $S$ composed of disjoint null-chains under $A^{-1}B.$
         
     \end{corollary}
-    Since the only eigenvalue of the map $A^{-1}B$ on $S$ is $\delta=0$ (above lemma), the basis $\beta_S$ in (\ref{BAdel0}) now takes the following form.
+    Since the only eigenvalue of the map $A^{-1}B$ on $S$ is $\delta=0$ by nilpotency on \(S\) the basis $\beta_S$ now takes the following form.
     \begin{equation}\label{BAdel2}
     \beta_S=\{v_{0}^{(1)},v_{0}^{(2)},\dots,v_{0}^{(m_0)}\} \cup \{v_{1}^{(1)},v_{1}^{(2)},\dots,v_{1}^{(m_1)}\} \cup \dots \cup \{v_{t}^{(1)},v_{t}^{(2)},\dots,v_{t}^{(m_t)}\} 
  \end{equation}
 \begin{equation}
    Bv_{i}^{(1)}=0 \text{ and } Bv_{i}^{(k+1)}=Av_{i}^{(k)}
 \end{equation}
-    
-    
-
-    
 
     \subsubsection{Basis for the image}\label{basisW}
 
     
-    Injectivity of $B$ on $W=\im((A+\lambda B)^{-1}B)^{N}$  (Lemma \ref{injectivityB}) and the uniqueness $v\rightarrow u$ at Lemma \ref{charB} means we can introduce a new linear map which describes this relationship, as done previously in Section \ref{sectionbasis}. \\
-    The map $$B^{-1}A :W\rightarrow W$$described by $$B^{-1}Av:=u \text{ where }Bu=Av$$is well defined and linear.
+    Injectivity of $B$ on $W=\im((A+\lambda B)^{-1}B)^{N}$   and the uniqueness of $(\vv, \vu)$ pairs follow from Lemmas \ref{injectivityB} and \ref{charB} respectively.
+    Hence we can introduce a new linear map which describes this relationship.
+    In a similar vain as Section \ref{basisS}. \\
+    Define the function 
+    $$B^{-1}A :W\rightarrow W$$described by $$B^{-1}Av:=u \text{ where }Bu=Av$$
+    Note that the above is well defined and linear.
 
-    The invariance of $B^{-1}A$ on $W$ calls for implementation of JCF for an appropriate basis $\beta_W$. It is constructed in the following way - we first define $B_W$ as a set and then write its properties under $B^{-1}A$ which follow from Jordan theory:
+    The invariance of $B^{-1}A$ on $W$  allows for the use of the JCF to find an appropriate basis $\beta_W$. It is constructed in the following way - $\beta_W$ as a set and then write its properties under $B^{-1}A$ which follow from Jordan theory:
     \begin{equation}\label{definitionbw}
 \beta_W=\{u_{0}^{(1)},u_{0}^{(2)},\dots,u_{0}^{(k_0)}\} \cup \{u_{1}^{(1)},u_{1}^{(2)},\dots,u_{1}^{(k_1)}\} \cup \dots \cup \{u_{l}^{(1)},u_{l}^{(2)},\dots,u_{l}^{(k_l)}\} 
  \end{equation} $$B^{-1}Au_{i}^{(1)}=\delta_i u_{i}^{(1)}\text{ and }B^{-1}Au_{i}^{(k+1)}=\delta_i u_{i}^{(k+1)}+u_{i}^{(k)}$$ By definition of $B^{-1}A$ we may "multiply" by $B$ in the last line and rewrite it as
@@ -371,7 +371,7 @@ This is a consequence of the following lemma.
    
 \subsection{Bases for $V$}
 \subsubsection{Choosing initial basis for V}
-We have described an appropriate way to choose bases $\beta_S$ and $\beta_W$ for $S=\ker((A+\lambda B)^{-1}B)^N$ and $W=im((A+\lambda B)^{-1}B)^{N}$ in Section \ref{sectionbasis}. This was done through implementing Jordan canonical form.  Since  $$V=S\oplus W,$$ we have that $\beta=\beta_S\cup\beta_W$ is a basis for $V$. However we know that we must describe $A$ and $B$ by an additional basis $\gamma$ with the matrices
+We have described an appropriate way to choose bases $\beta_S$ and $\beta_W$ for $S=\ker((A+\lambda B)^{-1}B)^N$ and $W= \im((A+\lambda B)^{-1}B)^{N}$ in Section \ref{sectionbasis}. This was done through implementing Jordan canonical form.  Since  $$V=S\oplus W,$$ we have that $\beta=\beta_S\cup\beta_W$ is a basis for $V$. However we know that we must describe $A$ and $B$ by an additional basis $\gamma$ with the matrices
 $$_\gamma[A]_\beta\text{ and } _\gamma[B]_\beta,  $$respectively. The choice for $\gamma$ is shown in the following section.
 
 
@@ -646,7 +646,7 @@ I & 0\\
 \end{equation*}
 With this, we have given a closed Weierstrass form, as desired. The above form may be easily concluded for matrices, where we would have transformation invertible matrices $P$ and $Q$ which change the coordinates to $\gamma$ and $\beta$, respectively.
 
-Let $A$ and $B$ be matrices.
+
 
 
 
