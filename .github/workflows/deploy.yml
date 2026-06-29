@@ -1,19 +1,19 @@
 name: Build pdf for master
 on:
   push:
-    branches: ["master"]
+    branches: ["master", "original"]
   pull_request:
-    branches: ["master"]
+    branches: ["master", "original"]
   workflow_dispatch:
 jobs:
-  build_latex:
+  build_latex_main:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v6
         with:
           ref: "master"
-        
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v4
         with:
@@ -28,8 +28,30 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: page_file
+  build_latex_original:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v6
+        with:
+          ref: "original"
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: main.tex
+
+      - name: Copy compiled pdf
+        run: |
+          mkdir page_file
+          cp ./main.pdf ./page_file/original.pdf
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: page_file
   deploy:
-    needs: build_latex
+    needs: [build_latex_main, build_latex_original]
 
     permissions:
       pages: write
@@ -43,7 +65,7 @@ jobs:
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v5
-  
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
